@@ -193,7 +193,7 @@
                                [{name: 'Employee information', color: ''}, {name: 'Section', color: ''}, {name: 'Role', color: ''}, {name: 'Skill', color: ''}], // แถวที่ 1
                                [{name: 'Frontend framework', color: ''}, {name: 'Backend framework', color: ''}], // แถวที่ 2
                                [{name: 'React', color: ''}, {name: 'Angular', color: ''}, {name: 'Vue', color: ''}, {name: 'Svelte', color: ''}, {name: 'Express.js', color: ''}, {name: 'Larevel', color: ''}, {name: 'Springboot', color: ''}, {name: 'Django', color: ''} /*แถวที่ 3*/]
-                           ]   
+                           ].map((subarray, index) => subarray.map((item, subIndex) => ({ ...item, index: subIndex })))   
          ```
          โดยที่ `name:` ชื่อ field
                `color:` สีของ field
