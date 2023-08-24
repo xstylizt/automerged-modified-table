@@ -226,6 +226,7 @@
      * ถ้า `meregedSubTypeOfContent: 'not auto'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
      * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'all'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
      * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col' แล้ว `mergeConfigsOfContent: []` (ใส่เป็น index ของแต่ละคอลัมน์ที่ต้องการให้ผสานเซลล์ของเนื้อหาแบบอัติโนมัติ) เช่น
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'specific_col' แล้ว `mergeConfigsOfContent: []` (ใส่เป็น index ของแต่ละคอลัมน์ที่ต้องการให้ผสานเซลล์ของเนื้อหาแบบอัติโนมัติ) เช่น
        * ถ้าต้องการให้มีการผสานเซลล์อัติโนมัติตาม column เฉพาะแถวที่ 1,2,4 จะได้ว่า  `mergeConfigsOfContent: [0,1,3]`
    * `content_style:`   
      * `font_size:` ขนาดของตัวอักษรเนื้อหา
