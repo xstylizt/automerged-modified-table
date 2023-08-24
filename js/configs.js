@@ -54,8 +54,8 @@ const content_style = {
     font_size: '25px',
     row_even_color: "#D8F2FF",
     row_odd_color: "white",
-    merged_cell_color_type: "all", // all กับ col
-    merged_cell_color:  "#F1F0E8"
+    merged_cell_color_type: "default", // default กับ col
+    merged_cell_color:  ""
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------s
