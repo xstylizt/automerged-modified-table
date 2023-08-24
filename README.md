@@ -160,18 +160,43 @@
     }
    ```
 
-   * `n_row:` คือ  
-   * `mergedTypeOfHeading:` คือ   
-     * 
-     * 
-   * `mergedConfigsOfHeading:` คือ 
-   * `heading_style:` คือ
-     * 
-     * 
-     * 
-       * 
-       * 
-     * 
+   * `n_row:` จำนวนแถวที่ต้องการสร้างหัวข้อ
+     * เช่น `n_row: 2` คือ การสร้างหัวข้อของตารางจากแถวที่ 1 และ 2
+   * `mergedTypeOfHeading:` ประเภทของการผสานเซลล์สำหรับหัวข้อ
+     * `'not auto'` คือ ไม่มีการผสานเซลล์แบบอัติโนมัติสำหรับหัวข้อ
+     * `'auto'` คือ ให้มีการผสานเซลล์แบบอัติโนมัติสำหรับหัวข้อ
+     * `'specific'` คือ กำหนดผสานเซลล์สำหรับหัวข้อด้วยตัวเอง
+   * `mergedConfigsOfHeading:` รูปแบบของการผสานเซลล์สำหรับหัวข้อ
+     * ถ้า `mergedTypeOfHeading: 'not auto'` และ `mergedTypeOfHeading: 'auto'` แล้ว `mergedConfigsOfHeading: []` (ใส่เป็น [])
+     * ถ้า `mergedTypeOfHeading: 'specific` แล้ว `mergedConfigsOfHeading: [{...},{...},{...}]`สามารถใส่ได้ในรูปแบบดังต่อไปนี้ เช่น
+       
+        ```Javascript
+         mergedConfigsOfHeading:  [{r1: 0, c1: 0, rc: 3, cc: 3},  // Employee information
+                                   {r1: 0, c1: 3, rc: 3, cc:1}]   
+        ```
+        
+        หมายความว่าแถวที่ 1 (r1:0) คอลัมน์ที่ 1  (c1:0) ให้มีการ merge ตามคอลัมน์ไปอีก 2 แถว (rc: 2+1) และให้มีการ merge ตามแถวไปอีก 2 คอลัมน์
+                  แถวที่ 1 (r1:0) คอมลัมน์ที่ 4 (c1:3) ให้มีการ merge ตามคอลัมน์ไปอีก 2 แถว (rc: 2+1) และไม่มีการ merge ตามแถว (cc:1)
+        
+   * `heading_style:` ตกแต่งและกำหนดสไตล์สำหรับหัวข้อ
+     * `font_weight:` ความหนาของตัวหนังสือของหัวข้อ 
+     * `font_size:`   ขนาดของตัวหนังสือของหัวข้อ
+     * `background_type:` รูปแบบของสีในการตกแต่งหัวข้อ
+       * `'all'` คือ ให้ใช้สีเหมือนกันทั้งหมดทุกเซลล์ของหัวข้อ
+       * `'specific'` คือ กำหนดสีของแต่ละ field ด้วยตัวเองของหัวข้อ
+     * `background_color:` สีในการตกแต่งหัวข้อ
+       * ถ้า `background_type: 'all'` แล้ว `background_color: ' hex code color หรือ เขียนชื่อสีภาษาอังกฤษ'`
+       * ถ้า `background_type: 'specific` แล้ว `background_color: [[{...}],[{...}],[{...}]]` สามารถใส่ได้ในรูปแบบดังต่อไปนี้ เช่น
+
+         ```Javascript
+         background_type:  [
+                               [{name: 'Employee information', color: ''}, {name: 'Section', color: ''}, {name: 'Role', color: ''}, {name: 'Skill', color: ''}], // แถวที่ 1
+                               [{name: 'Frontend framework', color: ''}, {name: 'Backend framework', color: ''}], // แถวที่ 2
+                               [{name: 'React', color: ''}, {name: 'Angular', color: ''}, {name: 'Vue', color: ''}, {name: 'Svelte', color: ''}, {name: 'Express.js', color: ''}, {name: 'Larevel', color: ''}, {name: 'Springboot', color: ''}, {name: 'Django', color: ''} /*แถวที่ 3*/]
+                           ]   
+         ```
+         โดยที่ `name:` ชื่อ field
+               `color:` สีของ field
 
 3. ภาพรวมของตารางสามารถกำหนดค่าผ่าน `object` ในตัวแปรที่ชื่อ `const Table` ซึ่งมี `properties` ที่กำหนดได้ดังต่อไปนี้
    
@@ -189,9 +214,19 @@
     }
    ```
 
-   * `mergedTypeOfContent:` 
-   * `meregedSubTypeOfContent:` 
-   * `mergeConfigsOfContent:` 
+   * `mergedTypeOfContent:` ประเภทการผสานเซลล์ของเนื้อหา
+     * `'not auto'` คือ ไม่มีการผสานเซลล์เนื้อหาแบบอัติโนมัติ
+     * `'auto'` คือ มีการผสานเซลล์ของเนื้อหาแบบอัติโนมัติ
+   * `meregedSubTypeOfContent:` ประเภทย่อยของการผสานเซลล์เนื้อหา
+     * ถ้า `meregedSubTypeOfContent: 'not auto'` แล้ว `meregedSubTypeOfContent: ''` (ใส่เป็น empty string '')
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'all'` คือ ให้มีการผสานเซลล์ของเนื้อหาแบบอัติโนมัติ**ทั้งหมด** (ค่าเหมือนกันจะถูกผสานทั้งหมดตามแถวและตามคอลัมน์)
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col'` คือ ให้มีการผสานเซลล์ของเนื้อเฉพาะตาม**คอลัมน์** ทั้งหมด
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'specific_col'` คือ ให้มีการผสานเซลล์ของเนื้อเฉพาะตาม**คอลัมน์** โดยระบุเจาะจงคอลัมน์ด้วย index
+   * `mergeConfigsOfContent:` รูปแบบของการผสานเซลล์สำหรับเนื้อหา
+     * ถ้า `meregedSubTypeOfContent: 'not auto'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'all'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
+     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col' แล้ว `mergeConfigsOfContent: []` (ใส่เป็น index ของแต่ละคอลัมน์ที่ต้องการให้ผสานเซลล์ของเนื้อหาแบบอัติโนมัติ) เช่น
+       * ถ้าต้องการให้มีการผสานเซลล์อัติโนมัติตาม column เฉพาะแถวที่ 1,2,4 จะได้ว่า  `mergeConfigsOfContent: [0,1,3]`
    * `content_style:`   
-     * 
+     * `font_size:`
      * 
