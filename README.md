@@ -209,7 +209,7 @@
         font_size: '25px',
         row_even_color: "#D8F2FF",
         row_odd_color: "white",
-        merged_cell_color_type: "col", // all กับ col
+        merged_cell_color_type: "col", 
         merged_cell_color:  "#F1F0E8"
     }
    ```
@@ -228,5 +228,18 @@
      * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col' แล้ว `mergeConfigsOfContent: []` (ใส่เป็น index ของแต่ละคอลัมน์ที่ต้องการให้ผสานเซลล์ของเนื้อหาแบบอัติโนมัติ) เช่น
        * ถ้าต้องการให้มีการผสานเซลล์อัติโนมัติตาม column เฉพาะแถวที่ 1,2,4 จะได้ว่า  `mergeConfigsOfContent: [0,1,3]`
    * `content_style:`   
-     * `font_size:`
-     * 
+     * `font_size:` ขนาดของตัวอักษรเนื้อหา
+     * `row_even_color:` สีในแถวที่**คู่** ของเนื้อหา
+     * `row_odd_color:` สีในแถวที่**คี่** ของเนื้อหา
+     * `merged_cell_color_type:` รูปแบบของสีของเซลล์ที่ถูกผสาน
+       * `'default'` รูปแบบของสีของเซลล์ที่ถูกผสานจะเหมือนกับแถวคู่/คี่
+       * `'col'`      กำหนดสีของเซลล์ที่ถูกผสานตามลอลัมน์
+     * `merged_cell_color:` สีของเซลล์ที่ถูกผสาน
+       * ถ้า  `merged_cell_color_type: 'default'` แล้ว `merged_cell_color: ''` (ใส่เป็น empty string '')
+       * ถ้า  `merged_cell_color_type: col` แล้ว `merged_cell_color: [{...},{...}]` ได้ตามดังต่อไปนี้
+         
+         ```Javascript
+         merged_cell_color: [{c1: 0, color: "red"},{c1: 1, color: "blue"}]
+         ```
+         
+         หมายความว่า แถวที่ 1 (c1:0) ถ้ามีเซลล์ไหนที่ถูกผสานจะมีสีแดง และ แถวที่ 2 (c1:1) จะมีสีน้ำเงินตามลำดับ
