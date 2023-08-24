@@ -1,7 +1,7 @@
 // Styling the attribute of table (overall) 
 
 const Table = {
-    width: '2350px',
+    width: '2500px',
     cell_height: 5,
     border_color: '#51abcb',
     border_size: "2.5px",
@@ -15,7 +15,7 @@ const Table = {
 
 const n_row = 3;
 const mergeTypeOfHeading = "specific"; //  --> auto, specific
-const mergeConfigsofHeading = [{r1: 0, c1: 0, rc: 3, cc: 3},  // Employee information
+const mergeConfigsofHeading = [{r1: 0, c1: 0, rc: 2, cc: 3},  // Employee information
                                {r1: 0, c1: 3, rc: 3, cc:1},   // Section
                                {r1: 0, c1: 4, rc: 3, cc: 1},   // Subsection                    
                                {r1: 0, c1: 5, rc: 1, cc: 9},    // Skill
