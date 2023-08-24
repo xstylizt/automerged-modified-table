@@ -1,1 +1,197 @@
-# How to use auto-merged modified table
+# Auto-merged modified table with jQuery and Paramquery Grid
+## Requirements
+### 1. HTML
+สำหรับไฟล์  `index.html` มี libray และ script ที่สำคัญดังต่อไปนี้
+* **jQuery**
+  * **jQuery.js** (Latest version 3.7)
+   
+    ```html
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+    ```
+  
+  * **jQuery-ui.css**
+  
+    ```html
+    <link href="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.css" rel="stylesheet"/>
+    ```
+  
+  * **jQuery-ui.js**
+    ```html
+    <script src="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.js"></script>
+    ```
+  
+* **Paramquery Grid**
+  * **pq-grid.min.css**
+   
+    ```html
+    <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.css" rel="stylesheet"/>
+    ```
+  
+  * **pq-grid.ui.min.css**
+  
+    ```html
+    <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.ui.min.css"rel="stylesheet"/>
+    ```
+  
+  * **pq-grid.min.js**
+    ```html
+    <script src="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.js"></script>
+    ```
+
+
+
+### 2. CSS
+ไฟล์ `style.css` เป็นไฟล์ที่ใช้กำหนดรูปแบบตารางเบื้องต้นของหน้าเว็บไซต์ในโปรเจคนี้
+
+
+
+### 3. Javascript
+
+สำหรับตระกูลไฟล์ที่เกี่ยวกับ `javascript`แบ่งออกเป็น 3 ไฟล์ที่มีหน้าที่แตกต่างกันดังต่อไปนี้
+* `import.js` เป็นไฟล์ที่ใช้กำหนด `path` ของไฟล์ข้อมูลรูปแบบ `.csv`
+* `configs.js` เป็นไฟล์ที่ใช้ในการกำหนดรูปแบบของตารางอย่างละเอียดได้ดังต่อไปนี้
+   * รูปแบบภาพรวมของตาราง
+   * หัวข้อ (Heading)
+   * เนื้อหา (Content)
+* `script.js` เป็นไฟล์ที่รวมฟังก์ชันในการผสานเซลล์ กำหนดรูปแบบของตาราง และสร้างตารางไว้เข้าด้วยกัน
+
+
+
+
+### 4. CSV
+สำหรับในโปรเจคนี้ได้ใช้ข้อมูล `software_department.csv` ที่ใช้ในการแสดงข้อมูลบนตาราง  (สามารถใช้ข้อมูลแทนได้)
+
+
+
+
+## Instruction
+สำหรับวิธีการใช้ `Auto-merged modified table` ที่ใช้ร่วมกับ `jQuery` และ `Paramquery Grid` สามารถทำได้ตามขั้นตอนดังต่อไปนี้
+
+1. นำ library script ข้างต้นทั้งหมด ไฟล์ `style.css` และ `script.js` เข้ามาภายในส่วนของ `head` สำหรับไฟล์ `index.html` 
+
+   ```html
+   <head>
+        <!--------------------------- jQuery ------------------------------------------------>
+        <link href="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
+        <script src="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.js"></script>
+    
+        <!--------------------------- Paramquery grid -------------------------------->
+        <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.css" rel="stylesheet"/>
+        <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.ui.min.css"rel="stylesheet"/>
+        <script src="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.js"></script>
+    
+        <link rel="stylesheet" href="css\style.css">
+        
+        <script src="js\script.js" type="module"></script>
+   </head>
+   ```
+
+2. สร้าง `div` ที่กำหนดโดยรูปแบบดังต่อไปนี้ภายในไฟล์ `index.html` ในส่วนของ `body`
+
+   ```html
+   <body>
+        <div class="table">
+                <div id="automerged-modified-table"></div> // element ของ table (อันนี้สำคัญ)
+                <div id="background"></div>
+        </div>
+   </body>
+   ```
+   
+3. กำหนด path ของไฟล์ข้อมูล `.csv` ภายในไฟล์ `import.js` ในที่นี้ใช้   `software_department.csv`
+   ```Javascript
+   const csvFileURL = './data/software_department.csv';
+   export default csvFileURL;
+   ```
+
+## How to define and style table
+สำหรับวิธีการกำหนดรูปแบบของตารางสามารถทำผ่านไฟล์ `configs.js` ซึ่งแยกออกเป็น 3 ส่วนดังต่อไปนี้
+1. ภาพรวมของตารางสามารถกำหนดค่าต่าง ๆ ผ่าน `object` ในตัวแปรที่ชื่อ `const Table` ซึ่งมี `properties` ที่กำหนดได้ดังต่อไปนี้
+   
+   ```Javascript
+    const Table = {
+    width: '2350px',
+    cell_height: 5,
+    border_color: '#51abcb',
+    border_size: "2.5px",
+    scrollBar: true
+    }
+   ```
+
+   * `width:` ความกว้างของตาราง 
+   * `cell_height:` ความสูงของเซลล์ในแต่ละช่อง 
+     * มีค่าตั้งแต่ `1` เป็นต้นไป
+   * `border_color:` สีเส้นขอบของตารางทั้งหมด
+   * `border_size:` ความหนาของเส้นขอบตาราง 
+   * `scrollBar:` กำหนดให้ตารางมี scroll bar (ใช้เมื่อข้อมูลเริ่มมีหลายแถว) 
+     * ถ้ามีค่าเป็น `true` ให้มีการแสดง scroll bar ของตาราง 
+     * ถ้ามีค่าเป็น `false` ยกเลิกการแสดง scroll bar
+    
+2. หัวข้อของตารางสามารถกำหนดค่าต่าง ๆ ผ่านตัวแปรดังต่อไปนี้
+   
+   ```Javascript
+    const n_row = 3;
+    const mergeTypeOfHeading = "specific"; //  --> auto, specific
+    const mergeConfigsofHeading = [{r1: 0, c1: 0, rc: 3, cc: 3},  // Employee information
+                                   {r1: 0, c1: 3, rc: 3, cc:1},   // Section
+                                   {r1: 0, c1: 4, rc: 3, cc: 1},   // Subsection                    
+                                   {r1: 0, c1: 5, rc: 1, cc: 9},    // Skill
+    
+                                   {r1: 1, c1: 5, rc: 1, cc: 4},   // Frontend framework
+                                   {r1: 1, c1: 9, rc: 1, cc: 5}    // Backend framework
+                                ]  
+    
+    const heading_style =   {
+        font_weight: 'bold',
+        font_size: '30px',
+        background_type: "all",  // "all" / "specific"
+        background_color: "#CEE6F3"
+        /*
+        [[{name: "Employee information", color: "red"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"}],
+        [{name: "Employee information", color: "red"},{name: "Section", color:"green"}],
+        [{name: "Employee information", color: "red"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"}],
+       ]
+       
+       
+       
+       
+       .map((subarray, index) => subarray.map((item, subIndex) => ({ ...item, index: subIndex }))) */
+        
+    }
+   ```
+
+   * `n_row:` คือ  
+   * `mergedTypeOfHeading:` คือ   
+     * 
+     * 
+   * `mergedConfigsOfHeading:` คือ 
+   * `heading_style:` คือ
+     * 
+     * 
+     * 
+       * 
+       * 
+     * 
+
+3. ภาพรวมของตารางสามารถกำหนดค่าผ่าน `object` ในตัวแปรที่ชื่อ `const Table` ซึ่งมี `properties` ที่กำหนดได้ดังต่อไปนี้
+   
+   ```Javascript
+    const mergeTypeOfContent = "auto"; 
+    const mergeSubTypeOfContent = 'specific_col';  // auto --> all กับ col กับ specific_col
+    const mergeConfigsOfContent = [3]; 
+    
+    const content_style = {
+        font_size: '25px',
+        row_even_color: "#D8F2FF",
+        row_odd_color: "white",
+        merged_cell_color_type: "col", // all กับ col
+        merged_cell_color:  "#F1F0E8"
+    }
+   ```
+
+   * `mergedTypeOfContent:` 
+   * `meregedSubTypeOfContent:` 
+   * `mergeConfigsOfContent:` 
+   * `content_style:`   
+     * 
+     * 
