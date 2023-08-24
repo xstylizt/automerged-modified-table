@@ -1,4 +1,4 @@
-Employee information,,,Section,Subsection,Skill,,,,,,,,
+Employee information,,,Section,Role,Skill,,,,,,,,
 ,,,,,Frontend framework,,,,Backend framework,,,,
 Id,First_name,Last_name,,,React,Angular,Vue,Svelte,Express.js,Laravel,Springboot,Django
 1,Sakura,Tanaka,Software developer,Frontend developer,✔,✔,,,,,,,
