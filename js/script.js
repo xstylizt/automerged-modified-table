@@ -234,7 +234,7 @@ $(document).ready(function () {
             
         }
 
-        $('#background').css('width', $('.pq-body-outer').outerWidth())
+        $('#background').css('width', $('.pq-grid-center').width())
 
 
         if(n_row >= 1)
