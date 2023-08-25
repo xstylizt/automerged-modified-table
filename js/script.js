@@ -246,11 +246,11 @@ $(document).ready(function () {
 
             if(n_row == 1)
             {
-                if(options.main.cell_height == 1)
+                if(options.main.cell_height >= 1 && options.main.cell_height < 2)
                 {
                     $('#background').css('height', String(37*n_row + 40) + 'px')
                 }
-                else if(options.main.cell_height == 2)
+                else if(options.main.cell_height >= 2 && options.main.cell_height < 3)
                 {
                     $('#background').css('height', String((45*n_row + 78) + 'px'))
                 }
@@ -262,15 +262,15 @@ $(document).ready(function () {
                 }
             }
             else if(n_row == 2){
-                if(options.main.cell_height == 1)
+                if(options.main.cell_height >= 1 && options.main.cell_height < 2)
                 {
                     $('#background').css('height', String(37*n_row + 78) + 'px')
                 }
-                else if(options.main.cell_height == 2)
+                else if(options.main.cell_height >= 2 && options.main.cell_height < 3)
                 {
                     $('#background').css('height', String((45*n_row + 165) + 'px'))
                 }
-                else if(options.main.cell_height >= 3){ 
+                else if(options.main.cell_height == 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
                         $('#background').css('height', String((75 + 55*i)*n_row - 15) + 'px')
@@ -278,15 +278,15 @@ $(document).ready(function () {
                 }
             }
             else if(n_row == 3){
-                if(options.main.cell_height == 1)
+                if(options.main.cell_height >= 1 && options.main.cell_height < 2)
                 {
                     $('#background').css('height', String(37*n_row + 118) + 'px')
                 }
-                else if(options.main.cell_height == 2)
+                else if(options.main.cell_height >= 2 && options.main.cell_height < 3)
                 {
                     $('#background').css('height', String((45*n_row + 245) + 'px'))
                 }
-                else if(options.main.cell_height >= 3){ 
+                else if(options.main.cell_height == 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
                         $('#background').css('height', String((72 + 55*i)*n_row - 15) + 'px')
@@ -294,15 +294,15 @@ $(document).ready(function () {
                 }
             }
             else if(n_row >=4){
-                if(options.main.cell_height == 1)
+                if(options.main.cell_height >= 1 && options.main.cell_height < 2)
                 {
                     $('#background').css('height', String(76*n_row) + 'px')
                 }
-                else if(options.main.cell_height == 2)
+                else if(options.main.cell_height >= 2 && options.main.cell_height < 3)
                 {
                     $('#background').css('height', String((126.2*n_row ) + 'px'))
                 }
-                else if(options.main.cell_height >= 3){ 
+                else if(options.main.cell_height == 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
                         $('#background').css('height', String((175.8*n_row) + 'px'))
@@ -521,7 +521,7 @@ $(document).ready(function () {
             height: (data.length <= 14 || stylingOptions.main.scrollBar === false)  ? 'flex' : 'auto',
             editable: false,
             freezeRows:  stylingOptions.main.scrollBar == true ? n_row : 0, 
-            flex: {one: false, on: true},
+            flex: {one: true},
             rowHt: 25+ 50*stylingOptions.main.cell_height,
             //sortModel: { sorter: [{ dataIndx: "Product", dir: 'up' }], space: true },
             selectionModel: { column: true },
