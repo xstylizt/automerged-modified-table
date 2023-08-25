@@ -234,7 +234,11 @@ $(document).ready(function () {
             
         }
 
-        $('#background').css('width', $('.pq-grid-center').width())
+         if(Table.scrollBar == false){
+            $('#background').css('width', String($('.pq-grid-center').width()- 0.5) + 'px')
+        }else{
+            $('#background').css('width', String($('.pq-grid-center-o').width() -11) + 'px')
+        }
 
 
         if(n_row >= 1)
@@ -244,48 +248,64 @@ $(document).ready(function () {
             {
                 if(options.main.cell_height == 1)
                 {
-                    $('#background').css('height', String(37*n_row + 8) + 'px')
+                    $('#background').css('height', String(37*n_row + 40) + 'px')
                 }
                 else if(options.main.cell_height == 2)
                 {
-                    $('#background').css('height', String((45*n_row + 4.7) + 'px'))
+                    $('#background').css('height', String((45*n_row + 78) + 'px'))
                 }
-                else if(options.main.cell_height >= 3){ 
+                else if(options.main.cell_height == 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
-                        $('#background').css('height', String((55 + 10*i)*n_row - 15) + 'px')
+                        $('#background').css('height', String((80 + 55*i)*n_row - 15) + 'px')
                     }
                 }
             }
             else if(n_row == 2){
                 if(options.main.cell_height == 1)
                 {
-                    $('#background').css('height', String(37*n_row + 13.5) + 'px')
+                    $('#background').css('height', String(37*n_row + 78) + 'px')
                 }
                 else if(options.main.cell_height == 2)
                 {
-                    $('#background').css('height', String((45*n_row + 4.9) + 'px'))
+                    $('#background').css('height', String((45*n_row + 165) + 'px'))
                 }
                 else if(options.main.cell_height >= 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
-                        $('#background').css('height', String((55 + 10*i)*n_row - 35) + 'px')
+                        $('#background').css('height', String((75 + 55*i)*n_row - 15) + 'px')
                     }
                 }
             }
-            else if(n_row >= 2){
+            else if(n_row == 3){
                 if(options.main.cell_height == 1)
                 {
-                    $('#background').css('height', String(37*n_row + 17) + 'px')
+                    $('#background').css('height', String(37*n_row + 118) + 'px')
                 }
                 else if(options.main.cell_height == 2)
                 {
-                    $('#background').css('height', String((45*n_row + 4.9) + 'px'))
+                    $('#background').css('height', String((45*n_row + 245) + 'px'))
                 }
                 else if(options.main.cell_height >= 3){ 
                     for(let i =0 ; i < options.main.cell_height ; i++)
                     {
-                        $('#background').css('height', String((55 + 10*i)*n_row - 55) + 'px')
+                        $('#background').css('height', String((72 + 55*i)*n_row - 15) + 'px')
+                    }
+                }
+            }
+            else if(n_row >=4){
+                if(options.main.cell_height == 1)
+                {
+                    $('#background').css('height', String(76*n_row) + 'px')
+                }
+                else if(options.main.cell_height == 2)
+                {
+                    $('#background').css('height', String((126.2*n_row ) + 'px'))
+                }
+                else if(options.main.cell_height >= 3){ 
+                    for(let i =0 ; i < options.main.cell_height ; i++)
+                    {
+                        $('#background').css('height', String((175.8*n_row) + 'px'))
                     }
                 }
             }
@@ -301,7 +321,7 @@ $(document).ready(function () {
 
 
         if(data.length <= 15){
-            $('.table').css('height', String(79*data.length) + 'px')
+            $('.table').css('height', String(82*data.length) + 'px')
         }
 
 
@@ -529,7 +549,8 @@ $(document).ready(function () {
             stylingModifiedTable(data, styling_options);
           }, 100); // Adjust the debounce interval as needed 
           if(Table.scrollBar == true){
-            $('.pq-grid-row.pq-striped').css('background-color', styling_options.content_style.row_odd_color); 
+            $('.pq-grid-row.pq-striped').css('background-color', styling_options.content_style.row_odd_color);
+            $('.table').css('background-color', styling_options.content_style.row_odd_color)
           }
         });
  
