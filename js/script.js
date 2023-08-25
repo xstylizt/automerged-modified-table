@@ -300,8 +300,8 @@ $(document).ready(function () {
         }
 
 
-        if(data.length <= 14){
-            $('.table').css('height', String(88.8*data.length) + 'px')
+        if(data.length <= 15){
+            $('.table').css('height', String(79*data.length) + 'px')
         }
 
 
@@ -454,7 +454,7 @@ $(document).ready(function () {
         outerBorderTable.css('border', stylingBorderTableColor)
         innerBorderTable1.css('border-right', stylingBorderTableColor)
         innerBorderTable2.css('border-bottom', stylingBorderTableColor)
-        if(data.length >= 14)
+        if(data.length >= 16)
         {
             if(options.main.scrollBar === true)
             {
