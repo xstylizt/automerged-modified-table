@@ -117,7 +117,7 @@
           cell_height: 1,
           border_color: '#51abcb',
           border_size: "2.5px",
-          scrollBar: true
+          scrollBar: false
     }
    ```
 
