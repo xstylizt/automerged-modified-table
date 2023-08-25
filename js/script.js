@@ -494,10 +494,9 @@ $(document).ready(function () {
     function createModifiedTable(data, options, styling_options){ 
 
         var obj = {
-            width: stylingOptions.main.width.replace('px',''),
+            width: 'flex',
             height: (data.length <= 14 || stylingOptions.main.scrollBar === false)  ? 'flex' : 'auto',
             editable: false,
-            scrollModel: {autoFit : true},
             freezeRows:  stylingOptions.main.scrollBar == true ? n_row : 0, 
             flex: {one: false, on: true},
             rowHt: 25+ 10*stylingOptions.main.cell_height,
@@ -513,7 +512,11 @@ $(document).ready(function () {
 
 
         // Create the grid
-        var grid = pq.grid("#automerged-modified-table", obj);
+        var grid = pq.grid("#automerged-modified-table", obj).on("refresh refreshCell", function (evt, ui) {
+            if (ui.source != 'flex') {
+                this.flex();
+            }
+        });
 
 
         mergeCells(grid, data, options.heading_options, options.content_options, true);
