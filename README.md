@@ -114,16 +114,13 @@
    
    ```Javascript
     const Table = {
-    width: 'flex',
-    cell_height: 5,
-    border_color: '#51abcb',
-    border_size: "2.5px",
-    scrollBar: true
+          cell_height: 5,
+          border_color: '#51abcb',
+          border_size: "2.5px",
+          scrollBar: true
     }
    ```
 
-   * `width:` ความกว้างของตาราง
-     * `'flex'` คือ กำหนดให้ความกว้างของตารางเท่ากับความกว้างภายในเซลล์
    * `cell_height:` ความสูงของเซลล์ในแต่ละช่อง 
      * มีค่าตั้งแต่ `1` เป็นต้นไป
    * `border_color:` สีเส้นขอบของตารางทั้งหมด
