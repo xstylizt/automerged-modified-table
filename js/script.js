@@ -556,12 +556,12 @@ $(document).ready(function () {
             if (csvData[i][csvData[i].length - 1] === '') {
                 csvData[i].pop();
             }
-            csvData[i].pop();
         }
 
-
-
-
+        if(!csvFileURL.startsWith('./',0)){
+            csvData.pop()
+        }
+        
         createModifiedTable(csvData, Options, stylingOptions)
     })
     .catch(error => {
