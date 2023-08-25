@@ -321,12 +321,9 @@ $(document).ready(function () {
 
 
         if(data.length <= 15){
-            if(Table.cell_height!=1)
+            if(Table.cell_height >= 1)
             {
-                $('.table').css('height', String($('.pq-grid-center').height() + 2) + 'px')
-            }
-            else{
-                $('.table').css('height', String($('.pq-grid-center').height() - 220) + 'px')
+                $('.table').css('height', String(98+75*(data.length-1)) + 'px')
             }
         }
 
