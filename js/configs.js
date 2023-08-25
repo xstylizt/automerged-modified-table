@@ -1,7 +1,6 @@
 // Styling the attribute of table (overall) 
 
 const Table = {
-    width: '2500px',
     cell_height: 5,
     border_color: '#51abcb',
     border_size: "2.5px",
