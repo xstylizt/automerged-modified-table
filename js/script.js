@@ -556,6 +556,7 @@ $(document).ready(function () {
             if (csvData[i][csvData[i].length - 1] === '') {
                 csvData[i].pop();
             }
+            csvData[i].pop();
         }
 
 
