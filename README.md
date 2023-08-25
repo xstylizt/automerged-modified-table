@@ -104,7 +104,7 @@
    
 3. กำหนด path ของไฟล์ข้อมูล `.csv` ภายในไฟล์ `import.js` ในที่นี้ใช้   `software_department.csv`
    ```Javascript
-   const csvFileURL = './data/software_department.csv';
+   const csvFileURL = 'https://raw.githubusercontent.com/xstylizt/automerged-modified-table/main/data/software_department.csv';
    export default csvFileURL;
    ```
 
