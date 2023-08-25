@@ -430,10 +430,7 @@ $(document).ready(function () {
                         var iIndex = parseInt(indices[1]);
                         var jIndex = parseInt(indices[2]);
 
-                        if (stylingContent.merged_cell_color_type === 'all') {
-                                $(this).css('background-color', stylingContent.merged_cell_color);
-                        }
-                        else if(stylingContent.merged_cell_color_type == 'col'){
+                        if(stylingContent.merged_cell_color_type == 'col'){
                             for (let config of stylingContent.merged_cell_color) {
                                 var columnIndex = config.c1;
                                 var color = config.color;
