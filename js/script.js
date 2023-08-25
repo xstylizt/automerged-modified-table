@@ -234,7 +234,7 @@ $(document).ready(function () {
             
         }
 
-         if(Table.scrollBar == false){
+        if(Table.scrollBar == false){
             $('#background').css('width', String($('.pq-grid-center').width()- 0.5) + 'px')
         }else{
             $('#background').css('width', String($('.pq-grid-center-o').width() -11) + 'px')
@@ -519,7 +519,7 @@ $(document).ready(function () {
             editable: false,
             freezeRows:  stylingOptions.main.scrollBar == true ? n_row : 0, 
             flex: {one: false, on: true},
-            rowHt: 25+ 10*stylingOptions.main.cell_height,
+            rowHt: 25+ 50*stylingOptions.main.cell_height,
             //sortModel: { sorter: [{ dataIndx: "Product", dir: 'up' }], space: true },
             selectionModel: { column: true },
             numberCell: { show: false },
