@@ -212,8 +212,8 @@
         font_size: '25px',
         row_even_color: "#D8F2FF",
         row_odd_color: "white",
-        merged_cell_color_type: "col", 
-        merged_cell_color:  "#F1F0E8"
+        merged_cell_color_type: 'default', 
+        merged_cell_color:  ''
     }
    ```
 
