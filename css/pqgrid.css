@@ -277,3 +277,6 @@ div.pq-grid{
   }
 
 
+tr.pq-grid-row {
+    padding: 50px;
+}
