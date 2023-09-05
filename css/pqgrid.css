@@ -122,11 +122,11 @@ div.pq-grid{
     color: #333;
   }
 
-
+/*
   .pq-header-outer {
     display: none;
   }
-
+*/
 
   .pq-header-outer > .pq-grid-header {
     background: #dae6f0;
@@ -197,7 +197,7 @@ div.pq-grid{
 
   .pq-grid-cell-hover.ui-state-hover,
   .pq-grid-row-hover.ui-state-hover {
-    background: nonee;
+    background: none;
   }
 
 

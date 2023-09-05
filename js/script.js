@@ -1,9 +1,9 @@
 import data from './import_data.js'
 
 $(document).ready(function(){ 
-    function mergeCells(grid, data, refresh) {
+    function mergeCellsTable(data) {
         var mc = []
-        var real_mc;
+        var notMergedArray = []
 
         // ------------------ Create Heading of table (merged) ----------------------------
         var Data = data.slice(0, 3)
@@ -20,7 +20,8 @@ $(document).ready(function(){
                         while (c--) {
                             var cd = Data[r][CM[c].dataIndx]
                             var cd_prev = Data[r][CM[c - 1] ? CM[c - 1].dataIndx : undefined];
-                            
+                            notMergedArray.push({cellvalue: cd, r1: r, c1: c, rc: 1, cc:1})
+
                             if (cd_prev !== undefined && cd == cd_prev) {
                                 rc++;
                             } else if (rc > 1) {
@@ -126,140 +127,151 @@ $(document).ready(function(){
 
       const real_componentArray = componentArray.filter(itemA => !temp.some(itemB => Object.keys(itemA).every(key => itemA[key] == itemB[key])))
       const real_heading_mc = basedArray.concat(real_componentArray)
-      console.log(real_heading_mc)
-      /*
-      var newArray = [];
-      for(var j=0; j < heading_config.pageNumber ; j++){
-        for(var i=0; i < real_heading_mc.length ; i++){
-            var newObj = {...real_heading_mc[i]};
-            newObj.r1 += j*heading_config.numPp;
-            newArray.push(newObj)
-        }
-      }
-      console.log(real_heading_mc)
-      */
-      
-      // --------------------------------------------- Content -----------------------------------------------------------
-      
-      /*
-      var real_content_mc = [];
-      var Data2 = data
-      var CM2 = Data2[0].map((_, index) => ({ dataIndx: index })); // ColModel based on your data
-      i = CM2.length,
-      j = Data2.length;
-
-     
-     for (var r = n_row; r < Data2.length; r++) {
-            var rc = 1,
-                c = CM.length;
-
-            while (c--) {
-                var cd = Data2[r][CM[c].dataIndx]
-                var cd_prev = Data2[r][CM[c - 1] ? CM[c - 1].dataIndx : undefined];
-                
-                if (cd_prev !== undefined && cd == cd_prev) {
-                    rc++;
-                } else if (rc > 1) {
-                    real_content_mc.push({cellValue: cd, r1: r, c1: c, rc: 1, cc: rc });
-                    rc = 1;
-                }
-            }
-       }
-
-       while (i--) {
-        var dataIndx = CM2[i].dataIndx,
-            rc = 1;
-        
-        while (j--) {   
-            var cd = Data2[j][dataIndx],
-            cd_prev = Data2[j - 1] ? Data2[j - 1][dataIndx] : undefined;
-                    
-            if (cd_prev !== undefined && cd == cd_prev) {
-                rc++;
-            }
-            else if (rc > 1) {
-                    real_content_mc.push({cellValue: cd, r1: j, c1: i, rc: rc, cc: 1 });
-                rc = 1;
-                }
-            }
-            j = Data2.length; // Reset j for the next column
-        }*/
-
-    real_mc = real_heading_mc/*.concat(real_content_mc.filter(bItem => !temp.some(tempItem =>
-        bItem.cellValue === tempItem.cellValue &&
-        bItem.r1 === tempItem.r1 &&
-        bItem.c1 === tempItem.c1 &&
-        bItem.rc === tempItem.rc &&
-        bItem.cc === tempItem.cc
-      )))*/
-
-    grid.option("mergeCells", real_mc)
-      if (refresh) {
-        grid.refreshView();
-    }
+      const filtered = notMergedArray.filter(objMerged => !real_heading_mc.some(objHeading => objHeading.cellValue === objMerged.cellvalue)).concat(real_heading_mc).sort((a,b) => { if (a.r1 !== b.r1) {return a.r1 - b.r1;} else {return a.c1 - b.c1;}})
+      return filtered;
 }
-
-    const modified_data = data
-    var n_row = 3
+    
+    var n_row = 3;
     var isPaging = true; 
     var rPPOptions = [10,20,30,40,50];
     var obj = {
         minWidth: 300,
-        height:  isPaging === false ? 'flex': 600,
+        height:  isPaging === false ? 'flex': 650,
         editable: false,
         sortModel: false,   
-        freezeRows: n_row,
         numberCell: {show: false},
-        scrollModel: { autoFit: true },
+        scrollModel: { autoFit: true},
         flex: {one: true},
-        dataModel: { data: data },
+        mergeCells: [{r1:9, c1:1  , rc:0, cc:1}],
+        dataModel: { data: data.slice(n_row, ) },
         columnTemplate: {
             align: 'center', valign: 'center'
         },
-        pageModel: { type: "local", strRpp: "{0}", strDisplay: `{0} to {1} of ${data.length}`, rPPOptions: rPPOptions},
+        pageModel: { type: "local", strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: rPPOptions},
     }
     
+    if(!isPaging){
+        obj.flex = false;
+    }
+
+
     if(data.length <= 10 || isPaging === false){
         obj.pageModel = '';
     }
+    
 
+    var headingArrayObject = mergeCellsTable(data);
+    var columnLength = data[0].length;
+    var titleMain = [];
 
-    var grid = pq.grid("#automerged-modified-table", obj).on("refresh refreshCell", function (evt, ui) {
-        if (ui.source != 'flex') {
-                this.flex();
+    var cc = 0;
+    var i = 0;
+
+    // ------------------------- Create Main Title -------------------------------------
+    while(i < columnLength)
+    {
+        cc += headingArrayObject[i].cc
+        if(cc != columnLength)
+        {
+            titleMain.push(headingArrayObject[i])
+        }else if(cc === columnLength)
+        {
+            titleMain.push(headingArrayObject[i])
+            break
         }
-    });
+        i++
+    }
+    
+    // ----------------------- Paramquery Main title version -----------------------------
 
-    /*
-    let a = modified_data;
-    $('.ui-corner-all').on('change',function(e){
-        e.stopPropagation();
-        var pagerMsg = $(".pq-pager-msg").text();
-        var pagerTotal = $(".total").text();
-        const regex = /(\d+|\D+)/g;
-        const result = pagerMsg.match(regex).map((match) => {
-                                                                // Convert numeric strings to integers
-                                                                return /^\d+$/.test(match) ? parseInt(match) : match;
-                                                            });
-        const number = result[2]
-        const pageLength = Math.ceil(modified_data.length/number)
+    var paramTitle = [];
+    for(var j=0; j < titleMain.length ; j++)
+    {
+        var titleMainParamStructure = {title: '', colModel: []};
+        titleMainParamStructure.title = titleMain[j].cellValue
+        paramTitle.push(titleMainParamStructure)
+    }
 
-        for(var i=0; i < pageLength ; i++){
-                a.splice(number*i, 0, ...a.slice(0,3));
-                if(i == 0){
-                    a.splice(0,3)
+    // ------------------------- Group Title and Sub-column of each main title all together ----------------------------
+    const subTitleMain = headingArrayObject.filter(obj => !titleMain.includes(obj)).sort((a, b) => a.c1 - b.c1);
+    const groupedTitleAndSubTitleArray = [];
+
+    for(var k=0; k < titleMain.length; k++){
+        var groupedStructuredArray = [];
+        if(titleMain[k].cc == 1)
+        {
+            groupedStructuredArray.push(titleMain[k])
+            groupedTitleAndSubTitleArray.push(groupedStructuredArray)
+        }else{
+            groupedStructuredArray.push(titleMain[k])
+            for(var l=0; l < subTitleMain.length; l++){
+                if(subTitleMain[l].c1 >= titleMain[k].c1 && subTitleMain[l].c1 <= (titleMain[k].c1 + titleMain[k].cc))
+                {
+                    groupedStructuredArray.push(subTitleMain[l])
                 }
+            }
+            groupedTitleAndSubTitleArray.push(groupedStructuredArray)
         }
-        
-        var heading_config = {
-            numPp: number,
-            pageNumber: pageLength
+    }
+
+    console.log(groupedTitleAndSubTitleArray)
+
+
+
+    
+    // ------------------------ Paramquery ColModel -------------------------------------
+    var colModel = [
+        {title: 'Employee information', 
+         colModel: [
+                      {title: 'Id', align: 'center'},
+                      {title: 'First_name', align: 'center'},
+                      {title: 'Last_name', align: 'center'},
+                   ],
+          align: 'center'
+        },
+     
+     
+        {title: 'Section',
+         colModel: [],
+         align: 'center'
+        },
+     
+     
+        {title: 'Role',
+         colModel: [],
+         align: 'center'
+        },
+     
+     
+        {title: 'Skill',
+         colModel: [
+                        {title: 'Frontend framework',
+                         colModel: [
+                                      {title: 'React', align: 'center'},
+                                      {title: 'Angular', align: 'center'},
+                                      {title: 'Vue', align: 'center'},
+                                      {title: 'Svelt', align: 'center'}
+                                   ],
+                          align: 'center'
+                        },
+                        {title: 'Backend framework',
+                         colModel: [
+                                      {title: 'Springboot', align: 'center'},
+                                      {title: 'Django', align: 'center'},
+                                      {title: 'Express.js', align: 'center'},
+                                      {title: 'Laravel', align: 'center'}
+                                   ],
+                          align: 'center'
+                        }
+                   ],
+          align: 'center'
         }
+     ]
 
-        mergeCells(grid, modified_data, heading_config, true)
-    })
-    */
+     obj.colModel = colModel
+    // --------------------------------------------------------------------------------------
 
-    mergeCells(grid, modified_data, true)
+    var grid = pq.grid("#automerged-modified-table", obj)
+    
 });    
 
