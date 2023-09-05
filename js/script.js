@@ -205,7 +205,7 @@ $(document).ready(function(){
         }else{
             groupedStructuredArray.push(titleMain[k])
             for(var l=0; l < subTitleMain.length; l++){
-                if(subTitleMain[l].c1 >= titleMain[k].c1 && subTitleMain[l].c1 <= (titleMain[k].c1 + titleMain[k].cc))
+                if(subTitleMain[l].c1 >= titleMain[k].c1 && subTitleMain[l].c1 <= (titleMain[k].c1 + (titleMain[k].cc -1)))
                 {
                     groupedStructuredArray.push(subTitleMain[l])
                 }
@@ -273,5 +273,12 @@ $(document).ready(function(){
 
     var grid = pq.grid("#automerged-modified-table", obj)
     
+
+
+    // ----------------------- Styling with javascript --------------------------------------
+     var refreshButton = $('.pq-page-placeholder + .pq-ui-button')
+     var refreshButtonSeparator = $('.pq-page-placeholder').find('.pq-separator')
+     refreshButton.remove()
+     refreshButtonSeparator.remove()
 });    
 
