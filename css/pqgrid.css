@@ -168,9 +168,9 @@ div.pq-grid{
     color: #333;
   }
 
-
+  /* Hover cell header of table*/
   .pq-grid-col:hover {
-    background: #dae6f0;
+    
   }
 
 
@@ -249,12 +249,16 @@ div.pq-grid{
   }
 
 
+  /* Hover scrollbar (vertical & horizontal axis) */
+
   .pq-sb-horiz-t > .pq-sb-slider:hover,
   .pq-sb-vert-t > .pq-sb-slider:hover,
   .pq-sb-horiz-t > .pq-sb-btn:hover,
   .pq-sb-vert-t > .pq-sb-btn:hover {
+    /*
     border-color: #4682b4;
     background: #a3c1da;
+    */
   }
 
   .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
