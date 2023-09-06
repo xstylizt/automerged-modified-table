@@ -290,9 +290,6 @@ $(document).ready(function(){
 
 
     var grid = pq.grid("#automerged-modified-table", obj);
-    grid.expand()
-
-
 
     // ---------------------- Call the styling table function ----------------------------------------
      stylingTable(grid);
