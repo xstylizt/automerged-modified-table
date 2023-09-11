@@ -1,8 +1,9 @@
 import data from './import_data.js'
 import {
-    n_row,
-    isPaging,
-    rPPOptions
+    overall_table,
+    header,
+    content,
+    footer
 } from './configs.js'
 
 $(document).ready(function(){ 
@@ -11,7 +12,7 @@ $(document).ready(function(){
         const mergeCellsHeadingTable = (data) => {
             var mc = []
             var notMergedArray = []
-            var Data = data.slice(0, 3)
+            var Data = data.slice(0, header.n_row)
             var CM = Data[0].map((_, index) => ({ dataIndx: index })),
             i = CM.length,
             j = Data.length;
@@ -139,15 +140,83 @@ $(document).ready(function(){
 // --------------------------------- Define function for styling table ----------------------------------------
     const stylingTable = (grid) =>{
 
-            // -------------------------------- Header Style ---------------------------------------------------------
+        // ---------------- ## Style overall of table --------------------------------------------
+        var headerBorder = $('.pq-grid-col')
+        var contentBorder = $('.pq-grid-cell')
+        const borderArray = [headerBorder, contentBorder]
+        $.each(borderArray, function(index,element){
+                element.css('border', overall_table.inner_border)
+        })
 
+        var tableBorder = $('div.pq-grid')
+        tableBorder.css('border', overall_table.outer_border)
 
-            // ------------------------------- Content Style ----------------------------------------------------------
+        // ---------------------------------------------------------------------------------------
 
+        // ----------------- ## Style in header part of table ------------------------------------
 
-            // ---------------------------- Delete refresh button of paramquery grid table ----------------------------
-            var refreshButton = $('.pq-page-placeholder + .pq-ui-button')
-            refreshButton.remove()
+        // Style font style of header
+        var pqTableDiv = $('.pq-td-div')
+        pqTableDiv.css({
+                'padding': header.style.padding ,
+                'font-size': header.style.font_size,
+                'font-weight': header.style.font_weight,
+                'color': header.style.font_color,
+        }) 
+
+        // Style background color of header
+        var pqGridHeader = $('.pq-grid-header')
+        pqGridHeader.css({
+                'background': header.style.background
+        })
+
+        // ---------------------------------------------------------------------------------------
+
+        // ----------------- ## Style in content part of table -----------------------------------
+
+        // Padding with each cell in content 
+        var pqGridContentCell = $('.pq-grid-cell');
+        pqGridContentCell.css({
+                'padding': content.style.padding,
+                'font-size': content.style.font_size,
+                'font-weight': content.style.font_weight,
+                'color': content.style.font_color
+        });
+
+        var oddRow = $('tr.pq-grid-oddRow').removeClass('pq-grid-row');
+        var evenRow = $('.pq-grid-row').addClass('pq-grid-evenRow').removeClass('pq-grid-row');
+
+        // Style odd/even row of content
+
+        oddRow.css({
+            'background': content.style.odd_row_background
+        });
+
+        evenRow.css({
+            'background': content.style.even_row_background
+        })
+
+        // ----------------------------------------------------------------------------------------
+
+        //  -------------- ## Style footer of table -----------------------------------------------
+
+        var pqGridFooter = $('.pq-grid-footer')
+        var pqGridUiButtonFooter = $('.pq-ui-button')
+        pqGridFooter.css({'font-size': '16px',
+                          'padding': '7px 0 7px 0',
+                          'background-color':'#dae6f0'
+        })
+                    
+        pqGridUiButtonFooter.on('mouseenter',function(){
+            $('.pq-ui-button').css('border-color','#afd3f2')
+        })
+
+        // ----------------------------------------------------------------------------------------
+
+        // ----------------------------## Additional style -----------------------------------------
+
+        var refreshButton = $('.pq-page-placeholder + .pq-ui-button')
+        refreshButton.remove()
     }
 
     var raw_data = data
@@ -155,24 +224,28 @@ $(document).ready(function(){
         resizable: false,
         dragColumns: { enabled: false },
         draggable: false,
-        minWidth: 300,
-        height:  isPaging === false ||  data.length <=10 ? 'flex': 650,
+        width: 'overall_table.width',
+        minWidth: overall_table.min_width,
+        height:  footer.isPaging === false ||  data.length <=10 ? 'flex': overall_table.height,
         editable: false,
         sortModel: false,
         numberCell: {show: false},
         scrollModel: { autoFit: true},
         flex: {one: true},
         mergeCells: [],
-        dataModel: { data: raw_data.slice(n_row, ) },
+        dataModel: { data: raw_data.slice(header.n_row, ) },
         columnTemplate: { align: 'center', valign: 'center' },
-        pageModel: { type: "local", rPP: rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: rPPOptions},
+        pageModel: { type: "local", rPP: footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: footer.rPPOptions},
+        refresh: function(event,ui){    
+            stylingTable()
+        }
     }
     
-    if(!isPaging){
+    if(!footer.isPaging){
         obj.flex = false;
     }
 
-    if(raw_data.length <= 10 || isPaging === false){
+    if(raw_data.length <= 10 || footer.isPaging === false){
         obj.pageModel = '';
     }
 
@@ -290,6 +363,7 @@ $(document).ready(function(){
 
 
     var grid = pq.grid("#automerged-modified-table", obj);
+
 
     // ---------------------- Call the styling table function ----------------------------------------
      stylingTable(grid);
