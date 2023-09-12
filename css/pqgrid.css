@@ -14,7 +14,6 @@
 
 
 
-  
   .pq-grid .ui-state-default {
     background-color: #fefefe;
     background-image: linear-gradient( #fefefe, #dae6f0);
@@ -39,15 +38,9 @@
     border-color: #4682b4;
   }
 
-  .pq-grid .ui-widget-content {
-    border-color: #83abcd;
-  }
+
   
-  div.pq-grid {
-    color: #333;
-    border-color: #83abcd;
-    background: #dae6f0;
-  }
+
 
   .pq-grid *:focus {
     outline: 1px dotted #dae6f0;
@@ -258,16 +251,8 @@
   }
 
 
-
-
   .container-table{
     padding: 40px 40px;
-  }
-
-
-
-  .hidden{
-    display: none;
   }
 
 
