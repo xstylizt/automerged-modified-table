@@ -259,3 +259,18 @@
   .pq-grid-footer {
     text-align: right;
   }
+
+  @media screen and (max-width: 768px){
+    .pq-vscroll{
+      height: calc(100% - 17px) !important;
+    }
+
+  }
+
+  @media screen and (min-width: 768px){
+
+  }
+
+
+
+

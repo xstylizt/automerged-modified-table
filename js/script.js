@@ -9,15 +9,10 @@ import {
 
 $(document).ready(function(){ 
 
-    // ##------------------ Import data --------------------------------------------------------------##
-    const importData = (data) => {
-        return data
-    }
-
     // ##------------------ Create main title --------------------------------------------------------##
     const createMainTitle = () => {
         // ------------------------- Create Main Title -------------------------------------
-        var raw_data = importData(data)
+        var raw_data = data
         var headingArrayObject = mergeCellsAutoTable('header');
         var columnLength = raw_data[0].length;
         var titleMain = [];
@@ -71,6 +66,7 @@ $(document).ready(function(){
             }
         }
 
+        var logged = false;
         console.log(groupedTitleAndSubTitleArray)
 
         const colModel_result = [
@@ -132,11 +128,11 @@ $(document).ready(function(){
 
     // ##----------------- Define function for merging header of table -------------------------------##
     const mergeCellsAutoTable = (conditions) => {
-        var raw_data = importData(data)
+        var raw_data = data
         var mc = []
         var notMergedArray = []
         if(conditions == 'header'){
-            var Data = raw_data.slice(0, header.row)
+            var Data = raw_data.slice(0, header.n_row)
         }else if(conditions == 'content'){
             var Data = raw_data.slice(3, )
         }
@@ -196,7 +192,6 @@ $(document).ready(function(){
             }
         });
 
-        console.log(sort_mc)
 
         const groupedData = {};
         const sortedData = [];
@@ -261,35 +256,20 @@ $(document).ready(function(){
         return filtered;
     }
 
+    const mergeCellsHeaderTable = () => {
+        var real_mergedHeaderArray = mergeCellsAutoTable('header');
+        return real_mergedHeaderArray
+    }
+
     // ##----------------- Define function for merging content of table -------------------------------##
     const mergeCellsContentTable = (grid_style) => {
           var real_mergedContentArray = [];
           var mergedContentArray = [];
-          var contentData = importData(data).slice(header.n_row, );
+          var contentData = data.slice(header.n_row, );
           var CMContent = contentData[0].map((_, index) => ({dataIndx: index}));
           var i = CMContent.length;
           var j = contentData.length;
           
-          /*
-          // ------------ merge columns based on row value fot content ----------------
-          for (var r = 0; r < contentData.length; r++) {
-            var rc = 1,
-            c = CMContent.length;
-
-            while (c--) {
-                var cd = contentData[r][CMContent[c].dataIndx]
-                var cd_prev = contentData[r][CMContent[c - 1] ? CMContent[c - 1].dataIndx : undefined];
-
-                if (cd_prev !== undefined && cd == cd_prev) {
-                    rc++;
-                } else if (rc > 1) {
-                    mergedContentArray.push({cellValue: cd, r1: r, c1: c, rc: 1, cc: rc });
-                    rc = 1;
-                }
-            }
-        }
-        */
-
         // ----------- merge rows based on column value for content ------------------
         if(grid_style.content.mergedCells.type === 'not_auto' && grid_style.content.mergedCells.configs.length === 0){
             real_mergedContentArray = []
@@ -345,42 +325,13 @@ $(document).ready(function(){
     }
 
 
-
-
-
-    // ##----------------- Define function for retreving pqGrid object ---------------------------------##
-    const pqGridObject = (data, style) =>{
-        var grid_style = {
-            overall_table: style.overall_table,
-            header: style.header,
-            content: style.content,
-            footer: style.footer,
-            scrollbar: style.scrollbar
-        }
-        var grid_object = {
-                            resizable: false,
-                            dragColumns: { enabled: false },
-                            draggable: false,
-                            width: grid_style.overall_table.width,
-                            minWidth: grid_style.overall_table.min_width,
-                            height:  grid_style.overall_table.isScrolling === false ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': grid_style.overall_table.height,
-                            editable: false,
-                            sortModel: false,
-                            freezeRows: grid_style.content.numberFreezeRows,
-                            freezeCols: grid_style.content.numberFreezeCols,
-                            numberCell: {show: false},
-                            scrollModel: { autoFit: true},
-                            flex: {one: true},
-                            mergeCells: mergeCellsContentTable(grid_style),
-                            dataModel: { data: data.slice(grid_style.header.n_row, ) },
-                            columnTemplate: { align: 'center', valign: 'center' },
-                            pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
-                            refresh: function(event,ui){    
-                                stylingTable(grid_style)
-                            }
-                        }
-        return grid_object
+    const mergeCellsWholeComponents = (grid_style) => {
+        var header = mergeCellsHeaderTable();
+        var content =  mergeCellsContentTable(grid_style)
+        var real_mergedArray = header.concat(content)
+        return real_mergedArray
     }
+    
 
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
@@ -473,11 +424,35 @@ $(document).ready(function(){
         })
 
         
-
+        
         if(!overall_table.isScrolling){
-            pqGridHeaderOuter.css('height', grid_style.header.style.height)
+            pqGridHeaderOuter.css('height', grid_style.header.style.staticHeight)
 
         }
+        
+        if($(window).width() < header.style.resizedWindow.resizedWindowWidth){
+            if(overall_table.isScrolling === true)
+            {
+                    var mainTable = $('#automerged-modified-table')
+                    pqGridHeaderOuter.removeAttr('style')
+                    mainTable.css('width','98.7%')
+                    mainTable.css('height','auto')
+                    pqGridHeaderOuter.css('height', header.style.resizedWindow.horizontalResizedHeight)
+            }else if(overall_table.isScrolling === false){
+                    pqGridHeaderOuter.css('height', header.style.resizedWindow.horizontalResizedHeight)
+            }
+        }
+
+        else if($(window).width() >= header.style.resizedWindow.resizedWindowWidth){
+            if(overall_table.isScrolling === false){
+            pqGridHeaderOuter.css('height', header.style.staticHeight)
+            }
+        }
+
+
+
+        
+
                     
         pqGridUiButtonFooter.on('mouseenter',function(){
             $('.pq-ui-button').css('border-color', grid_style.footer.additional_style.buttonHoverBorder_color)
@@ -513,43 +488,56 @@ $(document).ready(function(){
     }
 
 
+// --------------------------------------------- Recall all function ------------------------------------------------------------
 
-    // ##------------------------------ Create Table function ------------------------------------------------------
-    const createPQGridTable = () => {
-        var raw_data = importData(data)
-        var style = {
-            overall_table: overall_table,
-            header: header,
-            content: content,
-            footer: footer,
-            scrollbar: scrollbar
-        }
-        var obj = pqGridObject(raw_data, style)
-
-
-        if(style.overall_table.isPaging === false && style.overall_table.isScrolling === false) {
-            obj.pageModel = ''
-        }
-        
-        if((data.length - style.header.n_row) <= footer.rPPOptions[0]){
-            obj.width = '100%';
-
-            if(overall_table.isScrolling === true || overall_table.isPaging === true){
-                overall_table.isScrolling = false;
-                overall_table.isPaging = false;
-            }
-        }
-
-
-        colModelTitle(obj)
-        var grid = pq.grid("#automerged-modified-table", obj);
+    var grid_style = {
+        overall_table: overall_table,
+        header: header,
+        content: content,
+        footer: footer,
+        scrollbar: scrollbar
     }
 
-// --------------------------------------------- Recall all function with ------------------------------------------------------------
 
+    var grid_object = {
+                    resizable: false,
+                    dragColumns: { enabled: false },
+                    draggable: false,
+                    width: grid_style.overall_table.width,
+                    minWidth: grid_style.overall_table.min_width,
+                    height:  grid_style.overall_table.isScrolling === false ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': grid_style.overall_table.height,
+                    editable: false,
+                    sortModel: false,
+                    freezeRows: grid_style.content.numberFreezeRows,
+                    freezeCols: grid_style.content.numberFreezeCols,
+                    scrollModel: {autoFit: true},
+                    numberCell: {show: false},
+                    flex: {one: true},
+                    //mergeCells: mergeCellsContentTable(grid_style) /* mergeCellsWholeComponents(grid_style) */ ,
+                    dataModel: { data: data.slice(grid_style.header.n_row, ) },
+                    columnTemplate: { align: 'center', valign: 'center' },
+                    pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
+                    refresh: function(event,ui){ 
+                        stylingTable(grid_style)
+                }
+    }
+    
+    
+    if(grid_style.overall_table.isPaging === false && grid_style.overall_table.isScrolling === false) {
+        grid_object.pageModel = ''
+    }
+    
+    if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0]){
+        grid_object.width = '100%';
+
+        if(overall_table.isScrolling === true || overall_table.isPaging === true){
+            overall_table.isScrolling = false;
+            overall_table.isPaging = false;
+        }
+    }
 
     createMainTitle();
-    createPQGridTable();
-
+    colModelTitle(grid_object)
+    var grid = pq.grid("#automerged-modified-table", grid_object)
 });    
 

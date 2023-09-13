@@ -5,8 +5,8 @@ var overall_table = {
     height: 650,
     outer_border: '1.8px solid #afd3f2',
     inner_border: '1.2px solid #afd3f2',
-    isScrolling: true,
-    isPaging: true
+    isScrolling: false,
+    isPaging: true,
 }
 
 
@@ -14,11 +14,14 @@ var overall_table = {
 var header = {
     n_row: 3,
     style: {
-
-        height: '125px',
+        staticHeight: '120px',
+        resizedWindow: {
+            resizedWindowWidth: 760,
+            horizontalResizedHeight: '170px'
+        },
         background: 'linear-gradient(#fefefe, #dae6f0)',
         padding: '8px 0 8px 0',
-        font_size: '20px',
+        font_size: '18px',
         font_weight: 'bold',
         font_color: 'black'
 
@@ -36,7 +39,7 @@ var content = {
 
         odd_row_background: '#e6f4ff',
         even_row_background: '#ffffff',
-        padding: '18px 0 18px 0',
+        padding: '12px 0 12px 0',
         font_size: '18px',
         font_weight: '400',
         font_color: 'black'
@@ -95,9 +98,9 @@ var scrollbar = {
 }
 
 export {
-    overall_table,
-    header,
-    content,
-    footer,
-    scrollbar
+        overall_table,
+        header,
+        content,
+        footer,
+        scrollbar
 }
