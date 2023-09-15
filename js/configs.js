@@ -1,31 +1,27 @@
 // ## Style about overall table
 var overall_table = {
-    width: 'auto',
-    min_width: 300,
-    height: 650,
+    width: '100%',
+    type: 'static', //   'static' + 'with_scrollbar'
     outer_border: '1.8px solid #afd3f2',
     inner_border: '1.2px solid #afd3f2',
-    isScrolling: false,
-    isPaging: true,
+    isPaging: true
 }
-
 
 // # Style about header table
 var header = {
     n_row: 3,
     style: {
-        staticHeight: '120px',
-        resizedWindow: {
-            resizedWindowWidth: 760,
-            horizontalResizedHeight: '170px'
-        },
-        background: 'linear-gradient(#fefefe, #dae6f0)',
-        padding: '8px 0 8px 0',
-        font_size: '18px',
-        font_weight: 'bold',
-        font_color: 'black'
-
+    header_type_height: {
+            type: overall_table.type,
+            height: '180px' // if type === 'with_scrollbar' --> height == '' it can increase height of header from padding
     },
+    background: 'linear-gradient(#fefefe, #dae6f0)',
+    padding: '10px 0px 10px 0px',
+    font_size: '18px',
+    font_weight: 'bold',
+    font_color: 'black'
+
+},
     mergedCells: {
             type: '' ,    // auto || specific
             configs: ''  
@@ -36,10 +32,13 @@ var header = {
 // # Style about content table
 var content = {
     style: {
-
+        content_type_height: {
+            type: overall_table.type,
+            height: '500px' // if type === 'static'  --> height == '' because it can increase height from padding of each cell
+        },
         odd_row_background: '#e6f4ff',
         even_row_background: '#ffffff',
-        padding: '12px 0 12px 0',
+        padding: '8px 0px 8px 0px',
         font_size: '18px',
         font_weight: '400',
         font_color: 'black'
@@ -97,10 +96,12 @@ var scrollbar = {
     }
 }
 
+
+
 export {
         overall_table,
         header,
         content,
         footer,
-        scrollbar
+        scrollbar,
 }

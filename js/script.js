@@ -105,10 +105,10 @@ $(document).ready(function(){
                             },
                             {title: 'Backend framework',
                              colModel: [
-                                          {title: 'Springboot', align: 'center'},
-                                          {title: 'Django', align: 'center'},
                                           {title: 'Express.js', align: 'center'},
-                                          {title: 'Laravel', align: 'center'}
+                                          {title: 'Laravel', align: 'center'},
+                                          {title: 'Springboot', align: 'center'},
+                                          {title: 'Django', align: 'center'}
                                        ],
                               align: 'center'
                             }
@@ -310,18 +310,28 @@ $(document).ready(function(){
                     for(var j = 0; j < grid_style.content.mergedCells.configs.length ; j++){
                         var configs = grid_style.content.mergedCells.configs[j]
                         if(real_mergedContentObject.c1 === configs.c1){
-                            real_mergedContentObject.style = 'background-color: ' + grid_style.content.mergedCells.configs[j].color
-                            temp.push(real_mergedContentObject)
+                            if(grid_style.content.mergedCells.configs[j].style === undefined){
+                                temp.push(real_mergedContentObject)
+                            }else{
+                                real_mergedContentObject.style = 'background-color: ' + grid_style.content.mergedCells.configs[j].style.replace('background:','');
+                                temp.push(real_mergedContentObject)
+                            }
                         }
                     }
                 }
-            }else{
+                console.log(temp)
             }
+
         }else if(grid_style.content.mergedCells.type === 'specific' && grid_style.content.mergedCells.configs.length >= 0){
             real_mergedContentArray = grid_style.content.mergedCells.configs
         }
-
-        return real_mergedContentArray
+        
+        if((grid_style.content.mergedCells.type === 'auto_col' && grid_style.content.mergedCells.configs.length === 0))
+        {
+            return mergedContentArray
+        }else{
+            return real_mergedContentArray
+        }
     }
 
 
@@ -352,6 +362,7 @@ $(document).ready(function(){
 
         var pqTableDiv = $('.pq-td-div')
         var pqGridHeaderOuter = $('.pq-header-outer')
+        var pqGridHeaderTable = $('.pq-grid-header-table')
 
         pqTableDiv.css({
                 'padding': grid_style.header.style.padding ,
@@ -366,6 +377,7 @@ $(document).ready(function(){
                 'background': grid_style.header.style.background
         })
 
+        
         // ---------------------------------------------------------------------------------------
 
         // ----------------- ## Style content of table -------------------------------------------
@@ -424,36 +436,38 @@ $(document).ready(function(){
         })
 
         
-        
-        if(!overall_table.isScrolling){
-            pqGridHeaderOuter.css('height', grid_style.header.style.staticHeight)
 
+        if(overall_table.type === 'static'){
+            pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
         }
+
         
-        if($(window).width() < header.style.resizedWindow.resizedWindowWidth){
-            if(overall_table.isScrolling === true)
+        if($(window).width() < 760){
+            if(overall_table.type === 'with_scrollbar')
             {
                     var mainTable = $('#automerged-modified-table')
                     pqGridHeaderOuter.removeAttr('style')
-                    mainTable.css('width','98.7%')
                     mainTable.css('height','auto')
-                    pqGridHeaderOuter.css('height', header.style.resizedWindow.horizontalResizedHeight)
-            }else if(overall_table.isScrolling === false){
-                    pqGridHeaderOuter.css('height', header.style.resizedWindow.horizontalResizedHeight)
+                    pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
+            }else if(overall_table.type === 'static'){
+                    pqGridHeaderOuter.css('height', grid_style.header.style.header_type_height.height)
             }
         }
 
-        else if($(window).width() >= header.style.resizedWindow.resizedWindowWidth){
-            if(overall_table.isScrolling === false){
-            pqGridHeaderOuter.css('height', header.style.staticHeight)
+    
+
+        if($(window).width() >= 760){
+            if(overall_table.type === 'static'){
+                var mainTable = $('#automerged-modified-table')
+                pqGridHeaderOuter.css('height', header.style.header_type_height.height)
+            }
+            else if(overall_table.type === 'with_scrollbar'){
+                var mainTable = $('#automerged-modified-table')
+                pqGridHeaderOuter.css('height', header.style.header_type_height.height)
             }
         }
 
 
-
-        
-
-                    
         pqGridUiButtonFooter.on('mouseenter',function(){
             $('.pq-ui-button').css('border-color', grid_style.footer.additional_style.buttonHoverBorder_color)
         })
@@ -477,8 +491,11 @@ $(document).ready(function(){
                     'border-color': grid_style.scrollbar.uiTriangleButton_style.border_color
         })
 
+        
         // ----------------------------## Additional style ----------------------------------------
         var refreshButton = $('.pq-page-placeholder + .pq-ui-button')
+        var pqGridTitle = $('.pq-grid-title')
+        pqGridTitle.remove()
         refreshButton.remove()
 
 
@@ -498,46 +515,45 @@ $(document).ready(function(){
         scrollbar: scrollbar
     }
 
-
-    var grid_object = {
+    let grid_object = {
                     resizable: false,
                     dragColumns: { enabled: false },
                     draggable: false,
-                    width: grid_style.overall_table.width,
-                    minWidth: grid_style.overall_table.min_width,
-                    height:  grid_style.overall_table.isScrolling === false ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': grid_style.overall_table.height,
+                    width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
+                    height:  grid_style.overall_table.type === 'static'  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.style.content_type_height.height.replace('px','')),
                     editable: false,
                     sortModel: false,
                     freezeRows: grid_style.content.numberFreezeRows,
                     freezeCols: grid_style.content.numberFreezeCols,
-                    scrollModel: {autoFit: true},
+                    scrollModel: {horizontal: true, autoFit: true},
                     numberCell: {show: false},
                     flex: {one: true},
-                    //mergeCells: mergeCellsContentTable(grid_style) /* mergeCellsWholeComponents(grid_style) */ ,
+                    mergeCells: mergeCellsContentTable(grid_style) /* mergeCellsWholeComponents(grid_style) */ ,
                     dataModel: { data: data.slice(grid_style.header.n_row, ) },
                     columnTemplate: { align: 'center', valign: 'center' },
                     pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
-                    refresh: function(event,ui){ 
+                    refresh: function(event,ui){
                         stylingTable(grid_style)
                 }
     }
+
     
     
-    if(grid_style.overall_table.isPaging === false && grid_style.overall_table.isScrolling === false) {
+    if(grid_style.overall_table.type === 'static' && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
     if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0]){
         grid_object.width = '100%';
 
-        if(overall_table.isScrolling === true || overall_table.isPaging === true){
-            overall_table.isScrolling = false;
-            overall_table.isPaging = false;
+        if(grid_style.overall_table.type === 'with_scrollbar' || overall_table.isPaging === true){
+            grid_style.overall_table.type = 'static'
         }
     }
 
     createMainTitle();
     colModelTitle(grid_object)
     var grid = pq.grid("#automerged-modified-table", grid_object)
+
 });    
 
