@@ -12,7 +12,7 @@
     text-align: right;
   }
 
-@media screen and (max-width: 760px){
+@media screen and (max-width: 850px){
     .pq-vscroll{
       height: calc(100% - 17px) !important;
     }

@@ -9,6 +9,16 @@ import {
 
 $(document).ready(function(){ 
 
+    function createColModelStructure(input) {
+        return input.map(row => {
+            return {
+                title: row[0].cellvalue,
+                colModel: row.slice(1).length > 0 ? createColModelStructure([row.slice(1)]) : [],
+                align: 'center'
+            };
+        });
+    }
+
     // ##------------------ Create main title --------------------------------------------------------##
     const createMainTitle = () => {
         // ------------------------- Create Main Title -------------------------------------
@@ -40,7 +50,7 @@ $(document).ready(function(){
         for(var j=0; j < titleMain.length ; j++)
         {
             var titleMainParamStructure = {title: '', colModel: []};
-            titleMainParamStructure.title = titleMain[j].cellValue;
+            titleMainParamStructure.title = titleMain[j].cellvalue;
             paramTitle.push(titleMainParamStructure);
         }
 
@@ -66,15 +76,215 @@ $(document).ready(function(){
             }
         }
 
-        var logged = false;
-        console.log(groupedTitleAndSubTitleArray)
 
-        const colModel_result = [
+        var colModel_result = [];
+        var colModel_temp = [];
+        
+        // -------------------------- Create Main ColModel --------------------------------------------------------------------
+        if(header.mergedCells.type === 'default' && header.mergedCells.configs.length === 0)
+        {
+            var atLeastMerged = false;
+
+            if(headingArrayObject.some(obj => obj.rc > 1 || obj.cc > 1)){
+                atLeastMerged = true
+            }
+
+            if(atLeastMerged === true){
+                var sum_cc = 0;
+                var i=0;
+            
+
+                while(sum_cc < data[0].length){
+
+                    colModel_temp.push(headingArrayObject[i])
+                    sum_cc += headingArrayObject[i].cc
+                    i++
+                }
+
+               
+                var output = []
+                colModel_temp.forEach(item => {
+                    const { cellvalue, r1, c1, rc, cc } = item;
+                    
+                    for (let i = 0; i < rc; i++) {
+                        for (let j = 0; j < cc; j++) {
+                            output.push({
+                                cellvalue: cellvalue,
+                                r1: r1 + i,
+                                c1: c1 + j,
+                                rc: 1,
+                                cc: 1
+                            });
+                        }
+                    }
+                });
+
+                var arrayTemp = output.filter(obj => obj.r1 === 0).map(obj => [obj])
+                var colModel_temp_2 = headingArrayObject.filter(item2 => !output.some(item1 => item1.cellvalue === item2.cellvalue))
+
+                var output_2 = []
+                colModel_temp_2.forEach(item => {
+                    const { cellvalue, r1, c1, rc, cc } = item;
+                    
+                    for (let i = 0; i < rc; i++) {
+                        for (let j = 0; j < cc; j++) {
+                            output_2.push({
+                                cellvalue: cellvalue,
+                                r1: r1 + i,
+                                c1: c1 + j,
+                                rc: 1,
+                                cc: 1
+                            });
+                        }
+                    }
+                });
+
+                var newColModel_temp_2 = output.filter(obj => obj.r1 > 0).concat(output_2).sort((a, b) => {
+                    if (a.r1 !== b.r1) {
+                        return a.r1 - b.r1;
+                    }
+                    return a.c1 - b.c1;
+                })
+
+                console.log(arrayTemp)
+                console.log(newColModel_temp_2)
+
+                for(var k = 0 ; k < data[0].length ; k++){
+                    for(var l = 0 ; l < newColModel_temp_2.length ; l++){
+
+                        if(arrayTemp[k][0].c1 === newColModel_temp_2[l].c1)
+                        {
+
+                            arrayTemp[k].push(newColModel_temp_2[l])
+
+                        }
+                        
+                        
+                    }
+                }
+
+                colModel_result = createColModelStructure(arrayTemp)
+                
+
+            }
+            else if(atLeastMerged === false)
+            {
+                    for(var i=0; i < data[0].length; i++)
+                    {
+                        colModel_temp.push([headingArrayObject[i]])
+                    }
+
+                    var arrayTemp = headingArrayObject.slice(data[0].length)
+
+
+                    for(var j=0; j < data[0].length; j++)
+                    {
+                        for(var k = 0; k < arrayTemp.length ; k++){
+
+                            if(arrayTemp[k].c1 === colModel_temp[j][0].c1){
+                                colModel_temp[j].push(arrayTemp[k])
+                            }
+
+                        }
+                    }
+
+                    colModel_result = createColModelStructure(colModel_temp)
+            }
+
+        }else if(header.mergedCells.type === 'auto' && header.mergedCells.configs.length === 0)
+        {
+                for(var i = 0 ; i < groupedTitleAndSubTitleArray.length ; i++){
+                    var titleAndSubTitleArrayTemplate = [];
+                    titleAndSubTitleArrayTemplate.push(groupedTitleAndSubTitleArray[i][0])
+
+                    if(groupedTitleAndSubTitleArray[i].length !== 1)
+                    {
+                        var temp = [];
+                        for(var j = 1; j < groupedTitleAndSubTitleArray[i].length ; j++){
+                            var temp_2 = [];
+
+                            if(groupedTitleAndSubTitleArray[i][j].cc > 1){
+                                var shift = j;
+                                temp_2.push(groupedTitleAndSubTitleArray[i][j])
+                                for(var l = j+1; l < (j+1) + temp_2[0].cc ; l ++)
+                                {
+                                    temp_2.push(groupedTitleAndSubTitleArray[i][l])
+                                }
+                                temp.push(temp_2)
+                            }
+                            
+                            if((groupedTitleAndSubTitleArray[i][j].r1 === groupedTitleAndSubTitleArray[i][0].rc) && groupedTitleAndSubTitleArray[i][j].cc === 1){
+                                var a = [];
+                                a.push(groupedTitleAndSubTitleArray[i][j])
+                                temp.push(a)
+                            }
+                        }
+                        
+                        titleAndSubTitleArrayTemplate.push(temp)
+                    }
+                    
+
+                    colModel_temp.push(titleAndSubTitleArrayTemplate)
+                }
+
+
+            // ------------------------------------------------- Auto ColModel --------------------------------------------------------------------
+            
+            for (var j = 0; j < colModel_temp.length; j++) {
+                    var template = {
+                        title: colModel_temp[j][0].cellvalue,
+                        colModel: [],
+                        align: 'center'
+                    };
+
+                    if (colModel_temp[j].length > 1) {
+                
+                        if(colModel_temp[j][1].every(arr => arr.length === 1)){
+                            for(const arr of colModel_temp[j][1]){
+                                template.colModel.push({title: arr[0].cellvalue, colModel: [], align: 'center'})
+                            }
+                            
+                            colModel_result.push(template)
+
+                        }else if(colModel_temp[j][1].every(arr => arr.length > 1)){
+                            var b = 0;
+                            for(const arr of colModel_temp[j][1]){
+                                template.colModel.push({title: arr[0].cellvalue, colModel: [], align: 'center'})
+                    
+                                if(header.n_row >= 3)
+                                {
+                                    for(var k = 1; k < arr.length ; k++)
+                                    {
+                                        if(arr[k].cc === 1){
+                                            template.colModel[b].colModel.push({title: arr[k].cellvalue, colModel: [], align: 'center'})
+                                        }else if(arr[k].cc > 1){
+                                            /* -------------------------- Case of nested more than 3 subcol */
+                                        }
+                                    }
+                                }
+
+                                b++;
+                            }
+
+                            colModel_result.push(template)
+                        }
+
+                    } else if (colModel_temp[j].length === 1) {
+                            colModel_result.push(template);
+                    }
+                }
+        }
+        // ------------------------------------------------- Auto ColModel --------------------------------------------------------------------
+       
+        
+
+        const colModel_result_2 = [
             {title: 'Employee information', 
              colModel: [
                           {title: 'Id', align: 'center'},
                           {title: 'First name', align: 'center'},
                           {title: 'Last name', align: 'center'},
+                          
                        ],
               align: 'center'
             },
@@ -116,6 +326,9 @@ $(document).ready(function(){
               align: 'center'
             }
          ] 
+
+
+    
          return colModel_result
     }
 
@@ -134,7 +347,7 @@ $(document).ready(function(){
         if(conditions == 'header'){
             var Data = raw_data.slice(0, header.n_row)
         }else if(conditions == 'content'){
-            var Data = raw_data.slice(3, )
+            var Data = raw_data.slice(header.n_row, )
         }
         var CM = Data[0].map((_, index) => ({ dataIndx: index })),
         i = CM.length,
@@ -153,7 +366,7 @@ $(document).ready(function(){
                 if (cd_prev !== undefined && cd == cd_prev) {
                     rc++;
                 } else if (rc > 1) {
-                    mc.push({cellValue: cd, r1: r, c1: c, rc: 1, cc: rc });
+                    mc.push({cellvalue: cd, r1: r, c1: c, rc: 1, cc: rc });
                     rc = 1;
                 }
             }
@@ -171,7 +384,7 @@ $(document).ready(function(){
                      rc++;
                 }
                 else if (rc > 1) {
-                     mc.push({cellValue: cd, r1: j, c1: i, rc: rc, cc: 1 });
+                     mc.push({cellvalue: cd, r1: j, c1: i, rc: rc, cc: 1 });
                      rc = 1;
                 }
             }
@@ -220,7 +433,7 @@ $(document).ready(function(){
                 currentObj.c1 === nextObj.c1 &&
                 currentObj.cc === nextObj.cc &&
                 currentObj.rc + currentObj.r1 === nextObj.r1 &&
-                currentObj.cellValue === nextObj.cellValue
+                currentObj.cellvalue === nextObj.cellvalue
             ) {
                 currentObj.rc += nextObj.rc;
             } else {
@@ -242,9 +455,9 @@ $(document).ready(function(){
                 if(basedArray[i].r1 == componentArray[j].r1 &&
                 basedArray[i].c1 == componentArray[j].c1 &&
                 basedArray[i].rc == componentArray[j].rc && 
-                basedArray[i].cellValue === componentArray[j].cellValue){
+                basedArray[i].cellvalue === componentArray[j].cellvalue){
                     for(var k=0; k < basedArray[i].cc ; k++){
-                        temp.push({cellValue: basedArray[i].cellValue,r1: basedArray[i].r1, c1: basedArray[i].c1 + k, rc: basedArray[i].rc, cc: 1})
+                        temp.push({cellvalue: basedArray[i].cellvalue,r1: basedArray[i].r1, c1: basedArray[i].c1 + k, rc: basedArray[i].rc, cc: 1})
                         }
                 }
             }
@@ -252,7 +465,7 @@ $(document).ready(function(){
 
         const real_componentArray = componentArray.filter(itemA => !temp.some(itemB => Object.keys(itemA).every(key => itemA[key] == itemB[key])))
         const real_mc = basedArray.concat(real_componentArray)
-        const filtered = notMergedArray.filter(objMerged => !real_mc.some(objHeading => objHeading.cellValue === objMerged.cellvalue)).concat(real_mc).sort((a,b) => { if (a.r1 !== b.r1) {return a.r1 - b.r1;} else {return a.c1 - b.c1;}})
+        const filtered = notMergedArray.filter(objMerged => !real_mc.some(objHeading => objHeading.cellvalue === objMerged.cellvalue)).concat(real_mc).sort((a,b) => { if (a.r1 !== b.r1) {return a.r1 - b.r1;} else {return a.c1 - b.c1;}})
         return filtered;
     }
 
@@ -263,15 +476,15 @@ $(document).ready(function(){
 
     // ##----------------- Define function for merging content of table -------------------------------##
     const mergeCellsContentTable = (grid_style) => {
-          var real_mergedContentArray = [];
-          var mergedContentArray = [];
-          var contentData = data.slice(header.n_row, );
-          var CMContent = contentData[0].map((_, index) => ({dataIndx: index}));
-          var i = CMContent.length;
-          var j = contentData.length;
+        var real_mergedContentArray = [];
+        var mergedContentArray = [];
+        var contentData = data.slice(header.n_row, );
+        var CMContent = contentData[0].map((_, index) => ({dataIndx: index}));
+        var i = CMContent.length;
+        var j = contentData.length;
           
         // ----------- merge rows based on column value for content ------------------
-        if(grid_style.content.mergedCells.type === 'not_auto' && grid_style.content.mergedCells.configs.length === 0){
+        if(grid_style.content.mergedCells.type === 'default' && grid_style.content.mergedCells.configs.length === 0){
             real_mergedContentArray = []
         }
         else if(grid_style.content.mergedCells.type === 'auto' && grid_style.content.mergedCells.configs.length === 0)
@@ -292,7 +505,7 @@ $(document).ready(function(){
                     if (cd_prev !== undefined && cd == cd_prev){
                         rc++;
                     }else if (rc > 1){
-                        mergedContentArray.push({cellValue: cd, r1: j, c1: i, rc: rc, cc: 1 });
+                        mergedContentArray.push({cellvalue: cd, r1: j, c1: i, rc: rc, cc: 1 });
                         rc = 1;
                     }
 
@@ -319,7 +532,6 @@ $(document).ready(function(){
                         }
                     }
                 }
-                console.log(temp)
             }
 
         }else if(grid_style.content.mergedCells.type === 'specific' && grid_style.content.mergedCells.configs.length >= 0){
@@ -442,7 +654,7 @@ $(document).ready(function(){
         }
 
         
-        if($(window).width() < 760){
+        if($(window).width() < 850){
             if(overall_table.type === 'with_scrollbar')
             {
                     var mainTable = $('#automerged-modified-table')
@@ -456,14 +668,14 @@ $(document).ready(function(){
 
     
 
-        if($(window).width() >= 760){
+        if($(window).width() >= 850){
             if(overall_table.type === 'static'){
                 var mainTable = $('#automerged-modified-table')
                 pqGridHeaderOuter.css('height', header.style.header_type_height.height)
             }
             else if(overall_table.type === 'with_scrollbar'){
                 var mainTable = $('#automerged-modified-table')
-                pqGridHeaderOuter.css('height', header.style.header_type_height.height)
+                //pqGridHeaderOuter.css('height', header.style.header_type_height.height) ** Bugs**
             }
         }
 

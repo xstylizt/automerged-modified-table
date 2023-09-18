@@ -13,17 +13,17 @@ var header = {
     style: {
     header_type_height: {
             type: overall_table.type,
-            height: '180px' // if type === 'with_scrollbar' --> height == '' it can increase height of header from padding
+            height: '150px' // if type === 'with_scrollbar' --> height == '' it can increase height of header from padding
     },
     background: 'linear-gradient(#fefefe, #dae6f0)',
-    padding: '10px 0px 10px 0px',
+    padding: '5px 0px 5px 0px',
     font_size: '18px',
     font_weight: 'bold',
     font_color: 'black'
 
 },
     mergedCells: {
-            type: '' ,    // auto || specific
+            type: 'auto' ,    // auto || specific
             configs: ''  
     }
 }
@@ -34,11 +34,11 @@ var content = {
     style: {
         content_type_height: {
             type: overall_table.type,
-            height: '500px' // if type === 'static'  --> height == '' because it can increase height from padding of each cell
+            height: '' // if type === 'static'  --> height == '' because it can increase height from padding of each cell
         },
         odd_row_background: '#e6f4ff',
         even_row_background: '#ffffff',
-        padding: '8px 0px 8px 0px',
+        padding: '10px 0px 10px 0px',
         font_size: '18px',
         font_weight: '400',
         font_color: 'black'
