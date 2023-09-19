@@ -1,250 +1,96 @@
-# Auto-merged modified table with jQuery and Paramquery Grid
+# Auto-merged modified table with Paramquery Grid and jQuery
 
-![Screenshot-2023-08-24-201300a7e9ba2e12ff0e76.png](https://cdn.pic.in.th/file/picinth/Screenshot-2023-08-24-201300a7e9ba2e12ff0e76.png)
+## File Directory Layout
+ในหัวข้อนี้เป็นการแสดงถึงโครงสร้างของโฟลเดอร์ที่เกี่ยวข้องสำหรับโปรเจคนี้เพื่ออธิบายถึงความหมายของแต่ละไฟล์ว่าใช้ในการทำงานใดบ้างได้ดังรูปต่อไปนี้
+```
+├── js
+    ├── library
+        ├── jquery-ui.js
+        ├── jquery.js
+        ├── pqgrid.min.js
+    ├── import_data.js
+    ├── configs.js
+    ├── script.js
+├── css
+    ├── jquery-ui.css
+    ├── pqgrid-min.css
+    ├── pqgrid.ui.min.css
+├── index.html
+```
 
-
-## Requirements
-### 1. HTML
-สำหรับไฟล์  `index.html` มี libray และ script ที่สำคัญดังต่อไปนี้
-* **jQuery**
-  * **jQuery.js** (Latest version 3.7)
+โดยที่ในแต่ละโฟลเดอร์สามารถอธิบายได้ดังนี้
+- `js` เป็นโฟลเดอร์ที่รวบรวมเกี่ยวกับฟังก์ชันในการกำหนดการทำงานการสร้างและการกำหนดรูปของตาราง (table) ซึ่งรวมไปถึงไฟล์ที่ใช้ในการดึงข้อมูล (import data) และไฟล์กำหนดรูปแบบของตารางโดยผู้ใช้ (user)
+  - `library` เป็นโฟลเดอร์ที่รวมไฟล์เกี่ยวกับ `jQuery` และ `Paramquery Grid`
+    - `jquery-ui.js`   
+    - `jquery.js`      
+    - `pqgrid.min.js`
    
-    ```html
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
-    ```
-  
-  * **jQuery-ui.css**
-  
-    ```html
-    <link href="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.css" rel="stylesheet"/>
-    ```
-  
-  * **jQuery-ui.js**
-    ```html
-    <script src="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.js"></script>
-    ```
-  
-* **Paramquery Grid**
-  * **pq-grid.min.css**
+   - `import_data.js` เป็นไฟล์ที่ใช้ในการนำข้อมูลเข้ามาใช้ในการสร้างตาราง
+   - `configs.js`     เป็นไฟล์ที่ใช้ในการกำหนดรูปแบบของตารางโดยผู้ใช้ (user) ซึ่งสามารถทำผ่านไฟล์นี้
+   - `script.js`      เป็นไฟล์ที่รวมรวมนิยามของฟังก์ชันในการกำหนดรูปแบบตาราง ผสานเซลล์ของตาราง สร้างตารางและอื่น ๆ
+- `css` เป็นโฟลเดอร์ที่รวมเกี่ยวกับการตกแต่งตาราง (เป็นการกำหนด default ให้กับตาราง)
+   - `jquery-ui.css`
+   - `pqgrid-min.css`
+   - `pqgrid.ui.min.css`
+- `index.html` เป็นไฟล์ `html` ที่ใช้ในการ render ซึ่งผนวกกับไฟล์ทั้งหมดที่อยู่ในโฟลเดอร์ `js` และ `css`
+
+## Step-by-step Guide
+
+### Instruction
+1. กำหนด path ไฟล์ทั้งหมดที่อยู่ภายใน folder `js` (ไม่รวมไฟล์ `import_data.js` และ `configs.js`) และ `css` ภายในส่วนของ `head` เข้าไปภายในไฟล์ `index.html` ได้ดังต่อไปนี้
    
-    ```html
-    <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.css" rel="stylesheet"/>
-    ```
-  
-  * **pq-grid.ui.min.css**
-  
-    ```html
-    <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.ui.min.css"rel="stylesheet"/>
-    ```
-  
-  * **pq-grid.min.js**
-    ```html
-    <script src="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.js"></script>
-    ```
+   ```html
+    <head>
+         <!--------- jQuery & Paramquery Grid  ---------->
+         <script src="js/library/jquery.js"></script>
+         <script src="js/library/jquery-ui.js"></script>
+         <script src="js/library/pqgrid.min.js"></script>
 
+         <!--------------- CSS files --------------------->
+         <link rel="stylesheet" href="css/jquery-ui.css"/>
+         <link rel="stylesheet" href="css/pqgrid.min.css"/>
+         <link rel="stylesheet" href="css/pqgrid.ui.min.css"/>
 
-
-### 2. CSS
-ไฟล์ `style.css` เป็นไฟล์ที่ใช้กำหนดรูปแบบตารางเบื้องต้นของหน้าเว็บไซต์ในโปรเจคนี้
-
-
-
-### 3. Javascript
-
-สำหรับตระกูลไฟล์ที่เกี่ยวกับ `javascript`แบ่งออกเป็น 3 ไฟล์ที่มีหน้าที่แตกต่างกันดังต่อไปนี้
-* `import.js` เป็นไฟล์ที่ใช้กำหนด `path` ของไฟล์ข้อมูลรูปแบบ `.csv`
-* `configs.js` เป็นไฟล์ที่ใช้ในการกำหนดรูปแบบของตารางอย่างละเอียดได้ดังต่อไปนี้
-   * รูปแบบภาพรวมของตาราง
-   * หัวข้อ (Heading)
-   * เนื้อหา (Content)
-* `script.js` เป็นไฟล์ที่รวมฟังก์ชันในการผสานเซลล์ กำหนดรูปแบบของตาราง และสร้างตารางไว้เข้าด้วยกัน
-
-
-
-
-### 4. CSV
-สำหรับในโปรเจคนี้ได้ใช้ข้อมูล `software_department.csv` ที่ใช้ในการแสดงข้อมูลบนตาราง  (สามารถใช้ข้อมูลแทนได้)
-
-
-
-
-## Instruction
-สำหรับวิธีการใช้ `Auto-merged modified table` ที่ใช้ร่วมกับ `jQuery` และ `Paramquery Grid` สามารถทำได้ตามขั้นตอนดังต่อไปนี้
-
-1. นำ library script ข้างต้นทั้งหมด ไฟล์ `style.css` และ `script.js` เข้ามาภายในส่วนของ `head` สำหรับไฟล์ `index.html` 
+         <!------------- All functionality table ----------> 
+         <script src="js/script.js" type="module"> </script>
+    </head>
+   ```
+2. สร้าง `div` tag โดยมี `id = "automerged-modified-table"` ภายในส่วนของ `body` ในไฟล์ `index.html` เพื่อสร้าง element ของตารางในโปรเจคดังนี้
 
    ```html
-   <head>
-        <!--------------------------- jQuery ------------------------------------------------>
-        <link href="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.css" rel="stylesheet"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
-        <script src="https://unpkg.com/jquery-ui-pack@1.12.2/jquery-ui.js"></script>
-    
-        <!--------------------------- Paramquery grid -------------------------------->
-        <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.css" rel="stylesheet"/>
-        <link href="https://unpkg.com/pqgrid@8.2.1/pqgrid.ui.min.css"rel="stylesheet"/>
-        <script src="https://unpkg.com/pqgrid@8.2.1/pqgrid.min.js"></script>
-    
-        <link rel="stylesheet" href="css\style.css">
-        
-        <script src="js\script.js" type="module"></script>
-   </head>
+      <body>  
+           <div id="automerged-modified-table"></div>
+      </body>
    ```
+3. ในส่วนของการนำข้อมูลเข้ามาเพื่อใช้ในการแสดงผลลัพธ์บนตารางสามารถทำผ่านไฟล์ `import_data.js` โดยที่ข้อมูลที่นำเข้ามาต้องอยู่ในรูปของ **Two dimensional Array** (อาร์เรย์ 2 มิติ) ตัวอย่างเช่น
 
-2. สร้าง `div` ที่กำหนดโดยรูปแบบดังต่อไปนี้ภายในไฟล์ `index.html` ในส่วนของ `body`
+   ```javascript
+   var data = [
+    ["Employee information", "Employee information", "Employee information", "Section", "Role", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill"],
+    ["Employee information", "Employee information", "Employee information", "Section", "Role", "Frontend framework", "Frontend framework", "Frontend framework", "Frontend framework", "Backend framework", 
+     "Backend framework", "Backend framework", "Backend framework"],
+    ["Id", "First name", "Last name", "Section", "Role", "React", "Angular", "Vue", "Svelte", "Express.js", "Laravel", "Springboot", "Django"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"]];
 
-   ```html
-   <body>
-        <div class="table">
-                <div id="automerged-modified-table"></div> // element ของ table (อันนี้สำคัญ)
-                <div id="background"></div>
-        </div>
-   </body>
+   export default data;
    ```
+---
+
+### Table Style Configuration
+ในหัวข้อนี้เป็นการอธิบายเกี่ยวกับวิธีการกำหนดรูปแบบหรือคุณลักษณะของตารางโดยผ่านไฟล์ `configs.js` 
+- ไฟล์ `configs.js` มีการกำหนดการแบ่งของรูปแบบออกเป็นในแต่ละส่วนซึ่งประกอบด้วย
+   - `var overall_table`$~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของภาพรวมของตาราง
+   - `var header`$~~~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในกำหนดการกำหนดรูปแบบของหัวข้อ (header) ของตาราง
+   - `var content`$~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของเนื้อหา (content) ของตาราง
+   - `var footer`$~~~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดแถบการจัดแบ่งหน้า (Pagination)
+   - `var scrollbar`$~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดเกี่ยวกับแถบเลื่อน (scrollbar)
    
-3. กำหนด path ของไฟล์ข้อมูล `.csv` ภายในไฟล์ `import.js` ในที่นี้ใช้   `software_department.csv`
-   ```Javascript
-   const csvFileURL = 'https://raw.githubusercontent.com/xstylizt/automerged-modified-table/main/data/software_department.csv'; // './data/software_department.csv'
-   export default csvFileURL;
-   ```
-
-## How to define and style table
-สำหรับวิธีการกำหนดรูปแบบของตารางสามารถทำผ่านไฟล์ `configs.js` ซึ่งแยกออกเป็น 3 ส่วนดังต่อไปนี้
-1. ภาพรวมของตารางสามารถกำหนดค่าต่าง ๆ ผ่าน `object` ในตัวแปรที่ชื่อ `const Table` ซึ่งมี `properties` ที่กำหนดได้ดังต่อไปนี้
-   
-   ```Javascript
-    const Table = {
-          cell_height: 1,
-          border_color: '#51abcb',
-          border_size: "2.5px",
-          scrollBar: false
-    }
-   ```
-
-   * `cell_height:` ความสูงของเซลล์ในแต่ละช่อง 
-     * มีค่าอยู่ในช่วงตั้งแต่ `[1,3]`
-   * `border_color:` สีเส้นขอบของตารางทั้งหมด
-   * `border_size:` ความหนาของเส้นขอบตาราง 
-   * `scrollBar:` กำหนดให้ตารางมี scroll bar (แนะนำว่าให้ใช้เมื่อข้อมูลเริ่มมีหลายแถวและไม่ต้องการให้ข้อมูลไหลยาวจนเกินไป) 
-     * ถ้ามีค่าเป็น `true` ให้มีการแสดง scroll bar ของตาราง 
-     * ถ้ามีค่าเป็น `false` ยกเลิกการแสดง scroll bar
-    
-2. หัวข้อของตารางสามารถกำหนดค่าต่าง ๆ ผ่านตัวแปรดังต่อไปนี้
-   
-   ```Javascript
-    const n_row = 3;
-    const mergeTypeOfHeading = "specific"; //  --> auto, specific
-    const mergeConfigsofHeading = [{r1: 0, c1: 0, rc: 3, cc: 3},  // Employee information
-                                   {r1: 0, c1: 3, rc: 3, cc:1},   // Section
-                                   {r1: 0, c1: 4, rc: 3, cc: 1},   // Subsection                    
-                                   {r1: 0, c1: 5, rc: 1, cc: 9},    // Skill
-    
-                                   {r1: 1, c1: 5, rc: 1, cc: 4},   // Frontend framework
-                                   {r1: 1, c1: 9, rc: 1, cc: 5}    // Backend framework
-                                ]  
-    
-    const heading_style =   {
-        font_weight: 'bold',
-        font_size: '30px',
-        background_type: "all",  // "all" / "specific"
-        background_color: "#CEE6F3"
-        /*
-        [[{name: "Employee information", color: "red"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"}],
-        [{name: "Employee information", color: "red"},{name: "Section", color:"green"}],
-        [{name: "Employee information", color: "red"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"},{name: "Section", color:"green"}],
-       ]
-       
-       
-       
-       
-       .map((subarray, index) => subarray.map((item, subIndex) => ({ ...item, index: subIndex }))) */
-        
-    }
-   ```
-
-   * `n_row:` จำนวนแถวที่ต้องการสร้างหัวข้อ
-     * เช่น `n_row: 2` คือ การสร้างหัวข้อของตารางจากแถวที่ 1 และ 2
-   * `mergedTypeOfHeading:` ประเภทของการผสานเซลล์สำหรับหัวข้อ
-     * `'not auto'` คือ ไม่มีการผสานเซลล์แบบอัติโนมัติสำหรับหัวข้อ
-     * `'auto'` คือ ให้มีการผสานเซลล์แบบอัติโนมัติสำหรับหัวข้อ
-     * `'specific'` คือ กำหนดผสานเซลล์สำหรับหัวข้อด้วยตัวเอง
-   * `mergedConfigsOfHeading:` รูปแบบของการผสานเซลล์สำหรับหัวข้อ
-     * ถ้า `mergedTypeOfHeading: 'not auto'` และ `mergedTypeOfHeading: 'auto'` แล้ว `mergedConfigsOfHeading: []` (ใส่เป็น [])
-     * ถ้า `mergedTypeOfHeading: 'specific` แล้ว `mergedConfigsOfHeading: [{...},{...},{...}]`สามารถใส่ได้ในรูปแบบดังต่อไปนี้ เช่น
-       
-        ```Javascript
-         mergedConfigsOfHeading:  [{r1: 0, c1: 0, rc: 3, cc: 3},  // Employee information
-                                   {r1: 0, c1: 3, rc: 3, cc:1}]   
-        ```
-        
-        หมายความว่าแถวที่ 1 (r1:0) คอลัมน์ที่ 1  (c1:0) ให้มีการ merge ตามคอลัมน์ไปอีก 2 แถว (rc: 2+1) และให้มีการ merge ตามแถวไปอีก 2 คอลัมน์
-                  แถวที่ 1 (r1:0) คอมลัมน์ที่ 4 (c1:3) ให้มีการ merge ตามคอลัมน์ไปอีก 2 แถว (rc: 2+1) และไม่มีการ merge ตามแถว (cc:1)
-        
-   * `heading_style:` ตกแต่งและกำหนดสไตล์สำหรับหัวข้อ
-     * `font_weight:` ความหนาของตัวหนังสือของหัวข้อ 
-     * `font_size:`   ขนาดของตัวหนังสือของหัวข้อ
-     * `background_type:` รูปแบบของสีในการตกแต่งหัวข้อ
-       * `'all'` คือ ให้ใช้สีเหมือนกันทั้งหมดทุกเซลล์ของหัวข้อ
-       * `'specific'` คือ กำหนดสีของแต่ละ field ด้วยตัวเองของหัวข้อ
-     * `background_color:` สีในการตกแต่งหัวข้อ
-       * ถ้า `background_type: 'all'` แล้ว `background_color: ' hex code color หรือ เขียนชื่อสีภาษาอังกฤษ'`
-       * ถ้า `background_type: 'specific` แล้ว `background_color: [[{...}],[{...}],[{...}]]` สามารถใส่ได้ในรูปแบบดังต่อไปนี้ เช่น
-
-         ```Javascript
-         background_type:  [
-                               [{name: 'Employee information', color: ''}, {name: 'Section', color: ''}, {name: 'Role', color: ''}, {name: 'Skill', color: ''}], // แถวที่ 1
-                               [{name: 'Frontend framework', color: ''}, {name: 'Backend framework', color: ''}], // แถวที่ 2
-                               [{name: 'React', color: ''}, {name: 'Angular', color: ''}, {name: 'Vue', color: ''}, {name: 'Svelte', color: ''}, {name: 'Express.js', color: ''}, {name: 'Larevel', color: ''}, {name: 'Springboot', color: ''}, {name: 'Django', color: ''} /*แถวที่ 3*/]
-                           ].map((subarray, index) => subarray.map((item, subIndex) => ({ ...item, index: subIndex })))   
-         ```
-         โดยที่ `name:` ชื่อ field
-               `color:` สีของ field
-         - **<ins>หมายเหตุ:</ins>** ในแต่ละแถวต้องระบุชื่อเซลล์และสีให้**ครบทุกเซลล์**
-
-3. ภาพรวมของตารางสามารถกำหนดค่าผ่าน `object` ในตัวแปรที่ชื่อ `const Table` ซึ่งมี `properties` ที่กำหนดได้ดังต่อไปนี้
-   
-   ```Javascript
-    const mergeTypeOfContent = "auto"; 
-    const mergeSubTypeOfContent = 'specific_col';  // auto --> all กับ col กับ specific_col
-    const mergeConfigsOfContent = [3]; 
-    
-    const content_style = {
-        font_size: '25px',
-        row_even_color: "#D8F2FF",
-        row_odd_color: "white",
-        merged_cell_color_type: 'default', 
-        merged_cell_color:  ''
-    }
-   ```
-
-   * `mergedTypeOfContent:` ประเภทการผสานเซลล์ของเนื้อหา
-     * `'not auto'` คือ ไม่มีการผสานเซลล์เนื้อหาแบบอัติโนมัติ
-     * `'auto'` คือ มีการผสานเซลล์ของเนื้อหาแบบอัติโนมัติ
-   * `meregedSubTypeOfContent:` ประเภทย่อยของการผสานเซลล์เนื้อหา
-     * ถ้า `meregedSubTypeOfContent: 'not auto'` แล้ว `meregedSubTypeOfContent: ''` (ใส่เป็น empty string '')
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'all'` คือ ให้มีการผสานเซลล์ของเนื้อหาแบบอัติโนมัติ**ทั้งหมด** (ค่าเหมือนกันจะถูกผสานทั้งหมดตามแถวและตามคอลัมน์)
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col'` คือ ให้มีการผสานเซลล์ของเนื้อเฉพาะตาม**คอลัมน์** ทั้งหมด
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'specific_col'` คือ ให้มีการผสานเซลล์ของเนื้อเฉพาะตาม**คอลัมน์** โดยระบุเจาะจงคอลัมน์ด้วย index
-   * `mergeConfigsOfContent:` รูปแบบของการผสานเซลล์สำหรับเนื้อหา
-     * ถ้า `meregedSubTypeOfContent: 'not auto'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'all'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'col'` แล้ว `mergeConfigsOfContent: []` (ใส่เป็น [])
-     * ถ้า `meregedSubTypeOfContent: 'auto'` และ `meregedSubTypeOfContent: 'specific_col' แล้ว `mergeConfigsOfContent: [0,1,2,...]`(ใส่เป็น index ของแต่ละคอลัมน์ที่ต้องการให้ผสานเซลล์ของเนื้อหาแบบอัติโนมัติ) เช่น
-       * ถ้าต้องการให้มีการผสานเซลล์อัติโนมัติตาม column เฉพาะแถวที่ 1 (**0**+1), 2(**1**+1),4(**3**+1) จะได้ว่า
-         `mergeConfigsOfContent: [0,1,3]`
-   * `content_style:`   
-     * `font_size:` ขนาดของตัวอักษรเนื้อหา
-     * `row_even_color:` สีในแถวที่**คู่** ของเนื้อหา
-     * `row_odd_color:` สีในแถวที่**คี่** ของเนื้อหา
-     * `merged_cell_color_type:` รูปแบบของสีของเซลล์ที่ถูกผสาน
-       * `'default'` รูปแบบของสีของเซลล์ที่ถูกผสานจะเหมือนกับแถวคู่/คี่
-       * `'col'`      กำหนดสีของเซลล์ที่ถูกผสานตามลอลัมน์
-     * `merged_cell_color:` สีของเซลล์ที่ถูกผสาน
-       * ถ้า  `merged_cell_color_type: 'default'` แล้ว `merged_cell_color: ''` (ใส่เป็น empty string '')
-       * ถ้า  `merged_cell_color_type: col` แล้ว `merged_cell_color: [{...},{...}]` ได้ตามดังต่อไปนี้
-         
-         ```Javascript
-         merged_cell_color: [{c1: 0, color: "red"},{c1: 1, color: "blue"}]
-         ```
-         
-         หมายความว่า คอลัมน์ที่ 1 (c1:0) ถ้ามีเซลล์ไหนที่ถูกผสานจะมีสีแดง และ คอลัมน์ที่ 2 (c1:1) จะมีสีน้ำเงินตามลำดับ
