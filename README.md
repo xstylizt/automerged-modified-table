@@ -90,20 +90,21 @@
    - `var content`$~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของเนื้อหา (content) ของตาราง
    - `var footer`$~~~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดแถบการจัดแบ่งหน้า (Pagination)
    - `var scrollbar`$~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดเกี่ยวกับแถบเลื่อน (scrollbar)
- 
+
+---
 ### 1. Overall table
 ---
 
-#### 1.1 Configuration
+#### Configuration
 จากโครงสร้าง object ของ `var overall_table` ดังต่อไปนี้
 ```javascript
-   var overall_table = {
-       width: '100%',
-       outer_border: '1.8px solid #afd3f2',
-       inner_border: '1.2px solid #afd3f2',
-       isScrollBar: false,
-       isPaging: true
-   }
+var overall_table = {
+      width: '100%',
+      outer_border: '1.8px solid #afd3f2',
+      inner_border: '1.2px solid #afd3f2',
+      isScrollBar: false,
+      isPaging: true
+}
 ```
 โดย `properties` ของ  `var overall_table` มีความหมายดังต่อไปนี้
 - `width:`$~~~~~~~~~~~~~~~~~$ความกว้างของตารางโดยสามารถใช้ได้ในหน่วย `px`, `rem`, `em`, `100%` และ `auto` 
@@ -117,7 +118,7 @@
    - `false`$~~~$เมื่อไม่ให้มีการแสดงแถบแบ่งหน้า
 
 
-#### 1.2 Table mode (โหมดของตาราง)
+#### Table mode (โหมดของตาราง)
 สำหรับโปรเจคนี้สามารถกำหนดรูปแบบของตารางได้ 3 รูปแบบดังต่อไปนี้
 
 <table width="100%">
@@ -152,3 +153,160 @@
 </table>
 
 ---
+
+### 2. Header
+---
+#### Configuration
+จากโครงสร้าง object ของ `var header` ดังต่อไปนี้
+```javascript
+var header = {
+    n_row: 3,
+    style: {
+         header_type_height: {
+             type: overall_table.type,
+             height: '150px'
+    },
+    background: 'linear-gradient(#fefefe, #dae6f0)',
+    padding: '5px 0px 5px 0px',
+    font_size: '18px',
+    font_weight: 'bold',
+    font_color: 'black'
+    },
+    mergedCells: {
+        type: 'auto' ,    
+        configs: ''  
+    }
+}
+```
+โดย `properties` ของ  `var header` มีความหมายดังต่อไปนี้
+- `n_row:`
+- `style`
+   - `header_type_height.height:`
+   - `background:`
+   - `padding:`
+   - `font_size:`
+   - `font_weight:`
+   - `font_color:`
+- `mergedCells`
+   - `type:`
+        -  `"default"`
+        -  `"auto"`
+   - `configs:`
+---
+
+### 3. Content
+---
+#### Configuration
+จากโครงสร้าง object ของ `var content` ดังต่อไปนี้
+```javascript
+var content = {
+    style: {
+      content_type_height: {
+         type: overall_table.type,
+         height: '600px' 
+      },
+      odd_row_background: '#e6f4ff',
+      even_row_background: '#ffffff',
+      padding: '12px 0px 12px 0px',
+      font_size: '18px',
+      font_weight: '400',
+      font_color: 'black'
+      },
+      numberFreezeRows: 0,
+      numberFreezeCols: 0,
+      mergedCells: {
+            type: 'auto_specific_col',
+            configs: [{c1:3, }]
+      }
+}
+```
+โดย `properties` ของ  `var content` มีความหมายดังต่อไปนี้
+- `style`
+  - `content_type_height.height:`
+  - `odd_row_background:`
+  - `even_row_background:`
+  - `padding:`
+  - `font_size:`
+  - `font_weight:`
+  - `font_color:`
+- `numberFreezeRows:`
+- `numberFreezeCols:`
+- `mergedCells`
+   - `type`
+      -  `"default"`
+      -  `"auto"`
+      -  `"auto_col"`
+      -  `"auto_specific_col"`
+   - `configs`
+
+---
+
+### 4. Footer
+---
+#### Configuration
+จากโครงสร้าง object ของ `var footer` ดังต่อไปนี้
+```javascript
+var footer = {
+    rPPOptions: [10,15,20,25,30,35,40,45,50],
+    style: {   
+       padding: '7px 7px 7px 0',
+       font_size: '18px',
+       font_weight: 'normal',
+       font_color: 'black',
+       background_color: '#dae6f0',
+    },
+    additional_style: {
+       buttonHoverBorder_color: '#83abcd',
+       separator_color: '#83abcd',
+       insertPageBoxBorder_color: '#83abcd',
+       selectPageBoxBorder_color: '#83abcd',\
+    }
+}
+```
+โดย `properties` ของ  `var footer` มีความหมายดังต่อไปนี้
+- `rPPOptions:` อาเรย์ 1 มิติที่ใช้สำหรับเก็บเลขจำนวนเต็มบวก (integer) สำหรับการแบ่งหน้า 
+- `style`
+   - `padding:`$~~~~~~~~~~~~~~~~~~~~$กำหนด padding ให้กับ footer
+   - `font_size:`$~~~~~~~~~~~~~~~~$กำหนดขนาดของตัวอักษรใน footer (ตัวอักษรทั้งหมดที่อยู่ใน footer)
+   - `font_weight:`$~~~~~~~~~~~~$กำหนดความหนาของตัวอักษรใน footer
+   - `font_color:`$~~~~~~~~~~~~~~$กำหนดสีของตัวอักษรใน footer
+   - `background_color`$~~~~~$กำหนดสีพื้นหลังให้กับ footer
+- `additional_style:`
+   - `buttonHoverBorder_color:`$~~~~~~~~$กำหนดสีให้กับกรอบของปุ่มเลื่อนหน้า (ย้อนหลัง/ไปข้างหน้า) เมื่อมีการ hover
+   - `separator_color:`$~~~~~~~~~~~~~~~~~~~~~~~$กำหนดสีให้กับเส้นคั่น element ระหว่างตัวแบ่งหน้า/ปุ่มกดเปลี่ยนหน้า/ตัวอักษร
+   - `insertPageBoxBorder_color:`$~~~~$กำหนดสีเส้นขอบให้กับกล่องที่ใช้ในการกรอกเลขหน้าที่ต้องการ 
+   - `selectPageBoxBorder_color:`$~~~~$กำหนดสีเส้นขอบให้กับกล่องที่ใช้ในการเลือกเลขหน้าในการแบ่ง
+---
+
+### 5. Scrollbar
+---
+#### Configuration
+จากโครงสร้าง object ของ `var scrollbar` ดังต่อไปนี้
+```javascript
+var scrollbar = {  
+    verticalScrollBar_style: {
+        background_color: '#dae6f0',
+        border_color: '#83abcd'
+    },
+    horizontalScrollBar_style: {
+        background_color: '#dae6f0',
+        border_color: '#83abcd'
+    },
+    uiTriangleButton_style: {
+        background_color: '#dae6f0',
+        border_color: '#83abcd'
+    }
+}
+```
+โดย `properties` ของ  `var scrollbar` มีความหมายดังต่อไปนี้
+- `elementBehindScrollBar` กำหนดคุณลักษณะให้กับ element ที่อยู่ใต้แถบเลื่อน
+  - `background_color:` กำหนดสีพื้นหลังให้กับ element ที่อยู่ใต้แถบเลื่อน
+- `verticalScrollBar_style` กำหนดรูปแบบของแถบเลื่อนที่อยู่ในแนวตั้ง (Vertical scrollbar) 
+  - `background_color:` กำหนดสีพื้นหลังให้กับแถบเลื่อนแนวตั้ง
+  - `border_color:` กำหนดสีกรอบให้กับแถบเลื่อนแนวตั้ง
+- `horizontalScrollBar_style`กำหนดรูปแบบของแถบเลื่อนที่อยู่ในแนวนอน (Horizontal scrollbar)
+  - `background_color:`กำหนดสีพื้นหลังให้กับแถบเลื่อนแนวนอน
+  - `border_color:` กำหนดสีกรอบให้กับแถบเลื่อนแนวนอน
+- `uiTriangleButton_style` กำหนดรูปแบบของปุ่ม (สามเหลี่ยม) ที่ใช้ในการเลื่อนที่่ติดกับแถบเลื่อน (uITriangle button)
+  - `background_color:`กำหนดสีพื้นหลังให้กับปุ่มสามเหลี่ยม
+  - `border_color:` กำหนดสีกรอบให้กับปุ่มสามเหลี่ยม
