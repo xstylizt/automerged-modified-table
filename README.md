@@ -325,3 +325,36 @@ var scrollbar = {
 - `uiTriangleButton_style`$~~~~~~~$กำหนดรูปแบบของปุ่ม (สามเหลี่ยม) ที่ใช้ในการเลื่อนที่่ติดกับแถบเลื่อน (uITriangle button)
   - `background_color:`$~~~~~~~~$กำหนดสีพื้นหลังให้กับปุ่มสามเหลี่ยม
   - `border_color:`$~~~~~~~~~~~~~~~$กำหนดสีกรอบให้กับปุ่มสามเหลี่ยม
+
+---
+## Recommendation
+- การผสานเซลล์ของหัวข้อสำหรับโปรเจคนี้จะรองรับเฉพาะในกรณีที่เซลล์ที่ถูกผสานอยู่ในรูปของ Hierarchy ตัวอย่างเช่น
+  ```javascript
+    var data = [
+    ["Employee information", "Employee information", "Employee information", "Section", "Role", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill", "Skill"],
+    ["Employee information", "Employee information", "Employee information", "Section", "Role", "Frontend framework", "Frontend framework", "Frontend framework", "Frontend framework", "Backend framework", 
+     "Backend framework", "Backend framework", "Backend framework"],
+    ["Id", "First name", "Last name", "Section", "Role", "React", "Angular", "Vue", "Svelte", "Express.js", "Laravel", "Springboot", "Django"]];
+  ```
+  สามารถเขียนในรูปของ Hierarchy ได้ดังนี้
+  - Column 1: Employee information มี rowspan = 2 และ colspan = 3 โดยมีคอลัมน์ย่อย 3 คอลัมน์ซึ่งเท่ากับจำนวนของ colspan  
+      - Subcolumn 1: Id
+      - Subcolumn 2: First name
+      - Subcolumn 3: Last name
+  - Column 2: Section 
+  - Column 3: Role
+  - Column 4: Skill มี colspan = 8 โดยมีคอลัมน์ย่อย 2 คอลัมน์ (แต่ละคอลัมน์ย่อยมีจำนวนเท่ากับจำนวนของ colspan/2 = 4)และในแต่ละคอลัมน์ถูกแบ่งออกเป็น 4 คอลัมน์ย่อยอีก
+     - Subcolumn 1: Frontend developer
+       - Subsubcolumn 1 : React
+       - Subsubcolumn 2 : Angular
+       - Subsubcolumn 3 : Vue
+       - Subsubcolumn 4 : Svelte
+     - Subcolumn 2: Backend developer
+       - Subsubcolumn 1 : Express.js
+       - Subsubcolumn 2 : Laravel
+       - Subsubcolumn 3 : Springboot
+       - Subsubcolumn 4 : Django
+  
+ 
+- เมื่อมีการใช้ Table mode ในรูปแบบ **Pagination with scrollbar** สำหรับการกำหนดความสูง ควรมีการกำหนดความสูงของ element เนื้อหากับ padding ของเซลล์ให้เหมาะสมกัน
+- สำหรับการกำหนดความสูงของ header ควรมีการกำหนดความสูงของ element กับ padding ให้เหมาะสมกัน (ในกรณีที่มีการขยายหน้าจอเข้าอาจทำให้ความสูงของ header ถูกปิด)
