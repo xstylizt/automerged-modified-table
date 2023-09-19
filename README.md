@@ -34,9 +34,7 @@
    - `pqgrid.ui.min.css`
 - `index.html` เป็นไฟล์ `html` ที่ใช้ในการ render ซึ่งผนวกกับไฟล์ทั้งหมดที่อยู่ในโฟลเดอร์ `js` และ `css`
 
-## Step-by-step Guide
-
-### Instruction
+## Instruction
 1. กำหนด path ไฟล์ทั้งหมดที่อยู่ภายใน folder `js` (ไม่รวมไฟล์ `import_data.js` และ `configs.js`) และ `css` ภายในส่วนของ `head` เข้าไปภายในไฟล์ `index.html` ได้ดังต่อไปนี้
    
    ```html
@@ -83,9 +81,8 @@
 
    export default data;
    ```
----
 
-### Table Style Configuration
+## Table Style Configuration
 ในหัวข้อนี้เป็นการอธิบายเกี่ยวกับวิธีการกำหนดรูปแบบหรือคุณลักษณะของตารางโดยผ่านไฟล์ `configs.js` 
 - ไฟล์ `configs.js` มีการกำหนดการแบ่งของรูปแบบออกเป็นในแต่ละส่วนซึ่งประกอบด้วย
    - `var overall_table`$~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของภาพรวมของตาราง
@@ -93,34 +90,57 @@
    - `var content`$~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของเนื้อหา (content) ของตาราง
    - `var footer`$~~~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดแถบการจัดแบ่งหน้า (Pagination)
    - `var scrollbar`$~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดเกี่ยวกับแถบเลื่อน (scrollbar)
+ 
+### 1. Overall table
+---
 
-#### 1. Table mode (โหมดของตาราง)
+#### 1.1 Configuration
+จากโครงสร้าง object ของ `var overall_table` ดังต่อไปนี้
+```javascript
+   var overall_table = {
+       width: '100%',
+       type: 'static', 
+       isPaging: true,
+       outer_border: '1.8px solid #afd3f2',
+       inner_border: '1.2px solid #afd3f2',
+   }
+```
+โดย `properties` ของ  `var overall_table` มีความหมายดังต่อไปนี้
+- `width` คือ ความกว้างของตารางโดยสามารถใช้ได้ในหน่วย `px`, `rem`, `em`, `100%` และ `auto` อาทิเช่น `width: '650px' // '100%'`
+- `type` คือ Table mode (โหมดของตาราง)
+   - `'static'`
+   - `'with_scrollbar'` 
+- `isPaging`
+- `outer_border`
+- `inner_border`
+
+
+#### 1.2 Table mode (โหมดของตาราง)
 สำหรับโปรเจคนี้สามารถกำหนดรูปแบบของตารางได้ 3 รูปแบบดังต่อไปนี้
-<style>
- td:nth-child(2) {
-    background-color: red;
-}
-</style>
 
 <table width="100%">
   <thead>
     <tr>
-      <th>Table Mode</th>
-      <th width="75%">Second header long</th>
+      <th width="15%">Table Mode</th>
+      <th width="70%">Image</th>
+      <th width="15%">Configs</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">Image</td>
+      <td align="center">Static</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/9941b72c080ed2c72681158a882552c8.png"/></td>
+      <td>type: "static" <br></br> isPaging: "false"</td>
     </tr>
     <tr>
       <td align="center">Static with pagination</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/a30fdf781b54534432e0fc69105c799d.png"></td>
+      <td>type: "static" <br></br> isPaging: "true"</td>
     </tr>
     <tr>
       <td align="center">Static with pagination and scrollbar</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/b8d4943477ae260053a30ac5e4d7a9b2.png"></td>
+      <td>type: "with_scrollbar" <br></br> isPaging: "true"</td>
     </tr>  
   </tbody>
 </table>
