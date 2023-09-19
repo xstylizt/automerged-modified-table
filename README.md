@@ -99,20 +99,22 @@
 ```javascript
    var overall_table = {
        width: '100%',
-       type: 'static', 
-       isPaging: true,
        outer_border: '1.8px solid #afd3f2',
        inner_border: '1.2px solid #afd3f2',
+       isScrollBar: false,
+       isPaging: true
    }
 ```
 โดย `properties` ของ  `var overall_table` มีความหมายดังต่อไปนี้
-- `width` คือ ความกว้างของตารางโดยสามารถใช้ได้ในหน่วย `px`, `rem`, `em`, `100%` และ `auto` อาทิเช่น `width: '650px' // '100%'`
-- `type` คือ Table mode (โหมดของตาราง)
-   - `'static'`
-   - `'with_scrollbar'` 
-- `isPaging`
-- `outer_border`
-- `inner_border`
+- `width:`$~~~~~~~~~~~~~~~~~$ความกว้างของตารางโดยสามารถใช้ได้ในหน่วย `px`, `rem`, `em`, `100%` และ `auto` 
+- `outer_border:`$~~~~$กำหนดคุณลักษณะ (ความหนา, สี) ของกรอบภายนอกตารางหน่วย
+- `inner_border:`$~~~~$กำหนดคุณลักษณะ (ความหนา, สี) ของกรอบภายในตาราง
+- `isScrollBar:`$~~~~~~$สถานะการแสดงแถบเลื่อน (Scrollbar)
+   - `true`$~~~~~$เมื่อให้มีการแสดงแถบเลื่อน
+   - `false`$~~~$เมื่อไม่ให้มีการแสดงแถบเลื่อน
+- `isPaging:`$~~~~~~~~~~~$สถานะการแสดงแถบแบ่งหน้า (Pagination)
+   - `true`$~~~~~$เมื่อให้มีการแสดงแถบแบ่งหน้า
+   - `false`$~~~$เมื่อไม่ให้มีการแสดงแถบแบ่งหน้า
 
 
 #### 1.2 Table mode (โหมดของตาราง)
@@ -121,26 +123,32 @@
 <table width="100%">
   <thead>
     <tr>
-      <th width="15%">Table Mode</th>
-      <th width="70%">Image</th>
+      <th width="5%">Table Mode</th>
+      <th width="60%">Image</th>
       <th width="15%">Configs</th>
+      <th width="20%">When to use</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td align="center">Static</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/9941b72c080ed2c72681158a882552c8.png"/></td>
-      <td>type: "static" <br></br> isPaging: "false"</td>
+      <td>isScrollBar: false<br></br> isPaging: false</td>
+      <td>เหมาะสำหรับการใช้เมื่อต้องการแสดงผลลัพธ์ของข้อมูลที่มีจำนวนแถวน้อย ๆ (assume ว่าจำนวนแถวน้อยกว่า 10)</td>
     </tr>
     <tr>
-      <td align="center">Static with pagination</td>
+      <td align="center">Pagination</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/a30fdf781b54534432e0fc69105c799d.png"></td>
-      <td>type: "static" <br></br> isPaging: "true"</td>
+      <td>isScrollBar: false<br></br> isPaging: true</td>
+      <td>เหมาะสำหรับการใช้เมื่อต้องการให้มีการแบ่งหน้าข้อมูลเมื่อข้อมูลที่เข้ามามีจำนวนเแถวเยอะ</td>
     </tr>
     <tr>
-      <td align="center">Static with pagination and scrollbar</td>
+      <td align="center">Pagination with scrollbar</td>
       <td><img src="https://imgtr.ee/images/2023/09/19/b8d4943477ae260053a30ac5e4d7a9b2.png"></td>
-      <td>type: "with_scrollbar" <br></br> isPaging: "true"</td>
+      <td>isScrollBar: true<br></br> isPaging: true</td>
+      <td>ในกรณีที่มีการแบ่งหน้าแล้วต้องการซึ่งมีการแสดงจำนวนแถวต่อหน้าเยอะ ให้มีแถบเลื่อนเพื่อสะดวกต่อการค้นหาข้อมูล</td>
     </tr>  
   </tbody>
 </table>
+
+---
