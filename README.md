@@ -96,25 +96,31 @@
 
 #### 1. Table mode (โหมดของตาราง)
 สำหรับโปรเจคนี้สามารถกำหนดรูปแบบของตารางได้ 3 รูปแบบดังต่อไปนี้
+<style>
+ td:nth-child(2) {
+    background-color: red;
+}
+</style>
+
 <table width="100%">
   <thead>
     <tr>
-      <th >First header</th>
+      <th>Table Mode</th>
       <th width="75%">Second header long</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td align="center">Static</td>
-      <td><img src="https://i.ibb.co/NxYQ4vG/static-table.png"/></td>
+      <td align="center">Image</td>
+      <td><img src="https://imgtr.ee/images/2023/09/19/9941b72c080ed2c72681158a882552c8.png"/></td>
     </tr>
-    <tr >
+    <tr>
       <td align="center">Static with pagination</td>
-      <td><img src="https://i.ibb.co/M8FBnJY/static-pagination.png"></td>
+      <td><img src="https://imgtr.ee/images/2023/09/19/a30fdf781b54534432e0fc69105c799d.png"></td>
     </tr>
     <tr>
       <td align="center">Static with pagination and scrollbar</td>
-      <td><img src="https://i.ibb.co/pPsXhdk/table-with-scrollbar.png"></td>
+      <td><img src="https://imgtr.ee/images/2023/09/19/b8d4943477ae260053a30ac5e4d7a9b2.png"></td>
     </tr>  
   </tbody>
 </table>
