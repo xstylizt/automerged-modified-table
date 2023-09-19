@@ -1,9 +1,9 @@
 // ## Style about overall table
 var overall_table = {
-    width: '100%',
-    type: 'static', //   'static' + 'with_scrollbar'
+    width: '100%', 
     outer_border: '1.8px solid #afd3f2',
     inner_border: '1.2px solid #afd3f2',
+    isScrollBar: false,
     isPaging: true
 }
 
@@ -13,7 +13,7 @@ var header = {
     style: {
     header_type_height: {
             type: overall_table.type,
-            height: '150px' // if type === 'with_scrollbar' --> height == '' it can increase height of header from padding
+            height: '150px'
     },
     background: 'linear-gradient(#fefefe, #dae6f0)',
     padding: '5px 0px 5px 0px',
@@ -23,8 +23,8 @@ var header = {
 
 },
     mergedCells: {
-            type: 'auto' ,    // auto || specific
-            configs: ''  
+            type: 'auto' ,    
+            configs: []  
     }
 }
 
@@ -34,11 +34,11 @@ var content = {
     style: {
         content_type_height: {
             type: overall_table.type,
-            height: '' // if type === 'static'  --> height == '' because it can increase height from padding of each cell
+            height: '600px' 
         },
         odd_row_background: '#e6f4ff',
         even_row_background: '#ffffff',
-        padding: '10px 0px 10px 0px',
+        padding: '9px 0px 9px 0px',
         font_size: '18px',
         font_weight: '400',
         font_color: 'black'
@@ -77,13 +77,17 @@ var footer = {
 
 var scrollbar = {
 
-    verticalScrollbar_style: {
+    elementBehindScrollBar: {
+        background_color: '#efefef'
+    },
+
+    verticalScrollBar_style: {
 
         background_color: '#dae6f0',
         border_color: '#83abcd'
 
     },
-    horizontalScrollbar_style: {
+    horizontalScrollBar_style: {
 
         background_color: '#dae6f0',
         border_color: '#83abcd'
