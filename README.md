@@ -1,4 +1,4 @@
-# Auto-merged modified table with Paramquery Grid and jQuery
+# Auto-merged modified table w/ ParamqueryGrid & jQuery
 
 ## File Directory Layout
 ในหัวข้อนี้เป็นการแสดงถึงโครงสร้างของโฟลเดอร์ที่เกี่ยวข้องสำหรับโปรเจคนี้เพื่ออธิบายถึงความหมายของแต่ละไฟล์ว่าใช้ในการทำงานใดบ้างได้ดังรูปต่อไปนี้
@@ -93,4 +93,28 @@
    - `var content`$~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดรูปแบบของเนื้อหา (content) ของตาราง
    - `var footer`$~~~~~~~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดแถบการจัดแบ่งหน้า (Pagination)
    - `var scrollbar`$~~~~~~~~~~~$เป็นตัวแปรที่ใช้ในการกำหนดเกี่ยวกับแถบเลื่อน (scrollbar)
-   
+
+#### 1. Table mode (โหมดของตาราง)
+สำหรับโปรเจคนี้สามารถกำหนดรูปแบบของตารางได้ 3 รูปแบบดังต่อไปนี้
+<table width="100%">
+  <thead>
+    <tr>
+      <th >First header</th>
+      <th width="75%">Second header long</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">Static</td>
+      <td><img src="https://i.ibb.co/NxYQ4vG/static-table.png"/></td>
+    </tr>
+    <tr >
+      <td align="center">Static with pagination</td>
+      <td><img src="https://i.ibb.co/M8FBnJY/static-pagination.png"></td>
+    </tr>
+    <tr>
+      <td align="center">Static with pagination and scrollbar</td>
+      <td><img src="https://i.ibb.co/pPsXhdk/table-with-scrollbar.png"></td>
+    </tr>  
+  </tbody>
+</table>
