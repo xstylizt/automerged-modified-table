@@ -20,7 +20,7 @@ $(document).ready(function(){
     }
 
     // ##------------------ Create main title --------------------------------------------------------##
-    const createMainTitle = () => {
+    const createColModel = () => {
         // ------------------------- Create Main Title -------------------------------------
         var raw_data = data
         var headingArrayObject = mergeCellsAutoTable('header');
@@ -274,70 +274,11 @@ $(document).ready(function(){
                     }
                 }
         }
-        // ------------------------------------------------- Auto ColModel --------------------------------------------------------------------
-       
-        
 
-        const colModel_result_2 = [
-            {title: 'Employee information', 
-             colModel: [
-                          {title: 'Id', align: 'center'},
-                          {title: 'First name', align: 'center'},
-                          {title: 'Last name', align: 'center'},
-                          
-                       ],
-              align: 'center'
-            },
-         
-         
-            {title: 'Section',
-             colModel: [],
-             align: 'center'
-            },
-         
-         
-            {title: 'Role',
-             colModel: [],
-             align: 'center'
-            },
-         
-         
-            {title: 'Skill',
-             colModel: [
-                            {title: 'Frontend framework',
-                             colModel: [
-                                          {title: 'React', align: 'center'},
-                                          {title: 'Angular', align: 'center'},
-                                          {title: 'Vue', align: 'center'},
-                                          {title: 'Svelt', align: 'center'}
-                                       ],
-                              align: 'center'
-                            },
-                            {title: 'Backend framework',
-                             colModel: [
-                                          {title: 'Express.js', align: 'center'},
-                                          {title: 'Laravel', align: 'center'},
-                                          {title: 'Springboot', align: 'center'},
-                                          {title: 'Django', align: 'center'}
-                                       ],
-                              align: 'center'
-                            }
-                       ],
-              align: 'center'
-            }
-         ] 
-
-
-    
          return colModel_result
     }
 
 
-    // ##------------------ Create colModel (Headwer title) of table --------------------------------##
-    const colModelTitle = (object) => {
-        var colModel = createMainTitle();
-        object.colModel = colModel;
-    }
 
     // ##----------------- Define function for merging header of table -------------------------------##
     const mergeCellsAutoTable = (conditions) => {
@@ -546,15 +487,6 @@ $(document).ready(function(){
         }
     }
 
-
-    const mergeCellsWholeComponents = (grid_style) => {
-        var header = mergeCellsHeaderTable();
-        var content =  mergeCellsContentTable(grid_style)
-        var real_mergedArray = header.concat(content)
-        return real_mergedArray
-    }
-    
-
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
         // ---------------- ## Style overall of table --------------------------------------------
@@ -649,19 +581,20 @@ $(document).ready(function(){
 
         
 
-        if(overall_table.type === 'static'){
+        if(overall_table.isScrollBar === false){
             pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
         }
 
+
         
         if($(window).width() < 850){
-            if(overall_table.type === 'with_scrollbar')
+            if(overall_table.isScrollBar === true)
             {
                     var mainTable = $('#automerged-modified-table')
                     pqGridHeaderOuter.removeAttr('style')
                     mainTable.css('height','auto')
                     pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
-            }else if(overall_table.type === 'static'){
+            }else if(overall_table.isScrollBar === false){
                     pqGridHeaderOuter.css('height', grid_style.header.style.header_type_height.height)
             }
         }
@@ -669,15 +602,16 @@ $(document).ready(function(){
     
 
         if($(window).width() >= 850){
-            if(overall_table.type === 'static'){
+            if(overall_table.isScrollBar === false){
                 var mainTable = $('#automerged-modified-table')
                 pqGridHeaderOuter.css('height', header.style.header_type_height.height)
             }
-            else if(overall_table.type === 'with_scrollbar'){
+            else if(overall_table.isScrollBar === true){
                 var mainTable = $('#automerged-modified-table')
-                //pqGridHeaderOuter.css('height', header.style.header_type_height.height) ** Bugs**
             }
         }
+
+        
 
 
         pqGridUiButtonFooter.on('mouseenter',function(){
@@ -687,15 +621,21 @@ $(document).ready(function(){
         // ----------------------------## Styling scrollbar ---------------------------------------
         var pqVerticalScrollbar = $('.pq-sb-vert-t .pq-sb-slider')
         var pqHorizontalScrollbar = $('.pq-sb-horiz-t .pq-sb-slider')
+        var pqBackgroundVerticalScrollbar = $('.pq-sb-vert-t')
+        var pqBackgroundHorizontalScrollbar = $('.pq-sb-horiz')
         var pqTriangleButton = $('.pq-sb-btn')
+
+        pqBackgroundHorizontalScrollbar.css('background', grid_style.scrollbar.elementBehindScrollBar.background_color)
+        pqBackgroundVerticalScrollbar.css('background', grid_style.scrollbar.elementBehindScrollBar.background_color)
+
         pqVerticalScrollbar.css({
-                    'background': grid_style.scrollbar.verticalScrollbar_style.background_color,
-                    'border-color': grid_style.scrollbar.verticalScrollbar_style.border_color
+                    'background': grid_style.scrollbar.verticalScrollBar_style.background_color,
+                    'border-color': grid_style.scrollbar.verticalScrollBar_style.border_color
         })
 
         pqHorizontalScrollbar.css({
-                    'background': grid_style.scrollbar.horizontalScrollbar_style.background_color,
-                    'border-color': grid_style.scrollbar.horizontalScrollbar_style.border_color
+                    'background': grid_style.scrollbar.horizontalScrollBar_style.background_color,
+                    'border-color': grid_style.scrollbar.horizontalScrollBar_style.border_color
         })
 
         pqTriangleButton.css({
@@ -732,15 +672,16 @@ $(document).ready(function(){
                     dragColumns: { enabled: false },
                     draggable: false,
                     width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
-                    height:  grid_style.overall_table.type === 'static'  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.style.content_type_height.height.replace('px','')),
+                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.style.content_type_height.height.replace('px','')),
                     editable: false,
                     sortModel: false,
-                    freezeRows: grid_style.content.numberFreezeRows,
+                    freezeRows: grid_style.content.numberFreezeRows,    
                     freezeCols: grid_style.content.numberFreezeCols,
                     scrollModel: {horizontal: true, autoFit: true},
                     numberCell: {show: false},
                     flex: {one: true},
-                    mergeCells: mergeCellsContentTable(grid_style) /* mergeCellsWholeComponents(grid_style) */ ,
+                    colModel: createColModel(),
+                    mergeCells: mergeCellsContentTable(grid_style),
                     dataModel: { data: data.slice(grid_style.header.n_row, ) },
                     columnTemplate: { align: 'center', valign: 'center' },
                     pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
@@ -749,22 +690,22 @@ $(document).ready(function(){
                 }
     }
 
+
+
     
     
-    if(grid_style.overall_table.type === 'static' && grid_style.overall_table.isPaging === false) {
+    if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
     if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0]){
         grid_object.width = '100%';
 
-        if(grid_style.overall_table.type === 'with_scrollbar' || overall_table.isPaging === true){
-            grid_style.overall_table.type = 'static'
+        if(grid_style.overall_table.isScrollBar === true || overall_table.isPaging === true){
+            grid_style.overall_table.isScrollBar === false
         }
     }
 
-    createMainTitle();
-    colModelTitle(grid_object)
     var grid = pq.grid("#automerged-modified-table", grid_object)
 
 });    
