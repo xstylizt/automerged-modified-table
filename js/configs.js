@@ -24,7 +24,8 @@ var header = {
 },
     mergedCells: {
             type: 'auto' ,    
-            configs: []  
+            configs: [
+            ]  
     }
 }
 

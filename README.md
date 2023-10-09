@@ -1,4 +1,4 @@
-# Auto-merged modified table w/ ParamqueryGrid & jQuery
+# Auto-merged modified table w/ ParamqueryGrid & jQuery (Edited version)
 
 ## File Directory Layout
 ในหัวข้อนี้เป็นการแสดงถึงโครงสร้างของโฟลเดอร์ที่เกี่ยวข้องสำหรับโปรเจคนี้เพื่ออธิบายถึงความหมายของแต่ละไฟล์ว่าใช้ในการทำงานใดบ้างได้ดังรูปต่อไปนี้
@@ -337,19 +337,19 @@ var scrollbar = {
     ["Id", "First name", "Last name", "Section", "Role", "React", "Angular", "Vue", "Svelte", "Express.js", "Laravel", "Springboot", "Django"]];
   ```
   สามารถเขียนในรูปของ Hierarchy ได้ดังนี้
-  - Column 1: Employee information มี rowspan = 2 และ colspan = 3 โดยมีคอลัมน์ย่อย 3 คอลัมน์ซึ่งเท่ากับจำนวนของ colspan  
+  - **Column 1**: Employee information มี rowspan = 2 และ colspan = 3 โดยมีคอลัมน์ย่อย 3 คอลัมน์ซึ่งเท่ากับจำนวนของ colspan  
       - Subcolumn 1: Id
       - Subcolumn 2: First name
       - Subcolumn 3: Last name
-  - Column 2: Section 
-  - Column 3: Role
-  - Column 4: Skill มี colspan = 8 โดยมีคอลัมน์ย่อย 2 คอลัมน์ (แต่ละคอลัมน์ย่อยมีจำนวนเท่ากับจำนวนของ colspan/2 = 4)และในแต่ละคอลัมน์ถูกแบ่งออกเป็น 4 คอลัมน์ย่อยอีก
-     - Subcolumn 1: Frontend developer
+  - **Column 2**: Section 
+  - **Column 3**: Role
+  - **Column 4**: Skill มี colspan = 8 โดยมีคอลัมน์ย่อย 2 คอลัมน์ (แต่ละคอลัมน์ย่อยมีจำนวนเท่ากับจำนวนของ colspan/2 = 4)และในแต่ละคอลัมน์ถูกแบ่งออกเป็น 4 คอลัมน์ย่อยอีก
+     - **Subcolumn 1**: Frontend developer
        - Subsubcolumn 1 : React
        - Subsubcolumn 2 : Angular
        - Subsubcolumn 3 : Vue
        - Subsubcolumn 4 : Svelte
-     - Subcolumn 2: Backend developer
+     - **Subcolumn 2**: Backend developer
        - Subsubcolumn 1 : Express.js
        - Subsubcolumn 2 : Laravel
        - Subsubcolumn 3 : Springboot

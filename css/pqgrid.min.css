@@ -12,6 +12,12 @@
     text-align: right;
   }
 
+.pq-grid-title,
+.pq-group-header {
+  background: #ebebff;
+  border: 2px solid red;
+}
+
 @media screen and (max-width: 850px){
     .pq-vscroll{
       height: calc(100% - 17px) !important;

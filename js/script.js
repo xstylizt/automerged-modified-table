@@ -4,11 +4,12 @@ import {
     header,
     content,
     footer,
-    scrollbar
+    scrollbar   
 } from './configs.js'
 
 $(document).ready(function(){ 
 
+    
     function createColModelStructure(input) {
         return input.map(row => {
             return {
@@ -43,6 +44,7 @@ $(document).ready(function(){
             }
             i++
         }
+
         
         // ----------------------- Paramquery Main title version -----------------------------
 
@@ -146,8 +148,6 @@ $(document).ready(function(){
                     return a.c1 - b.c1;
                 })
 
-                console.log(arrayTemp)
-                console.log(newColModel_temp_2)
 
                 for(var k = 0 ; k < data[0].length ; k++){
                     for(var l = 0 ; l < newColModel_temp_2.length ; l++){
@@ -227,9 +227,6 @@ $(document).ready(function(){
                     colModel_temp.push(titleAndSubTitleArrayTemplate)
                 }
 
-
-            // ------------------------------------------------- Auto ColModel --------------------------------------------------------------------
-            
             for (var j = 0; j < colModel_temp.length; j++) {
                     var template = {
                         title: colModel_temp[j][0].cellvalue,
@@ -273,10 +270,15 @@ $(document).ready(function(){
                             colModel_result.push(template);
                     }
                 }
+        }else if(header.mergedCells.type === 'specific' && header.mergedCells.configs.length > 0){
+            const specificHeaderMergeConfigs = header.mergedCells.configs.sort((a,b) => {if(a.r1 !== b.r1){return a.r1 - b.r1} else{return a.c1 - b.c1} })
+            console.log(specificHeaderMergeConfigs)
+             
         }
 
          return colModel_result
     }
+
 
 
 
@@ -410,10 +412,7 @@ $(document).ready(function(){
         return filtered;
     }
 
-    const mergeCellsHeaderTable = () => {
-        var real_mergedHeaderArray = mergeCellsAutoTable('header');
-        return real_mergedHeaderArray
-    }
+
 
     // ##----------------- Define function for merging content of table -------------------------------##
     const mergeCellsContentTable = (grid_style) => {
@@ -485,8 +484,10 @@ $(document).ready(function(){
         }else{
             return real_mergedContentArray
         }
+       
     }
 
+    var setInitialCountRender = 0
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
         // ---------------- ## Style overall of table --------------------------------------------
@@ -580,7 +581,7 @@ $(document).ready(function(){
         })
 
         
-
+        
         if(overall_table.isScrollBar === false){
             pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
         }
@@ -643,6 +644,92 @@ $(document).ready(function(){
                     'border-color': grid_style.scrollbar.uiTriangleButton_style.border_color
         })
 
+
+        // ---------------------------## Toolbox style -------------------------------------------
+        setInitialCountRender++;
+        if(setInitialCountRender == 1){
+            var titleFilterArray = data[header.n_row - 1],
+                pqToolBarSearch = $('.pq-toolbar-search'),
+                pqFormat = $('label'),
+                pqExportFormat = $('#export_format'),
+                pqUiButton = $('.ui-button'),
+                pqFilterComponentString = '.filter-component',
+                pqFilterValueString = '.filterValue',
+                pqFilterColumnString = '.filterColumn',
+                pqFormatString = 'label',
+                pqExportFormatString = '#export_format',
+                pqUiButtonString = '.ui-button',
+                filterComponentForDiv = '<div class="filter-component"></div>',
+                exportFilesComponentForDiv = '<div class="export-files-component"></div>',
+                formatSelectComponentForDiv =  '<div class="format-select-component"></div>'
+
+            //$(pqFilterValueString + ', ' + pqFilterColumnString).wrapAll(filterComponentForDiv);
+            $(pqFormatString + ', ' + pqExportFormatString + ',' + pqUiButtonString).wrapAll(exportFilesComponentForDiv);
+            $(pqFormatString + ', ' + pqExportFormatString).wrapAll(formatSelectComponentForDiv)
+
+            var pqExportFilesComponent = $('.export-files-component'),
+                pqFormatSelectComponent = $('.format-select-component')
+
+            // -------------------------- Filter part ----------------------------------------
+
+            /*
+            $(filterComponentForDiv).insertAfter(pqExportFilesComponent)
+
+            $(pqFilterComponentString).append(
+                '<input type="text" class="filterValue" placeholder="Search">' +
+                '<select class="filterColumn"></select>'
+            );
+
+            $.each(titleFilterArray, function(index, value) {
+                $(pqFilterColumnString).append($('<option>', {
+                    value: value,
+                    text: value
+                }));
+            });
+            */
+
+
+
+
+            // -------------------------- Filter part ----------------------------------------
+            
+
+            pqToolBarSearch.css({
+                'height': 'auto',
+                'padding': '10px 5px 10px 5px',
+                'display': 'flex',
+                'flex-wrap': 'wrap',
+                'align-items': 'center',
+                'justify-content': 'space-between',
+                'background': '#dae6f0'
+            })
+
+            pqExportFilesComponent.css({
+                'display': 'flex',
+                'align-items': 'center',
+            })
+
+            pqFormatSelectComponent.css({
+                'padding-right': '10px'
+            })
+
+            pqExportFormat.css({
+                'margin-left': '10px'
+            })
+
+            $(pqFilterValueString).css({
+                'height': '30px',
+                'margin-right': '5px'
+            })
+
+            $(pqFilterColumnString).css({
+                'height': '30px'
+            })
+
+        }
+
+
+
         
         // ----------------------------## Additional style ----------------------------------------
         var refreshButton = $('.pq-page-placeholder + .pq-ui-button')
@@ -654,7 +741,10 @@ $(document).ready(function(){
         if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0] || overall_table.isPaging === false){
             $('.pq-grid-bottom').remove()
         }
+
     }
+
+
 
 
 // --------------------------------------------- Recall all function ------------------------------------------------------------
@@ -667,6 +757,7 @@ $(document).ready(function(){
         scrollbar: scrollbar
     }
 
+   
     let grid_object = {
                     resizable: false,
                     dragColumns: { enabled: false },
@@ -684,6 +775,38 @@ $(document).ready(function(){
                     mergeCells: mergeCellsContentTable(grid_style),
                     dataModel: { data: data.slice(grid_style.header.n_row, ) },
                     columnTemplate: { align: 'center', valign: 'center' },
+                    toolbar: {
+                        cls: "pq-toolbar-search",
+                        items: [                    
+                            {
+                                type: 'select',
+                                label: 'Format: ',                
+                                attr: 'id="export_format"',
+                                options: [{ xlsx: 'Excel', csv: 'Csv', htm: 'Html', json: 'Json'}]
+                            },
+                            {
+                                type: 'button',
+                                label: "Export",
+                                icon: 'ui-icon-arrowthickstop-1-s',
+                                listener: function () {
+            
+                                    var format = $("#export_format").val(),                 
+                                        blob = this.exportData({
+                                            format: format,                                
+                                            render: true,
+                                        });
+
+                                    if(typeof blob === "string"){                            
+                                        blob = new Blob([blob]);
+                                    }
+
+
+                                    saveAs(blob, "pqGrid."+ format );
+                                }
+                            },
+                        ]
+
+                    },
                     pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
                     refresh: function(event,ui){
                         stylingTable(grid_style)
@@ -691,9 +814,6 @@ $(document).ready(function(){
     }
 
 
-
-    
-    
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
@@ -706,7 +826,10 @@ $(document).ready(function(){
         }
     }
 
-    var grid = pq.grid("#automerged-modified-table", grid_object)
+
+
+
+    pq.grid("#automerged-modified-table", grid_object)
 
 });    
 
