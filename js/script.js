@@ -4,7 +4,7 @@ import {
     header,
     content,
     footer,
-    scrollbar   
+    scrollbar,
 } from './configs.js'
 
 $(document).ready(function(){ 
@@ -498,7 +498,7 @@ $(document).ready(function(){
                 element.css('border', grid_style.overall_table.inner_border)
         })
 
-        var tableBorder = $('#automerged-modified-table')
+        var tableBorder = $('.pq-grid-center')
         tableBorder.css('border', grid_style.overall_table.outer_border)
 
         // ---------------------------------------------------------------------------------------
@@ -558,9 +558,14 @@ $(document).ready(function(){
         var pqSeparatorLine = $('.pq-separator')
         var pqInsertPageBox = $('.pq-pager-input')
         var pqSelectPageBox = $('select.ui-corner-all')
-    
+
 
         pqGridFooter.css({
+                          'display': 'flex',
+                          'flex-direction': 'row-reverse',
+                          'flex-wrap': 'wrap-reverse',
+                          'align-items': 'center',
+                          'justify-content': 'space-between',
                           'padding': grid_style.footer.style.padding,
                           'font-size': grid_style.footer.style.font_size,
                           'font-weight': grid_style.footer.style.font_weight,
@@ -595,14 +600,8 @@ $(document).ready(function(){
                     pqGridHeaderOuter.removeAttr('style')
                     mainTable.css('height','auto')
                     pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
-                    $('.pq-toolbar-search').css({
-                        'height': 'auto'
-                    })
             }else if(overall_table.isScrollBar === false){
                     pqGridHeaderOuter.css('height', grid_style.header.style.header_type_height.height)
-                    $('.pq-toolbar-search').css({
-                        'height': 'auto'
-                    })
             }
         }
 
@@ -659,53 +658,122 @@ $(document).ready(function(){
             $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
             $('.export-files-component').find('label').addClass('format-label')
             $('.format-label, .ui-button').wrapAll('<div class="format-component"></div>')
-
-
             $('.pq-grid-top').find('span').appendTo($('.export-files-component'))
+            $('<span class="show-text">Show</span>').insertAfter('.format-component')
+            $('<span class="entries-text">entries</span>').insertAfter('.page-options')
+            $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
+            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
+            $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
+
+            $('.ui-button').text('')
+            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
+            $('.export-button-component').append('<img class="export-icon" src="img/download-icon.svg"/>')
+            
+            $('.export-icon').css({
+                'height': '20px'
+            })
+
 
             $('.pq-toolbar-search').css({
-                'height': '50px',
+                'height': 'auto',
+                'padding': '12px 0px 20px 0px',
                 'display': 'flex',
                 'flex-wrap': 'wrap',
+                'gap': '10px',
                 'align-items': 'center',
                 'justify-content': 'space-between',
-                'background': '#dae6f0'
+                'background': 'white'
             })
 
 
             $('.export-files-component').css({
-                'margin-left': '10px',
+                'display': 'flex',
+                'align-items': 'center',
+                'margin-left': '0px',
+                'margin-right': '0px',
+            })
+
+            $('.format-label').css({
                 'display': 'flex',
                 'align-items': 'center'
             })
+
+            $('.page-options-component').css({
+                'display': 'flex',
+                'align-items': 'center',
+                'margin-left': '10px'
+            })
+            $('.show-text').css('margin-right', '10px')
+            $('.page-options').css({
+                'margin-right': '10px'
+            })
+
+
+            $('.filter-component').css({
+                'display': 'flex',
+                'align-items': 'center',
+                'margin-left': '0px',
+                'margin-right': '0px'
+            })
+
+
+            $('.search-box').css({
+                'display': 'flex',
+                'border': '1px solid #ccc',
+                'border-radius': '4px',
+                'margin-right': '10px'
+            })
+
+
+            $('.format-component').css({
+                'display': 'flex',
+                'align-items': 'center',
+            })
+
 
             $('.format-label').css({
                 'margin-right': '10px'
             })
 
             $('#export_format').css({
-                'height': '30px'
+                'margin-left': '10px',
+                'height': '40px'
             })
 
 
             $('.ui-button').css({
-                'height': '30px',
+                'height': '40px',
                 'margin-right': '10px'
             })
 
+            $('.search-icon').css({
+                'height': '30px',
+                'margin': '5px 2px 5px 5px'
+            })
+
+
+            
             $('.filterValue').css({
                 'height': '30px',
-                'margin-right': '10px',
-                'outline': 'none'
+                'margin': '5px 5px 5px 0px',
+                'outline': 'none',
+                'border': 'none',
+            })
+            
+
+            $('.filterValue').css({
+                
             })
 
+
+
             $('.filterColumn').css({
-                'height': '30px',
-                'margin-right': '10px'
+                'margin-right': '10px',
+                'height': '40px',
             })
 
             $('.filterCondition').css({
-                'height': '30px'
+                'height': '40px',
             })
 
         }
@@ -716,7 +784,7 @@ $(document).ready(function(){
         var pqGridTitle = $('.pq-grid-title')
         $('.pq-grid-bottom').find('.pq-page-placeholder').addClass('number-page')
         $('.export-files-component').find('.pq-separator, .ui-button-icon').remove()
-        
+        $('.ui-widget-content').css('border-color', 'transparent')
         pqGridTitle.remove()
         refreshButton.remove()
 
@@ -724,7 +792,6 @@ $(document).ready(function(){
         if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0] || overall_table.isPaging === false){
             $('.pq-grid-bottom').remove()
         }
-
     }
 
 
@@ -766,6 +833,7 @@ $(document).ready(function(){
     var grid_object = {
                     resizable: false,
                     draggable: false,
+                    dragColumns: false,
                     width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
                     height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.style.content_type_height.height.replace('px','')),
                     editable: false,
@@ -787,12 +855,11 @@ $(document).ready(function(){
                                 type: 'select',
                                 label: 'Format: ',                
                                 attr: 'id="export_format"',
-                                options: [{ xlsx: 'Excel', csv: 'Csv', htm: 'Html', json: 'Json'}]
+                                options: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}]
                             },
                             {
                                 type: 'button',
                                 label: "Export",
-                                icon: 'ui-icon-arrowthickstop-1-s',
                                 listener: function () {
             
                                     var format = $("#export_format").val(),                            
@@ -809,7 +876,7 @@ $(document).ready(function(){
                             },        
                             { 
                                 type: 'textbox', 
-                                attr: 'placeholder="Enter your keyword"', 
+                                attr: 'placeholder="Search"', 
                                 cls: "filterValue",
                                 listener: { keyup: filterhandler }
                             },
@@ -818,7 +885,7 @@ $(document).ready(function(){
                                 listener: filterhandler,
                                 options: function (ui) {
                                     var CM = ui.colModel;
-                                    var opts = [{ '': '[ All Fields ]'}];
+                                    var opts = [{ '': 'All'}];
                                     for (var i = 0; i < CM.length; i++) {
                                         var column = CM[i];
                                         var obj = {};
@@ -843,12 +910,11 @@ $(document).ready(function(){
                                     { "notempty": "Not Empty" },
                                     { "less": "Less Than" },
                                     { "great": "Great Than" },
-                                    { "regexp": "Regex" }
                                 ]
                             }
                         ]
                     },
-                    pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `{0} to {1} of {2}`, rPPOptions: grid_style.footer.rPPOptions},
+                    pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.footer.rPPOptions},
                     refresh: function(event,ui){
                         stylingTable(grid_style)
                 }
@@ -861,10 +927,7 @@ $(document).ready(function(){
     
     if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0]){
         grid_object.width = '100%';
-
-        if(grid_style.overall_table.isScrollBar === true || overall_table.isPaging === true){
-            grid_style.overall_table.isScrollBar === false
-        }
+        grid_style.overall_table.isScrollBar = false
     }
 
 

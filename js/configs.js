@@ -1,8 +1,8 @@
 // ## Style about overall table
 var overall_table = {
     width: '100%', 
-    outer_border: '1.8px solid #afd3f2',
-    inner_border: '1.2px solid #afd3f2',
+    outer_border: '1.5px solid #afd3f2',
+    inner_border: '1.5px solid #afd3f2',
     isScrollBar: false,
     isPaging: true
 }
@@ -12,7 +12,6 @@ var header = {
     n_row: 3,
     style: {
     header_type_height: {
-            type: overall_table.type,
             height: '150px'
     },
     background: 'linear-gradient(#fefefe, #dae6f0)',
@@ -34,7 +33,6 @@ var header = {
 var content = {
     style: {
         content_type_height: {
-            type: overall_table.type,
             height: '600px' 
         },
         odd_row_background: '#e6f4ff',
@@ -59,11 +57,11 @@ var footer = {
     rPPOptions: [10,15,20,25,30,35,40,45,50],
     style: {
 
-        padding: '7px 7px 7px 0',
+        padding: '18px 0px 7px 0px',
         font_size: '18px',
         font_weight: 'normal',
         font_color: 'black',
-        background_color: '#dae6f0',
+        background_color: 'white',
 
     },
     additional_style: {
@@ -100,7 +98,6 @@ var scrollbar = {
         border_color: '#83abcd'
     }
 }
-
 
 
 export {
