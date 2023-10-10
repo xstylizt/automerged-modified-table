@@ -664,14 +664,11 @@ $(document).ready(function(){
             $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
             $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
             $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
-
             $('.ui-button').text('')
             $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
-            $('.export-button-component').append('<img class="export-icon" src="img/download-icon.svg"/>')
+            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
             
-            $('.export-icon').css({
-                'height': '20px'
-            })
+
 
 
             $('.pq-toolbar-search').css({
@@ -717,6 +714,7 @@ $(document).ready(function(){
             })
 
 
+
             $('.search-box').css({
                 'display': 'flex',
                 'border': '1px solid #ccc',
@@ -742,11 +740,31 @@ $(document).ready(function(){
 
 
             $('.ui-button').css({
+                'display': 'flex',
+                'align-items': 'center',
                 'height': '40px',
-                'margin-right': '10px'
+                'margin-right': '10px',
+                'background-color': '#f2f2f2'
             })
 
+            $('.ui-button').hover( function(){
+                $('.ui-button').css('background-color', '#f8f8f8')
+            }, function(){
+                $('.ui-button').css('background-color', '#f2f2f2')
+            })
+
+            $('.export-icon').css({
+                'height': '25px',
+                'margin-top': '2px',
+                'margin-left': '-5px',
+                'margin-right': '2px',
+                
+            })
+
+    
+
             $('.search-icon').css({
+                'filter': 'opacity(50%)',
                 'height': '30px',
                 'margin': '5px 2px 5px 5px'
             })
