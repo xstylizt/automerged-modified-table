@@ -25,7 +25,150 @@ body {
   padding-left: 45px;
 }
 
-/* ------------ */
+/* ------------------------------------------------ */
+
+
+/* ---- Overall table style ----- */
+
+.overall-table-container{
+  border: 1.5px solid #afd3f2
+}
+
+/* --- Header of table style ---- */
+
+
+.header-container{
+  background: linear-gradient(#fefefe, #dae6f0) !important
+}
+
+.header-table-col{
+  border: 1.5px solid #afd3f2 !important
+}
+
+
+
+.header-table-cell{
+  padding: 5px 0px 5px 0px !important;
+  font-size: 18px !important;
+  font-weight: bold ;
+  color: black;
+}
+
+
+/* --- Content of table style ------ */
+
+
+.content-table-odd-row{
+  background: #e6f4ff
+}
+
+.content-table-even-row{
+  background: #ffffff
+}
+
+.content-table-cell{
+  border: 1.5px solid #afd3f2 !important;
+  padding: 9px 0px 9px 0px;
+  font-size: 18px;
+  font-weight: 400;
+  color: black;
+}
+
+/* -- Footer of table style --------- */
+
+.footer-container{
+   padding: 18px 0px 7px 0px;
+   font-size: 18px;
+   font-weight: normal;
+   color: black;
+   background: white;
+}
+
+/* --- Scrollbar of table style ------ */
+
+
+.vertical-scrollbar-container{
+  background: #efefef !important;
+}
+
+.vertical-scrollbar{
+  background: #dae6f0 !important;
+  border-color: #83abcd !important;
+}
+
+.horizontal-scrollbar-container{
+  background: #efefef !important;
+}
+
+.horizontal-scrollbar{
+  background: #dae6f0 !important;
+  border-color: #83abcd !important;
+}
+
+.ui-triangle-button{
+  background: #dae6f0 !important
+}
+
+/* ---------- Toolbar of table style --------------- */
+
+
+/* Main Component */
+.toolbar-search-component{
+  height: auto;
+  padding: 12px 0px 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.export-files-main-component{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+
+
+/* Export files button */
+
+.ui-button{
+   display: flex;
+   align-items: center;
+   height: 40px;
+   margin-right: 10px;
+   background-color: #f2f2f2
+}
+
+
+.ui-button:hover{
+  background-color: #f8f8f8;
+  border: 1px solid #c5c5c5;
+  color: black;
+}
+/* ------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

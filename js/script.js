@@ -5,6 +5,7 @@ import {
     content,
     footer,
     scrollbar,
+    toolbar
 } from './configs.js'
 
 $(document).ready(function(){ 
@@ -491,117 +492,78 @@ $(document).ready(function(){
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
         // ---------------- ## Style overall of table --------------------------------------------
-        var headerBorder = $('.pq-grid-col')
-        var contentBorder = $('.pq-grid-cell')
-        const borderArray = [headerBorder, contentBorder]
-        $.each(borderArray, function(index,element){
-                element.css('border', grid_style.overall_table.inner_border)
-        })
-
-        var tableBorder = $('.pq-grid-center')
-        tableBorder.css('border', grid_style.overall_table.outer_border)
+        var pqGridTable = $('.pq-grid-center')
+        pqGridTable.addClass(grid_style.overall_table.class_name)
+        pqGridTable.css(grid_style.overall_table.style)
 
         // ---------------------------------------------------------------------------------------
 
         // ----------------- ## Style header of table --------------------------------------------
 
-        var pqTableDiv = $('.pq-td-div')
-        var pqGridHeaderOuter = $('.pq-header-outer')
-        var pqGridHeaderTable = $('.pq-grid-header-table')
+        var pqGridHeader = $('.pq-grid-header'),
+            pqGridHeaderTableRow = $('.pq-grid-col'),
+            pqGridHeaderTableCell = $('.pq-td-div')
 
-        pqTableDiv.css({
-                'padding': grid_style.header.style.padding ,
-                'font-size': grid_style.header.style.font_size,
-                'font-weight': grid_style.header.style.font_weight,
-                'color': grid_style.header.style.font_color,
-        }) 
+        pqGridHeader.addClass(grid_style.header.component.container.class_name)
+        pqGridHeaderTableRow.addClass(grid_style.header.component.parentCell.class_name)
+        pqGridHeaderTableCell.addClass(grid_style.header.component.childCell.class_name)
 
-        // Style background color of header
-        var pqGridHeader = $('.pq-grid-header')
-        pqGridHeader.css({
-                'background': grid_style.header.style.background
-        })
+        pqGridHeader.css(grid_style.header.component.container.style)
+        pqGridHeaderTableRow.css(grid_style.header.component.parentCell.style)
+        pqGridHeaderTableCell.css(grid_style.header.component.childCell.style)
 
-        
+    
         // ---------------------------------------------------------------------------------------
 
         // ----------------- ## Style content of table -------------------------------------------
 
         // Padding with each cell in content 
-        var pqGridContentCell = $('.pq-grid-cell');
-        pqGridContentCell.css({
-                'padding': grid_style.content.style.padding,
-                'font-size': grid_style.content.style.font_size,
-                'font-weight': grid_style.content.style.font_weight,
-                'color': grid_style.content.style.font_color
-        });
+        var pqGridContentTableOddRow = $('tr.pq-grid-oddRow').removeClass('pq-grid-row'),
+            pqGridContentTableEvenRow = $('.pq-grid-row').addClass('pq-grid-evenRow').removeClass('pq-grid-row'),
+            pqContentTableCell = $('.pq-grid-cell')
 
-        var oddRow = $('tr.pq-grid-oddRow').removeClass('pq-grid-row');
-        var evenRow = $('.pq-grid-row').addClass('pq-grid-evenRow').removeClass('pq-grid-row');
+        pqGridContentTableOddRow.addClass(grid_style.content.component.parentCell.oddRow.class_name)
+        pqGridContentTableEvenRow.addClass(grid_style.content.component.parentCell.evenRow.class_name)
+        pqContentTableCell.addClass(grid_style.content.component.childCell.class_name)
 
-        // Style odd/even row of content
 
-        oddRow.css({
-            'background': grid_style.content.style.odd_row_background
-        });
+        pqGridContentTableOddRow.css(grid_style.content.component.parentCell.oddRow.style)
+        pqGridContentTableEvenRow.css(grid_style.content.component.parentCell.evenRow.style)
+        pqContentTableCell.css(grid_style.content.component.childCell.style);
 
-        evenRow.css({
-            'background': grid_style.content.style.even_row_background
-        })
 
         // ----------------------------------------------------------------------------------------
 
         //  -------------- ## Style footer of table -----------------------------------------------
 
         var pqGridFooter = $('.pq-grid-bottom')
-        var pqGridUiButtonFooter = $('.pq-ui-button')
-        var pqSeparatorLine = $('.pq-separator')
-        var pqInsertPageBox = $('.pq-pager-input')
-        var pqSelectPageBox = $('select.ui-corner-all')
+        pqGridFooter.addClass(grid_style.footer.class_name)
+        pqGridFooter.css(Object.assign({
+                                        'display': 'flex',
+                                        'flex-direction': 'row-reverse',
+                                        'flex-wrap': 'wrap-reverse',
+                                        'align-items': 'center',
+                                        'justify-content': 'space-between'},grid_style.footer.style))
 
 
-        pqGridFooter.css({
-                          'display': 'flex',
-                          'flex-direction': 'row-reverse',
-                          'flex-wrap': 'wrap-reverse',
-                          'align-items': 'center',
-                          'justify-content': 'space-between',
-                          'padding': grid_style.footer.style.padding,
-                          'font-size': grid_style.footer.style.font_size,
-                          'font-weight': grid_style.footer.style.font_weight,
-                          'color': grid_style.footer.style.font_color,
-                          'background': grid_style.footer.style.background_color
-        })
 
-        pqInsertPageBox.css({
-                         'border-color': grid_style.footer.additional_style.insertPageBoxBorder_color
-        })
-
-        pqSelectPageBox.css({
-                         'border-color': grid_style.footer.additional_style.selectPageBoxBorder_color
-        })
-
-        pqSeparatorLine.css({
-                         'border-color': grid_style.footer.additional_style.separator_color
-        })
-
-        
-        
+        // --------------- ## Handling with scrollbar -----------------------------------------------
+        var pqGridHeaderTable = $('.pq-grid-header-table')
         if(overall_table.isScrollBar === false){
-            pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
+            pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.height.replace('px',''))+ 3) + 'px')
         }
 
 
-        
+        var pqGridHeaderOuter = $('.pq-header-outer')
         if($(window).width() < 850){
             if(overall_table.isScrollBar === true)
             {
                     var mainTable = $('#automerged-modified-table')
                     pqGridHeaderOuter.removeAttr('style')
                     mainTable.css('height','auto')
-                    pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.style.header_type_height.height.replace('px',''))+ 3) + 'px')
+                    pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.height.replace('px',''))+ 3) + 'px')
             }else if(overall_table.isScrollBar === false){
-                    pqGridHeaderOuter.css('height', grid_style.header.style.header_type_height.height)
+                    pqGridHeaderOuter.css('height', grid_style.header.height)
             }
         }
 
@@ -610,50 +572,35 @@ $(document).ready(function(){
         if($(window).width() >= 850){
             if(overall_table.isScrollBar === false){
                 var mainTable = $('#automerged-modified-table')
-                pqGridHeaderOuter.css('height', header.style.header_type_height.height)
+                pqGridHeaderOuter.css('height', header.height)
             }
             else if(overall_table.isScrollBar === true){
                 var mainTable = $('#automerged-modified-table')
             }
         }
 
-        
-
-
-        pqGridUiButtonFooter.on('mouseenter',function(){
-            $('.pq-ui-button').css('border-color', grid_style.footer.additional_style.buttonHoverBorder_color)
-        })
-
         // ----------------------------## Styling scrollbar ---------------------------------------
-        var pqVerticalScrollbar = $('.pq-sb-vert-t .pq-sb-slider')
-        var pqHorizontalScrollbar = $('.pq-sb-horiz-t .pq-sb-slider')
-        var pqBackgroundVerticalScrollbar = $('.pq-sb-vert-t')
-        var pqBackgroundHorizontalScrollbar = $('.pq-sb-horiz')
-        var pqTriangleButton = $('.pq-sb-btn')
+        var pqGridVerticalScrollBarContainer = $('.pq-sb-vert-t'),
+            pqGridHorizontalScrollBarContainer = $('.pq-sb-horiz'),
+            pqGridVerticalScrollbar = $('.pq-sb-vert-t .pq-sb-slider'),
+            pqGridHorizontalScrollbar = $('.pq-sb-horiz-t .pq-sb-slider'),
+            pqGridUiTriangleButton = $('.pq-sb-btn')
 
-        pqBackgroundHorizontalScrollbar.css('background', grid_style.scrollbar.elementBehindScrollBar.background_color)
-        pqBackgroundVerticalScrollbar.css('background', grid_style.scrollbar.elementBehindScrollBar.background_color)
+        pqGridVerticalScrollBarContainer.addClass(scrollbar.verticalScrollBar.parent.class_name)
+        pqGridVerticalScrollbar.addClass(scrollbar.verticalScrollBar.child.class_name)
+        pqGridHorizontalScrollBarContainer.addClass(scrollbar.horizontalScrollBar.parent.class_name)
+        pqGridHorizontalScrollbar.addClass(scrollbar.horizontalScrollBar.child.class_name)
+        pqGridUiTriangleButton.addClass(scrollbar.uiTriangleButton.class_name)
 
-        pqVerticalScrollbar.css({
-                    'background': grid_style.scrollbar.verticalScrollBar_style.background_color,
-                    'border-color': grid_style.scrollbar.verticalScrollBar_style.border_color
-        })
-
-        pqHorizontalScrollbar.css({
-                    'background': grid_style.scrollbar.horizontalScrollBar_style.background_color,
-                    'border-color': grid_style.scrollbar.horizontalScrollBar_style.border_color
-        })
-
-        pqTriangleButton.css({
-                    'background':   grid_style.scrollbar.uiTriangleButton_style.background_color,
-                    'border-color': grid_style.scrollbar.uiTriangleButton_style.border_color
-        })
-
+        pqGridVerticalScrollBarContainer.css(scrollbar.verticalScrollBar.parent.style)
+        pqGridVerticalScrollbar.css(scrollbar.verticalScrollBar.child.style)
+        pqGridHorizontalScrollBarContainer.css(scrollbar.horizontalScrollBar.parent.style)
+        pqGridHorizontalScrollbar.css(scrollbar.horizontalScrollBar.child.style)
+        pqGridUiTriangleButton.css(scrollbar.uiTriangleButton.style)
 
         // ---------------------------## Toolbox style -------------------------------------------
         setInitialCountRender++;
         if(setInitialCountRender == 1){
-
             $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
             $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
             $('.export-files-component').find('label').addClass('format-label')
@@ -669,9 +616,35 @@ $(document).ready(function(){
             $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
             
 
+            var pqGridToolBarSearchComponent = $('.pq-toolbar-search')
+
+            var pqGridExportFilesComponent = $('.export-files-component')
+            var pqGridFormatComponent = $('.format-component')
+            var pqGridFormatLabel = $('.format-label')
+            var pqGridExportFormatContainer = $('#export_format')
+            var pqGridExportFormatButtonIcon = $('.export-icon')
+
+            var pqGridPageOptionsComponent = $('.page-options-component')
+            var pqGridShowText = $('.show-text')
+            var pqGridPageOptions = $('.page-select')
+
+            var pqGridFilterComponent = $('.filter-component')
+            var pqGridSearchBox = $('.search-box')
+            var pqGridSearchIcon = $('.search-icon')
+            var pqGridFilterValue = $('.filterValue')
+            var pqGridFilterColumn = $('.filterColumn')
+            var pqGridFilterCondition = $('.filterCondition')
 
 
-            $('.pq-toolbar-search').css({
+            // Add class on your own
+            pqGridToolBarSearchComponent.addClass('toolbar-search-component')
+            
+            pqGridExportFilesComponent.addClass('export-files-main-component')
+
+
+            // ------------------------ Main component -----------------------------
+            /*
+            pqGridToolBarSearchComponent.css({
                 'height': 'auto',
                 'padding': '12px 0px 20px 0px',
                 'display': 'flex',
@@ -681,89 +654,94 @@ $(document).ready(function(){
                 'justify-content': 'space-between',
                 'background': 'white'
             })
+            */
 
-
-            $('.export-files-component').css({
+            // ------------------------ Export files component ----------------------
+            /*
+            pqGridExportFilesComponent.css({
+                'width': 'auto',
                 'display': 'flex',
+                'flex-wrap': 'wrap',
                 'align-items': 'center',
                 'margin-left': '0px',
                 'margin-right': '0px',
             })
+            */
 
-            $('.format-label').css({
-                'display': 'flex',
-                'align-items': 'center'
-            })
-
-            $('.page-options-component').css({
-                'display': 'flex',
-                'align-items': 'center',
-                'margin-left': '10px'
-            })
-            $('.show-text').css('margin-right', '10px')
-            $('.page-options').css({
-                'margin-right': '10px'
-            })
-
-
-            $('.filter-component').css({
-                'display': 'flex',
-                'align-items': 'center',
-                'margin-left': '0px',
-                'margin-right': '0px'
-            })
-
-
-
-            $('.search-box').css({
-                'display': 'flex',
-                'border': '1px solid #ccc',
-                'border-radius': '4px',
-                'margin-right': '10px'
-            })
-
-
-            $('.format-component').css({
+            pqGridFormatComponent.css({
                 'display': 'flex',
                 'align-items': 'center',
             })
 
-
-            $('.format-label').css({
+            pqGridFormatLabel.css({
+                'display': 'flex',
+                'flex-wrap': 'wrap',
+                'align-items': 'center',
                 'margin-right': '10px'
             })
 
-            $('#export_format').css({
+            
+            pqGridExportFormatContainer.css({
                 'margin-left': '10px',
                 'height': '40px'
             })
 
-
-            $('.ui-button').css({
+            
+            /*
+            pqGridExportFormatButton.css({
                 'display': 'flex',
                 'align-items': 'center',
                 'height': '40px',
                 'margin-right': '10px',
                 'background-color': '#f2f2f2'
             })
+            */
 
-            $('.ui-button').hover( function(){
-                $('.ui-button').css('background-color', '#f8f8f8')
-            }, function(){
-                $('.ui-button').css('background-color', '#f2f2f2')
-            })
-
-            $('.export-icon').css({
+            
+            pqGridExportFormatButtonIcon.css({
                 'height': '25px',
                 'margin-top': '2px',
                 'margin-left': '-5px',
-                'margin-right': '2px',
-                
+                'margin-right': '2px'
             })
 
-    
 
-            $('.search-icon').css({
+
+
+            pqGridPageOptionsComponent.css({
+                'display': 'flex',
+                'align-items': 'center',
+                'margin-left': '10px'
+            })
+
+            pqGridPageOptions.css({
+                'height': '40px'
+            })
+
+
+            pqGridShowText.css('margin-right', '10px')
+            $('.page-options').css({
+                'margin-right': '10px'
+            })
+
+            // ------------------------ Filter files component ----------------------
+            pqGridFilterComponent.css({
+                'display': 'flex',
+                'flex-wrap': 'wrap',
+                'align-items': 'center',
+                'margin-left': '0px',
+                'margin-right': '0px'
+            })
+
+
+            pqGridSearchBox.css({
+                'display': 'flex',
+                'border': '1px solid #ccc',
+                'border-radius': '4px',
+                'margin-right': '10px'
+            })
+
+            pqGridSearchIcon.css({
                 'filter': 'opacity(50%)',
                 'height': '30px',
                 'margin': '5px 2px 5px 5px'
@@ -771,44 +749,43 @@ $(document).ready(function(){
 
 
             
-            $('.filterValue').css({
+            pqGridFilterValue.css({
                 'height': '30px',
                 'margin': '5px 5px 5px 0px',
                 'outline': 'none',
                 'border': 'none',
             })
             
-
-            $('.filterValue').css({
-                
-            })
-
-
-
-            $('.filterColumn').css({
+            pqGridFilterColumn.css({
                 'margin-right': '10px',
                 'height': '40px',
             })
 
-            $('.filterCondition').css({
+            pqGridFilterCondition.css({
                 'height': '40px',
             })
 
+            // ------------------------------------------------------------------------
         }
-
         
         // ----------------------------## Additional style ----------------------------------------
-        var refreshButton = $('.ui-icon-refresh')
+        var pqGridrefreshButton = $('.ui-icon-refresh')
         var pqGridTitle = $('.pq-grid-title')
-        $('.pq-grid-bottom').find('.pq-page-placeholder').addClass('number-page')
-        $('.export-files-component').find('.pq-separator, .ui-button-icon').remove()
-        $('.ui-widget-content').css('border-color', 'transparent')
+        var pqGridUiWidgetContent = $('.ui-widget-content')
+        var pqGridExportFilesComponent = $('.export-files-component')
+        pqGridFooter.find('.pq-page-placeholder').addClass('number-page')
+        pqGridUiWidgetContent.css('border-color', 'transparent')
         pqGridTitle.remove()
-        refreshButton.remove()
+        pqGridrefreshButton.remove()
+        pqGridExportFilesComponent.find('.pq-separator, .ui-button-icon').remove()
 
 
-        if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0] || overall_table.isPaging === false){
-            $('.pq-grid-bottom').remove()
+        if((data.length - grid_style.header.n_row) <= toolbar.pageSelectBar.rPPOptions[0]){
+            pqGridFooter.empty()
+        }
+
+        if(grid_style.overall_table.isPaging === false){
+            pqGridFooter.empty()
         }
     }
 
@@ -845,7 +822,8 @@ $(document).ready(function(){
         header: header,
         content: content,
         footer: footer,
-        scrollbar: scrollbar
+        scrollbar: scrollbar,
+        toolbar: toolbar
     }
     
     var grid_object = {
@@ -853,7 +831,7 @@ $(document).ready(function(){
                     draggable: false,
                     dragColumns: false,
                     width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
-                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.style.content_type_height.height.replace('px','')),
+                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.height.replace('px','')),
                     editable: false,
                     sortModel: false,
                     freezeRows: grid_style.content.numberFreezeRows,    
@@ -873,7 +851,7 @@ $(document).ready(function(){
                                 type: 'select',
                                 label: 'Format: ',                
                                 attr: 'id="export_format"',
-                                options: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}]
+                                options: grid_style.toolbar.exportFilesBar.export_format
                             },
                             {
                                 type: 'button',
@@ -917,39 +895,27 @@ $(document).ready(function(){
                                 type: 'select',                         
                                 cls: "filterCondition",
                                 listener: filterhandler,
-                                options: [
-                                    { "begin": "Begins With" },
-                                    { "contain": "Contains" },
-                                    { "end": "Ends With" },
-                                    { "notcontain": "Does not contain" },
-                                    { "equal": "Equal To" },
-                                    { "notequal": "Not Equal To" },
-                                    { "empty": "Empty" },
-                                    { "notempty": "Not Empty" },
-                                    { "less": "Less Than" },
-                                    { "great": "Great Than" },
-                                ]
+                                options: grid_style.toolbar.filterSearchBar.filter_condition
                             }
                         ]
                     },
-                    pageModel: { type: "local", rPP: grid_style.footer.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.footer.rPPOptions},
+                    pageModel: { type: "local", rPP: grid_style.toolbar.pageSelectBar.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.toolbar.pageSelectBar.rPPOptions},
                     refresh: function(event,ui){
                         stylingTable(grid_style)
                 }
     }
 
 
+
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
-    if((data.length - grid_style.header.n_row) <= footer.rPPOptions[0]){
+    if((data.length - grid_style.header.n_row) <= toolbar.pageSelectBar.rPPOptions[0]){
         grid_object.width = '100%';
         grid_style.overall_table.isScrollBar = false
     }
 
-
-    
     var $grid = $("#automerged-modified-table").pqGrid(grid_object);
 });    
 
