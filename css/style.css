@@ -68,8 +68,8 @@ body {
 
 .content-table-cell{
   border: 1.5px solid #afd3f2 !important;
-  padding: 9px 0px 9px 0px;
-  font-size: 18px;
+  padding: 3px 0px 3px 0px;
+  font-size: 18px !important;
   font-weight: 400;
   color: black;
 }
@@ -77,6 +77,7 @@ body {
 /* -- Footer of table style --------- */
 
 .footer-container{
+   display: flex;
    padding: 18px 0px 7px 0px;
    font-size: 18px;
    font-weight: normal;
@@ -124,6 +125,7 @@ body {
   background: white;
 }
 
+/* Export Files Component */
 .export-files-main-component{
     width: auto;
     display: flex;
@@ -133,27 +135,221 @@ body {
     margin-right: 0px;
 }
 
+/* Format component */
 
+.format-main-component{
+    display: flex;
+    align-items: center;  
+}
 
+/* Format label component */
 
-/* Export files button */
-
-.ui-button{
+.format-label-component{
    display: flex;
+   flex-wrap: wrap;
    align-items: center;
-   height: 40px;
    margin-right: 10px;
-   background-color: #f2f2f2
+}
+
+/* Export format component */
+
+.export-format-main-component{
+  margin-left: 10px;
+  height: 40px !important;
+}
+
+/* Export format button */
+
+.export-format-button{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-right: 10px;
+  background-color: #f2f2f2;
+  outline: none;
 }
 
 
-.ui-button:hover{
-  background-color: #f8f8f8;
-  border: 1px solid #c5c5c5;
-  color: black;
+.export-format-button:hover{
+ background-color: #f8f8f8;
+ border: 1px solid #c5c5c5;
+ color: black;
 }
+
+/* Export format button icon */
+
+.export-format-button-icon{
+  height: 25px;
+  margin-top: 2px;
+  margin-left: -5px;
+  margin-right: 2px;
+}
+
+/* Page selection component */
+.page-options-main-component{
+  margin-left: 10px;
+}
+
+/* Page option */
+
+div.pq-grid select{
+  height: 40px;
+}
+
+
+/* 'Show' text */
+.show-single-text{
+  margin-right: 10px;
+}
+
+.page-selects{
+  margin-right: 10px;
+}
+
+
+/* filter and search bar component*/
+
+.filter-main-component{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+/* Search bar */
+
+.input-search-box{
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Input search bar */
+
+.filter-value{
+  height: 30px;
+  margin: 5px 5px 5px 0px;
+  outline: none !important;
+  border: none !important;
+}
+
+
+/* Search bar icon */
+
+.search-box-icon{
+  filter: opacity(50%);
+  height: 30px;
+  margin: 5px 2px 5px 5px;
+}
+
+
+/* Option for filter column */
+
+.filter-column{
+  margin-right: 10px;
+  height: 40px !important;
+}
+
+/* Option for filter column with condition */
+
+.filter-condition{
+  height: 40px !important;
+}
+
+
 /* ------------------- */
 
+/* Link */
+
+.all-cell-link{
+  text-decoration-color: blue;
+}
+
+
+
+
+/* pagination */
+
+
+.pagination-container {
+  display: flex;
+  margin-right: -5px;
+}
+
+
+.previous-btn-container {
+  border: 2px solid transparent;
+}
+
+.previous-btn span {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 7px 14px;
+}
+
+.previous-btn-container:hover {
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid #afd3f2;
+}
+
+.disabled:hover{
+  background: none !important;
+  border: 2px solid transparent !important;
+}
+
+
+.number-page-container{
+  display: flex;
+  align-items: center;
+}
+
+.next-btn-container {
+  border: 2px solid transparent;
+}
+
+.next-btn span {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 7px 14px;
+}
+
+.next-btn-container:hover {
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid #afd3f2;
+}
+
+.num-page {
+  border: 2px solid transparent;
+}
+
+.num-page{
+  padding: 7px 14px;  
+}
+
+
+.num-page:hover{
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid #afd3f2;
+}
+
+.active{
+  padding: 7px 14px;
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid rgb(175, 211, 242);
+}
+
+
+
+
+/*
+.hidden{
+  display: none
+}
+*/
 
 
 

@@ -39,7 +39,7 @@ var header = {
         type: 'auto' ,    
         configs: []  
     },
-    height: '150px',
+    height: 'auto',
     style: {}
 }
 
@@ -131,24 +131,103 @@ var scrollbar = {
 }
 
 var toolbar = {
-    exportFilesBar: {
-        export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
+    component: {
+        container: {
+            class_name: 'toolbar-search-component',
+            style: {}
+        },
+        
+        exportFilesBar: {
+            parent: {
+                class_name: 'export-files-main-component',
+                style: {}
+            },
+            child: {
+                format: {
+                    class_name: 'format-main-component',
+                    style: {}
+                },
+                formatLabel: {
+                    class_name: 'format-label-component',
+                    style: {}
+                },
+                exportFormat: {
+                    class_name: 'export-format-main-component',
+                    style: {},
+                    child: {
+                        exportFormatButton: {
+                            class_name: 'export-format-button',
+                            style: {}
+                        },
+                        exportFormatButtonIcon: {
+                            class_name: 'export-format-button-icon',
+                            style: {}
+                        }
+                    }
+                },
+            }
+        },
+
+        pageSelectOption: {
+            parent: {
+                class_name: 'page-options-main-component',
+                style: {}
+            },
+            child: {
+                pageSelect: {
+                    class_name: 'page-options',
+                    style: {}
+                },
+                showSingleText: {
+                    class_name: 'show-single-text',
+                    style: {}
+                }
+            }
+        },
+
+        filterSearch: {
+            parent: {
+                class_name: 'filter-main-component',
+                style: {}
+            },
+            child: {
+                searchBar: {
+                    class_name: 'input-search-box',
+                    style: {},
+                    child: {
+                        inputSearchBar: {
+                            class_name: 'filter-value',
+                            style: {}
+                        },
+                        searchBarIcon: {
+                            class_name: 'search-box-icon',
+                            style: {}
+                        }
+                    }
+                },
+                filterColumn: {
+                    class_name: 'filter-column',
+                    style: {}
+                },
+                filterCondition: {
+                    class_name: 'filter-condition',
+                    style: {}
+                }
+            }
+        }
     },
-    pageSelectBar: {
-        rPPOptions: [10,15,20,25,30,35,40,45,50]
-    },
-    filterSearchBar: {
-        filter_condition: [
-            { "begin": "Begins With" },
-            { "contain": "Contains" },
-            { "end": "Ends With" },
-            { "notcontain": "Does not contain" },
-            { "equal": "Equal To" },
-            { "notequal": "Not Equal To" },
-            { "empty": "Empty" },
-            { "notempty": "Not Empty" },
-]
-    },
+    export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
+    rPPOptions: [10,20,30,40,50],
+    filter_condition: [
+        { "begin": "Begins With" },
+        { "contain": "Contains" },
+        { "end": "Ends With" },
+        { "notcontain": "Does not contain" },
+        { "equal": "Equal To" },
+        { "notequal": "Not Equal To" },
+        { "empty": "Empty" },
+        { "notempty": "Not Empty" },
+    ]
 }
 
 

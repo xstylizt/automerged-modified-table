@@ -1,4 +1,4 @@
-import data from './import_data.js'
+import {data,dataForCreateLink} from './import_data.js'
 import {
     overall_table,
     header,
@@ -273,14 +273,66 @@ $(document).ready(function(){
                 }
         }else if(header.mergedCells.type === 'specific' && header.mergedCells.configs.length > 0){
             const specificHeaderMergeConfigs = header.mergedCells.configs.sort((a,b) => {if(a.r1 !== b.r1){return a.r1 - b.r1} else{return a.c1 - b.c1} })
-            console.log(specificHeaderMergeConfigs)
+
              
         }
 
          return colModel_result
     }
 
+    function findColumnNameForCreateLink(colName, colModel) {
+        for (const item of colModel) {
+            if (item.title === colName) {
+                return item;
+            }
+            if (item.colModel) {
+                const result = findColumnNameForCreateLink(colName, item.colModel);
+                if (result) return result;
+            }
+        }
+        return null;
+    }
 
+
+    function createLinkToColumn(colName, colModel, ...sourceData){
+        var colModelForCreateLink = colModel
+        var columnNameForCreateLink = colName
+        var indexTitleHeader = data[header.n_row - 1].indexOf(columnNameForCreateLink)
+        var dataArrayForCompareAndSort = data.slice(header.n_row).map(innerArray => innerArray[indexTitleHeader])
+        var columnForRenderToCreateLink = findColumnNameForCreateLink(columnNameForCreateLink, colModelForCreateLink)
+        if(sourceData[0].length === 2){
+            columnForRenderToCreateLink.render = function(ui){
+                var cellRowIndx = ui.rowIndx
+                if(ui.cellData === dataArrayForCompareAndSort[cellRowIndx]){
+                    if(sourceData[0][1][cellRowIndx].length !== 0){
+                        return {
+                            text: `<span><a href="${sourceData[0][1][cellRowIndx]}" class="${dataForCreateLink.class_name}" target="_blank">${dataArrayForCompareAndSort[cellRowIndx]}</a></span>`,
+                        }
+                    }else if(sourceData[0][1][cellRowIndx].length === 0){
+                        return{ 
+                            text: `<span>${dataArrayForCompareAndSort[cellRowIndx]}</span>`
+                        }
+                    }
+                }
+
+            }
+        }else if(sourceData[0].length){
+            columnForRenderToCreateLink.render = function(ui){
+                var cellRowIndx = ui.rowIndx
+                if(sourceData[0][cellRowIndx][1].length !== 0){
+                    return {
+                        text: `<span><a href="${sourceData[0][cellRowIndx][1]}" class="${dataForCreateLink.class_name}" target="_blank">${dataArrayForCompareAndSort[cellRowIndx]}</a></span>`,
+                    }
+                }else if(sourceData[0][cellRowIndx][1].length === 0){
+                    return{ 
+                        text: `<span>${dataArrayForCompareAndSort[cellRowIndx]}</span>`
+                    }
+                }
+            }
+        }
+
+        return colModelForCreateLink
+    }
 
 
     // ##----------------- Define function for merging header of table -------------------------------##
@@ -489,6 +541,66 @@ $(document).ready(function(){
     }
 
     var setInitialCountRender = 0
+    function createToolBox(){
+        setInitialCountRender++;
+        if(setInitialCountRender == 1){
+            $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
+            $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
+            $('.export-files-component').find('label').addClass('format-label')
+            $('.format-label, .ui-button').wrapAll('<div class="format-component"></div>')
+            $('.pq-grid-top').find('span').appendTo($('.export-files-component'))
+            $('<span class="show-text">Show</span>').insertAfter('.format-component')
+            $('<span class="entries-text">entries</span>').insertAfter('.page-options')
+            $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
+            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
+            $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
+            $('.ui-button').text('')
+            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
+            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
+            
+
+            var pqGridToolBarSearchComponent = $('.pq-toolbar-search')
+
+            var pqGridExportFilesComponent = $('.export-files-component')
+            var pqGridFormatComponent = $('.format-component')
+            var pqGridFormatLabel = $('.format-label')
+            var pqGridExportFormatContainer = $('#export_format')
+            var pqGridExportFormatButton = $('.ui-button')
+            var pqGridExportFormatButtonIcon = $('.export-icon')
+
+            var pqGridPageOptionsComponent = $('.page-options-component')
+            var pqGridShowText = $('.show-text')
+            var pqGridPageOptions = $('.page-select')
+
+            var pqGridFilterComponent = $('.filter-component')
+            var pqGridSearchBox = $('.search-box')
+            var pqGridSearchIcon = $('.search-icon')
+            var pqGridFilterValue = $('.filterValue')
+            var pqGridFilterColumn = $('.filterColumn')
+            var pqGridFilterCondition = $('.filterCondition')
+            
+
+            // Add class on your own
+            pqGridToolBarSearchComponent.addClass(grid_style.toolbar.component.container.class_name)
+            pqGridExportFilesComponent.addClass(grid_style.toolbar.component.exportFilesBar.parent.class_name)
+            pqGridFormatComponent.addClass(grid_style.toolbar.component.exportFilesBar.child.format.class_name)
+            pqGridFormatLabel.addClass(grid_style.toolbar.component.exportFilesBar.child.formatLabel.class_name)
+            pqGridExportFormatContainer.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.class_name)
+            pqGridExportFormatButton.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButton.class_name)
+            pqGridExportFormatButtonIcon.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButtonIcon.class_name)
+            pqGridPageOptionsComponent.addClass(grid_style.toolbar.component.pageSelectOption.parent.class_name)
+            pqGridPageOptions.addClass(grid_style.toolbar.component.pageSelectOption.child.pageSelect.class_name)
+            pqGridShowText.addClass(grid_style.toolbar.component.pageSelectOption.child.showSingleText.class_name)
+            pqGridFilterComponent.addClass(grid_style.toolbar.component.filterSearch.parent.class_name)
+            pqGridSearchBox.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.class_name)
+            pqGridFilterValue.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.inputSearchBar.class_name)
+            pqGridSearchIcon.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.class_name)
+            pqGridFilterColumn.addClass(grid_style.toolbar.component.filterSearch.child.filterColumn.class_name)
+            pqGridFilterCondition.addClass(grid_style.toolbar.component.filterSearch.child.filterCondition.class_name)
+
+           
+        }
+    }
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
         // ---------------- ## Style overall of table --------------------------------------------
@@ -532,21 +644,6 @@ $(document).ready(function(){
         pqContentTableCell.css(grid_style.content.component.childCell.style);
 
 
-        // ----------------------------------------------------------------------------------------
-
-        //  -------------- ## Style footer of table -----------------------------------------------
-
-        var pqGridFooter = $('.pq-grid-bottom')
-        pqGridFooter.addClass(grid_style.footer.class_name)
-        pqGridFooter.css(Object.assign({
-                                        'display': 'flex',
-                                        'flex-direction': 'row-reverse',
-                                        'flex-wrap': 'wrap-reverse',
-                                        'align-items': 'center',
-                                        'justify-content': 'space-between'},grid_style.footer.style))
-
-
-
         // --------------- ## Handling with scrollbar -----------------------------------------------
         var pqGridHeaderTable = $('.pq-grid-header-table')
         if(overall_table.isScrollBar === false){
@@ -572,12 +669,13 @@ $(document).ready(function(){
         if($(window).width() >= 850){
             if(overall_table.isScrollBar === false){
                 var mainTable = $('#automerged-modified-table')
-                pqGridHeaderOuter.css('height', header.height)
+                pqGridHeaderOuter.css('height', 'auto')
             }
             else if(overall_table.isScrollBar === true){
                 var mainTable = $('#automerged-modified-table')
             }
         }
+
 
         // ----------------------------## Styling scrollbar ---------------------------------------
         var pqGridVerticalScrollBarContainer = $('.pq-sb-vert-t'),
@@ -597,179 +695,10 @@ $(document).ready(function(){
         pqGridHorizontalScrollBarContainer.css(scrollbar.horizontalScrollBar.parent.style)
         pqGridHorizontalScrollbar.css(scrollbar.horizontalScrollBar.child.style)
         pqGridUiTriangleButton.css(scrollbar.uiTriangleButton.style)
-
-        // ---------------------------## Toolbox style -------------------------------------------
-        setInitialCountRender++;
-        if(setInitialCountRender == 1){
-            $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
-            $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
-            $('.export-files-component').find('label').addClass('format-label')
-            $('.format-label, .ui-button').wrapAll('<div class="format-component"></div>')
-            $('.pq-grid-top').find('span').appendTo($('.export-files-component'))
-            $('<span class="show-text">Show</span>').insertAfter('.format-component')
-            $('<span class="entries-text">entries</span>').insertAfter('.page-options')
-            $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
-            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
-            $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
-            $('.ui-button').text('')
-            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
-            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
-            
-
-            var pqGridToolBarSearchComponent = $('.pq-toolbar-search')
-
-            var pqGridExportFilesComponent = $('.export-files-component')
-            var pqGridFormatComponent = $('.format-component')
-            var pqGridFormatLabel = $('.format-label')
-            var pqGridExportFormatContainer = $('#export_format')
-            var pqGridExportFormatButtonIcon = $('.export-icon')
-
-            var pqGridPageOptionsComponent = $('.page-options-component')
-            var pqGridShowText = $('.show-text')
-            var pqGridPageOptions = $('.page-select')
-
-            var pqGridFilterComponent = $('.filter-component')
-            var pqGridSearchBox = $('.search-box')
-            var pqGridSearchIcon = $('.search-icon')
-            var pqGridFilterValue = $('.filterValue')
-            var pqGridFilterColumn = $('.filterColumn')
-            var pqGridFilterCondition = $('.filterCondition')
-
-
-            // Add class on your own
-            pqGridToolBarSearchComponent.addClass('toolbar-search-component')
-            
-            pqGridExportFilesComponent.addClass('export-files-main-component')
-
-
-            // ------------------------ Main component -----------------------------
-            /*
-            pqGridToolBarSearchComponent.css({
-                'height': 'auto',
-                'padding': '12px 0px 20px 0px',
-                'display': 'flex',
-                'flex-wrap': 'wrap',
-                'gap': '10px',
-                'align-items': 'center',
-                'justify-content': 'space-between',
-                'background': 'white'
-            })
-            */
-
-            // ------------------------ Export files component ----------------------
-            /*
-            pqGridExportFilesComponent.css({
-                'width': 'auto',
-                'display': 'flex',
-                'flex-wrap': 'wrap',
-                'align-items': 'center',
-                'margin-left': '0px',
-                'margin-right': '0px',
-            })
-            */
-
-            pqGridFormatComponent.css({
-                'display': 'flex',
-                'align-items': 'center',
-            })
-
-            pqGridFormatLabel.css({
-                'display': 'flex',
-                'flex-wrap': 'wrap',
-                'align-items': 'center',
-                'margin-right': '10px'
-            })
-
-            
-            pqGridExportFormatContainer.css({
-                'margin-left': '10px',
-                'height': '40px'
-            })
-
-            
-            /*
-            pqGridExportFormatButton.css({
-                'display': 'flex',
-                'align-items': 'center',
-                'height': '40px',
-                'margin-right': '10px',
-                'background-color': '#f2f2f2'
-            })
-            */
-
-            
-            pqGridExportFormatButtonIcon.css({
-                'height': '25px',
-                'margin-top': '2px',
-                'margin-left': '-5px',
-                'margin-right': '2px'
-            })
-
-
-
-
-            pqGridPageOptionsComponent.css({
-                'display': 'flex',
-                'align-items': 'center',
-                'margin-left': '10px'
-            })
-
-            pqGridPageOptions.css({
-                'height': '40px'
-            })
-
-
-            pqGridShowText.css('margin-right', '10px')
-            $('.page-options').css({
-                'margin-right': '10px'
-            })
-
-            // ------------------------ Filter files component ----------------------
-            pqGridFilterComponent.css({
-                'display': 'flex',
-                'flex-wrap': 'wrap',
-                'align-items': 'center',
-                'margin-left': '0px',
-                'margin-right': '0px'
-            })
-
-
-            pqGridSearchBox.css({
-                'display': 'flex',
-                'border': '1px solid #ccc',
-                'border-radius': '4px',
-                'margin-right': '10px'
-            })
-
-            pqGridSearchIcon.css({
-                'filter': 'opacity(50%)',
-                'height': '30px',
-                'margin': '5px 2px 5px 5px'
-            })
-
-
-            
-            pqGridFilterValue.css({
-                'height': '30px',
-                'margin': '5px 5px 5px 0px',
-                'outline': 'none',
-                'border': 'none',
-            })
-            
-            pqGridFilterColumn.css({
-                'margin-right': '10px',
-                'height': '40px',
-            })
-
-            pqGridFilterCondition.css({
-                'height': '40px',
-            })
-
-            // ------------------------------------------------------------------------
-        }
         
         // ----------------------------## Additional style ----------------------------------------
         var pqGridrefreshButton = $('.ui-icon-refresh')
+        var pqGridFooter = $('.pq-grid-bottom')
         var pqGridTitle = $('.pq-grid-title')
         var pqGridUiWidgetContent = $('.ui-widget-content')
         var pqGridExportFilesComponent = $('.export-files-component')
@@ -780,12 +709,360 @@ $(document).ready(function(){
         pqGridExportFilesComponent.find('.pq-separator, .ui-button-icon').remove()
 
 
-        if((data.length - grid_style.header.n_row) <= toolbar.pageSelectBar.rPPOptions[0]){
-            pqGridFooter.empty()
-        }
 
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
+        }
+        
+        //$('.pq-pager-input').val(2).trigger('change')
+
+    }
+
+    function createPagination(){
+        //  -------------- ## Style footer of table ----------------------------------------------
+        if(setInitialCountRender === 1)
+        {
+            var pqGridFooter = $('.pq-grid-bottom')
+            var pqGridPaging = $('.pq-grid-footer')
+            var pqGridFirstPageButton = $('.ui-icon-seek-first').removeClass('ui-icon').removeClass('ui-widget-header').text('First')
+            var pqGridPrevPageButton = $('.ui-icon-seek-prev').removeClass('ui-icon').text('Previous')
+            var pqGridNextPageButton = $('.ui-icon-seek-next').removeClass('ui-icon').text('Next')
+            var pqGridLastPageButton = $('.ui-icon-seek-end').removeClass('ui-icon').text('Last')
+            $('.pq-ui-button').removeClass('ui-widget-header')
+
+
+            pqGridFooter.addClass(grid_style.footer.class_name)
+            pqGridPaging.addClass('pagination-container')
+            pqGridFooter.css(Object.assign({
+                                    'display': 'flex',
+                                    'flex-direction': 'row-reverse',
+                                    'flex-wrap': 'wrap-reverse',
+                                    'align-items': 'center',
+                                    'justify-content': 'space-between'},grid_style.footer.style))
+
+
+            $('.pq-grid-footer span[title="First Page"]').remove();
+            $('.pq-grid-footer span[title="Last Page"]').remove();
+            $('.pq-grid-footer span[title="Refresh"]').remove();
+
+            pqGridFirstPageButton.remove()      
+            pqGridLastPageButton.remove()               
+            //pqGridFirstPageButton.css('padding','14px 14px')
+
+
+            //pqGridLastPageButton.css('padding', '14px 14px')
+            $('.ui-icon-seek-prev').parent().addClass('previous-btn')
+            $('.previous-btn').wrapAll('<div class="previous-btn-container"></div>')
+            $('.ui-icon-seek-next').parent().addClass('next-btn')
+            $('.next-btn').wrapAll('<div class="next-btn-container"></div>')
+            
+            $('.number-page').addClass('number-page-container')
+            // Initial value of a
+
+            $('.page-selects').appendTo($('.page-options-component'))
+            $('.page-selects').after($('.entries-text'))
+            $('.page-options').remove()
+
+
+            $('.pq-pager-input').appendTo('body')
+            $('.pq-pager-input').addClass('page-number-trigger')
+
+            $('<div class="pagination-bar-container"></div>').insertAfter($('.previous-btn-container'))
+
+
+        
+            if(data.length - header.n_row <= toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                if(data.length - header.n_row < 20)
+                {   
+                    if(data.length - header.n_row <= 10){
+                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                    }
+                    else if(data.length - header.n_row > 10 && data.length - header.n_row < 20)
+                    {
+                        for(var i=1; i <= Math.ceil(20/(data.length - header.n_row)); i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span>}</div>`)
+                            }
+                        }
+                    }
+                }else{
+                    for(var i=1; i <= 5; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                        }
+                    }
+                }
+            }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                for(var i=1; i <= 3; i++){
+                    if(i === 1){
+                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                    }
+                    else if(i > 1){
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                    }
+                }
+                $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+            }
+
+            $('.page-selects').on('change', () => {
+                $('.pagination-bar-container').empty(); 
+                var totalPageSection = parseInt($('.total').text())
+                var totalPageRecord = parseInt($('.page-selects').val())
+
+
+                if(totalPageSection <= 5){
+                    for(var i=1; i <= totalPageSection; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" ><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                }else if(totalPageSection > 5){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                }
+
+        
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })
+
+
+            if($('.previous-btn').hasClass('disabled')){
+                $('.previous-btn-container').addClass('disabled')
+            }
+
+
+
+            $('.previous-btn-container').on('click', function(){
+                var countClick = parseInt($('.pq-pager-input').val()) + 1; // at page = 3(countClick 3)) i prees previous --> page 2 countClick 2
+                if($('.previous-btn').hasClass('disabled')){
+                    $('.previous-btn-container').addClass('disabled')
+                }
+
+                if($('.next-btn-container').hasClass('disabled')){
+                    $('.next-btn-container').removeClass('disabled')
+                }
+                
+                
+                if($(`#page-${countClick}`).hasClass('active')){
+                    $(`#page-${countClick-1}`).addClass('active')
+                    $(`#page-${countClick}`).removeClass('active')
+                }else if(!$(`#page-${countClick}`).hasClass('active')){
+                    $(`#page-${countClick - 1}`).addClass('active')
+                }
+
+                $('.num-page').css({
+                    'background': '',
+                    'border': ''
+                })
+
+
+                $('.total').hide();
+                $('.pq-pager-input').hide();
+            });
+            
+ 
+            $('.next-btn-container').on('click', function(){
+                var countClick = parseInt($('.pq-pager-input').val()) - 1
+
+                if($('.previous-btn-container').hasClass('disabled')){
+                    $('.previous-btn-container').removeClass('disabled')
+                }
+
+                if($('.next-btn').hasClass('disabled')){
+                    $('.next-btn-container').addClass('disabled')
+                }
+
+
+                if($(`#page-${countClick}`).hasClass('active')){
+                    $(`#page-${countClick+1}`).addClass('active')
+                    $(`#page-${countClick}`).removeClass('active')
+                }
+
+                else if(!$(`#page-${countClick}`).hasClass('active')){
+                    $(`#page-${countClick+1}`).addClass('active')
+                }
+
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+
+            });
+
+            /* --------------------------------- */
+
+            $('.filterValue').on('input', function(){
+                var totalPageFromString = $('.pq-pager-msg').text().match(/\d+/g) !== null? parseInt($('.pq-pager-msg').text().match(/\d+/g)[2]): null; 
+
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })
+
+            $('.filterValue').on('keyup', function(){
+                $('.pagination-bar-container').empty(); 
+                var totalPageSection = parseInt($('.total').text())
+                var totalPageRecord = parseInt($('.page-selects').val())
+
+                if($('.pq-grid-cont-inner').text() === "No rows to display."){
+                    $('.pq-pager-msg').empty()
+                    $('.pagination-container').append($('.pq-pager-msg').html())
+                    $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')    
+                }
+
+                if(isNaN(totalPageSection)){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${toolbar.rPPOptions[0]}"><span>${toolbar.rPPOptions[0]}</span></div>`)
+                }
+
+
+                if(totalPageSection <= 5){
+                    for(var i=1; i <= totalPageSection; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" ><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                }else if(totalPageSection > 5){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                }
+
+                
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })  
+
+            /* --------------------------------- */
+
+            $('.filterColumn, .filterCondition').on('change', function(){
+                $('.pagination-bar-container').empty(); 
+                var totalPageSection = parseInt($('.total').text())
+                var totalPageRecord = parseInt($('.page-selects').val())
+
+                if($('.pq-grid-cont-inner').text() === "No rows to display."){
+                    $('.pq-pager-msg').empty()
+                    $('.pagination-container').append($('.pq-pager-msg').html())
+                    $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')    
+                }
+
+                if(isNaN(totalPageSection)){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${toolbar.rPPOptions[0]}"><span>${toolbar.rPPOptions[0]}</span></div>`)
+                }
+
+                if(totalPageSection <= 5){
+                    for(var i=1; i <= totalPageSection; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" ><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                }else if(totalPageSection > 5){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                }
+
+
+
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })
+
+
+            $('.pagination-bar-container').on('click', '.num-page', function() {
+                var clickedValue = $(this).text();
+                var currentActive = $('.num-page.active');
+
+            
+                // If the clicked element is already active, do nothing
+                if (!$(this).hasClass('active')) {
+                    currentActive.removeClass('active');
+                    $(this).addClass('active');
+                    
+                    // Remove custom background from all elements
+                    $('.num-page').css({
+                        'background': '',
+                        'border': ''
+                        }
+                    )
+
+            
+                    $('.page-number-trigger').val(clickedValue).trigger('change');
+                }
+
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            });
+
+
+
+            
+
+
+            $('.page-number-trigger').hide()    
+            $('.total').remove()
+
+
+            // -------------------------------------------------
+            $('.pagination-bar-container').css({
+                'display': 'flex',
+                'gap': '3px',
+                'align-items': 'center'
+            })
+            
         }
     }
 
@@ -813,6 +1090,7 @@ $(document).ready(function(){
             oper: 'replace',
             data: filterObject
         });
+
     }
 
 // --------------------------------------------- Recall all function ------------------------------------------------------------
@@ -825,7 +1103,7 @@ $(document).ready(function(){
         scrollbar: scrollbar,
         toolbar: toolbar
     }
-    
+    var pageModel = { type: "local", rPP: grid_style.toolbar.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.toolbar.rPPOptions}
     var grid_object = {
                     resizable: false,
                     draggable: false,
@@ -833,17 +1111,18 @@ $(document).ready(function(){
                     width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
                     height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.height.replace('px','')),
                     editable: false,
-                    sortModel: false,
+                    sortModel: false,   
                     freezeRows: grid_style.content.numberFreezeRows,    
                     freezeCols: grid_style.content.numberFreezeCols,
                     scrollModel: {horizontal: true, autoFit: true},
                     numberCell: {show: false},
                     flex: {one: true},
-                    colModel: createColModel(),
+                    colModel: createLinkToColumn(dataForCreateLink.column_name ,createColModel(), dataForCreateLink.source),
                     mergeCells: mergeCellsContentTable(grid_style),
                     dataModel: { data: data.slice(grid_style.header.n_row, ) },
                     columnTemplate: { align: 'center', valign: 'center' },
                     filterModel: { mode: 'OR'},
+                    pageModel: pageModel,
                     toolbar: {
                         cls: "pq-toolbar-search",
                         items: [          
@@ -851,7 +1130,18 @@ $(document).ready(function(){
                                 type: 'select',
                                 label: 'Format: ',                
                                 attr: 'id="export_format"',
-                                options: grid_style.toolbar.exportFilesBar.export_format
+                                options: grid_style.toolbar.export_format,
+
+                            },
+                            {
+                                type: 'select',
+                                cls:'page-selects',
+                                value: pageModel.rPP,
+                                options: pageModel.rPPOptions,
+                                listener: function(evt) {
+                                    this.option('pageModel.rPP', $(evt.target).val())
+                                    this.refreshDataAndView();
+                                }
                             },
                             {
                                 type: 'button',
@@ -895,27 +1185,36 @@ $(document).ready(function(){
                                 type: 'select',                         
                                 cls: "filterCondition",
                                 listener: filterhandler,
-                                options: grid_style.toolbar.filterSearchBar.filter_condition
+                                options: grid_style.toolbar.filter_condition
                             }
                         ]
                     },
-                    pageModel: { type: "local", rPP: grid_style.toolbar.pageSelectBar.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.toolbar.pageSelectBar.rPPOptions},
                     refresh: function(event,ui){
+                        createToolBox()
                         stylingTable(grid_style)
+                        createPagination()  
+  
                 }
     }
-
+    /*
+    $('.hidden-button').on('click', function(){
+        var pqGridrefreshButton = $('.ui-icon-refresh')
+        $('.hidden').toggle()
+        pqGridrefreshButton.click()
+    })
+    */
 
 
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
-    if((data.length - grid_style.header.n_row) <= toolbar.pageSelectBar.rPPOptions[0]){
+    if((data.length - grid_style.header.n_row) <= toolbar.rPPOptions[0]){
         grid_object.width = '100%';
         grid_style.overall_table.isScrollBar = false
     }
 
     var $grid = $("#automerged-modified-table").pqGrid(grid_object);
+
 });    
 
