@@ -764,12 +764,11 @@ $(document).ready(function(){
             $('.page-options').remove()
 
 
-            $('.pq-pager-input').appendTo('body')
-            $('.pq-pager-input').addClass('page-number-trigger')
-
             $('<div class="pagination-bar-container"></div>').insertAfter($('.previous-btn-container'))
 
-
+            
+            $('.pq-toolbar-search').append($('.pq-grid-top .pq-page-placeholder input').clone().addClass('page-enter-input'))
+        
         
             if(data.length - header.n_row <= toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
                 if(data.length - header.n_row < 20)
@@ -799,7 +798,7 @@ $(document).ready(function(){
                     }
                 }
             }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
-                for(var i=1; i <= 3; i++){
+                for(var i=1; i <= 5; i++){
                     if(i === 1){
                         $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
                     }
@@ -841,7 +840,7 @@ $(document).ready(function(){
 
         
                 $('.total').hide()
-                $('.pq-pager-input').hide()
+                //$('.pq-pager-input').hide()
             })
 
 
@@ -853,6 +852,8 @@ $(document).ready(function(){
 
             $('.previous-btn-container').on('click', function(){
                 var countClick = parseInt($('.pq-pager-input').val()) + 1; // at page = 3(countClick 3)) i prees previous --> page 2 countClick 2
+                
+                
                 if($('.previous-btn').hasClass('disabled')){
                     $('.previous-btn-container').addClass('disabled')
                 }
@@ -874,9 +875,17 @@ $(document).ready(function(){
                     'border': ''
                 })
 
+                if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
+                    $('.next-btn-container').addClass('disabled')
+                }
+
+                if($('.pagination-bar-container').children().length === 1){
+                    $('.next-btn-container').addClass('disabled')
+                }
+
 
                 $('.total').hide();
-                $('.pq-pager-input').hide();
+                //$('.pq-pager-input').hide();
             });
             
  
@@ -901,27 +910,128 @@ $(document).ready(function(){
                     $(`#page-${countClick+1}`).addClass('active')
                 }
 
-                $('.total').hide()
-                $('.pq-pager-input').hide()
+                if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
+                    $('.previous-btn-container').addClass('disabled')
+                }
 
+
+
+
+                
+
+                $('.total').hide()
+                //$('.pq-pager-input').hide()
             });
 
             /* --------------------------------- */
 
-            $('.filterValue').on('input', function(){
-                var totalPageFromString = $('.pq-pager-msg').text().match(/\d+/g) !== null? parseInt($('.pq-pager-msg').text().match(/\d+/g)[2]): null; 
 
+            $('.filterValue').on('input', function(){
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
-
+            
             $('.filterValue').on('keyup', function(){
                 $('.pagination-bar-container').empty(); 
                 var totalPageSection = parseInt($('.total').text())
                 var totalPageRecord = parseInt($('.page-selects').val())
 
-                console.log(totalPageRecord)
-                console.log(data.length - header.n_row)
+
+
+                if($('.pq-grid-cont-inner').text() === "No rows to display."){
+                    $('.pq-pager-msg').empty()
+                    $('.pagination-container').append($('.pq-pager-msg').html())
+                    $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')    
+                }
+
+                if(isNaN(totalPageSection) && totalPageRecord < data.length - header.n_row){
+                    if(data.length - header.n_row <= toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                        if(data.length - header.n_row < 20)
+                        {   
+                            if(data.length - header.n_row <= 10){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                            }
+                            else if(data.length - header.n_row > 10 && data.length - header.n_row < 20)
+                            {
+                                for(var i=1; i <= Math.ceil(20/(data.length - header.n_row)); i++){
+                                    if(i === 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                    }
+                                    else if(i > 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span>}</div>`)
+                                    }
+                                }
+                            }
+                        }else{
+                            for(var i=1; i <= Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]); i++){
+                                if(i === 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
+                            }
+                        }
+                    }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                        for(var i=1; i <= 5; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                            }
+                        }
+                        $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                    }
+                }else if(isNaN(totalPageSection) && totalPageRecord === toolbar.rPPOptions[0]){
+                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}"><span>${1}</span></div>`)
+                }
+
+
+                if(totalPageSection <= 5){
+                    for(var i=1; i <= totalPageSection; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" ><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                }else if(totalPageSection > 5){
+                    for(var i=1; i <= 3; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        }
+                    }
+                    $('.pagination-bar-container').append(`<div>...</div>`)
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                }
+
+                $('.pq-pager-input').val(1).trigger('change');
+
+                if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
+                    $('.next-btn-container').addClass('disabled')
+                }
+
+                if($('.pagination-bar-container').children().length ===1){
+                    $('.next-btn-container').addClass('disabled')
+                }
+
+                $('.total').hide()
+                //$('.pq-pager-input').hide()        
+            })  
+
+            /* --------------------------------- */
+
+            $('.filterColumn, .filterCondition').on('change', function(){
+                $('.pagination-bar-container').empty(); 
+                var totalPageSection = parseInt($('.total').text())
+                var totalPageRecord = parseInt($('.page-selects').val())
+                
 
                 if($('.pq-grid-cont-inner').text() === "No rows to display."){
                     $('.pq-pager-msg').empty()
@@ -996,63 +1106,10 @@ $(document).ready(function(){
                     $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                 }
 
-                
-                $('.total').hide()
-                $('.pq-pager-input').hide()
-            })  
-
-            /* --------------------------------- */
-
-            $('.filterColumn, .filterCondition').on('change', function(){
-                $('.pagination-bar-container').empty(); 
-                var totalPageSection = parseInt($('.total').text())
-                var totalPageRecord = parseInt($('.page-selects').val())
-
-                if($('.pq-grid-cont-inner').text() === "No rows to display."){
-                    $('.pq-pager-msg').empty()
-                    $('.pagination-container').append($('.pq-pager-msg').html())
-                    $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')    
-                }
-
-                if(isNaN(totalPageSection)){
-                    for(var i=1; i <= 3; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
-                        }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
-                        }
-                    }
-                    $('.pagination-bar-container').append(`<div>...</div>`)
-                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${toolbar.rPPOptions[0]}"><span>${toolbar.rPPOptions[0]}</span></div>`)
-                }
-
-                if(totalPageSection <= 5){
-                    for(var i=1; i <= totalPageSection; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" ><span>${i}</span></div>`)
-                        }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
-                        }
-                    }
-                }else if(totalPageSection > 5){
-                    for(var i=1; i <= 3; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
-                        }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
-                        }
-                    }
-                    $('.pagination-bar-container').append(`<div>...</div>`)
-                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
-                }
-
-
+                $('.pq-pager-input').val(1).trigger('change');
 
                 $('.total').hide()
-                $('.pq-pager-input').hide()
+                //$('.pq-pager-input').hide()
             })
 
 
@@ -1074,26 +1131,18 @@ $(document).ready(function(){
                     )
 
             
-                    $('.page-number-trigger').val(clickedValue).trigger('change');
+                    $('.pq-pager-input').val(clickedValue).trigger('change');
                 }
 
                 $('.total').hide()
-                $('.pq-pager-input').hide()
+                //$('.pq-pager-input').hide()
             });
 
-            
-            $('.num-page').on('click', function(){
-                
-                $('.previous-btn').addClass('disabled')
-            })
+        
 
 
-            
-
-
-            $('.page-number-trigger').hide()    
+            //$('.pq-pager-input').hide()    
             $('.total').remove()
-
 
             // -------------------------------------------------
             $('.pagination-bar-container').css({
@@ -1101,6 +1150,7 @@ $(document).ready(function(){
                 'gap': '3px',
                 'align-items': 'center'
             })
+
             
         }
     }
@@ -1235,6 +1285,7 @@ $(document).ready(function(){
   
                 }
     }
+    
     /*
     $('.hidden-button').on('click', function(){
         var pqGridrefreshButton = $('.ui-icon-refresh')
@@ -1242,6 +1293,7 @@ $(document).ready(function(){
         pqGridrefreshButton.click()
     })
     */
+    
 
 
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {

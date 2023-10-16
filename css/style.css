@@ -295,10 +295,6 @@ div.pq-grid select{
   border: 2px solid #afd3f2;
 }
 
-.disabled:hover{
-  background: none !important;
-  border: 2px solid transparent !important;
-}
 
 
 .number-page-container{
@@ -336,6 +332,12 @@ div.pq-grid select{
   border: 2px solid #afd3f2;
 }
 
+
+.disabled:hover{
+  background: none !important;
+  border: 2px solid transparent !important;
+}
+
 .active{
   padding: 7px 14px;
   background: linear-gradient(white 40%,#dbe4ed);
@@ -349,7 +351,9 @@ div.pq-grid select{
 .hidden{
   display: none
 }
+
 */
+
 
 
 
