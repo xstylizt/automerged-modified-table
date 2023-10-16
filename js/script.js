@@ -798,16 +798,30 @@ $(document).ready(function(){
                     }
                 }
             }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
-                for(var i=1; i <= 5; i++){
-                    if(i === 1){
-                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                if(Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]) >= 10)
+                {
+                    for(var i=1; i <= 5; i++){
+                        if(i === 1){
+                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                        }
+                        else if(i > 1){
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                        }
                     }
-                    else if(i > 1){
-                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
-                    }
+                    $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                }else{
+                        for(var i=1; i <= 3; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                            }
+                        }
+                        $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
                 }
-                $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
-                $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
             }
 
             $('.page-selects').on('change', () => {
@@ -826,16 +840,30 @@ $(document).ready(function(){
                         }
                     }
                 }else if(totalPageSection > 5){
-                    for(var i=1; i <= 3; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                    if(totalPageSection >= 6 && totalPageSection <= 9)
+                    {
+                        for(var i=1; i <= 3; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                    }else{
+                        for(var i=1; i <= 5; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                     }
-                    $('.pagination-bar-container').append(`<div>...</div>`)
-                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                 }
 
         
@@ -852,7 +880,7 @@ $(document).ready(function(){
 
             $('.previous-btn-container').on('click', function(){
                 var countClick = parseInt($('.pq-pager-input').val()) + 1; // at page = 3(countClick 3)) i prees previous --> page 2 countClick 2
-                
+                var totalPageCount = parseInt($('.total').text())
                 
                 if($('.previous-btn').hasClass('disabled')){
                     $('.previous-btn-container').addClass('disabled')
@@ -883,6 +911,9 @@ $(document).ready(function(){
                     $('.next-btn-container').addClass('disabled')
                 }
 
+                
+
+
 
                 $('.total').hide();
                 //$('.pq-pager-input').hide();
@@ -891,6 +922,7 @@ $(document).ready(function(){
  
             $('.next-btn-container').on('click', function(){
                 var countClick = parseInt($('.pq-pager-input').val()) - 1
+                var totalPageCount = parseInt($('.total').text())
 
                 if($('.previous-btn-container').hasClass('disabled')){
                     $('.previous-btn-container').removeClass('disabled')
@@ -914,10 +946,57 @@ $(document).ready(function(){
                     $('.previous-btn-container').addClass('disabled')
                 }
 
-
-
-
-                
+                if(Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]) >= 5)
+                {
+                    if(totalPageCount >= 10)
+                    {
+                        if(countClick+1 >= 6 && countClick <= totalPageCount){
+                            if(countClick+1 < totalPageCount - 3)
+                            {
+                                $('.pagination-bar-container').empty()
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick}" style="padding: 7px 14px;"><span>${countClick}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${countClick+1}" style="padding: 7px 14px;"><span>${countClick+1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+2}" style="padding: 7px 14px;"><span>${countClick+2}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageCount}" style="padding: 7px 14px;"><span>${totalPageCount}</span></div>`)
+                            }
+                            if(countClick+1 === totalPageCount - 3){
+                                $('.pagination-bar-container').empty()
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${countClick+1}" style="padding: 7px 14px;"><span>${countClick+1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+2}" style="padding: 7px 14px;"><span>${countClick+2}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+3}" style="padding: 7px 14px;"><span>${countClick+3}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageCount}" style="padding: 7px 14px;"><span>${totalPageCount}</span></div>`)
+                            }
+                        }
+                    }else{
+                        if(countClick+1 >= 4 && countClick <= totalPageCount){
+                            if(countClick+1 < totalPageCount - 3)
+                            {
+                                $('.pagination-bar-container').empty()
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick}" style="padding: 7px 14px;"><span>${countClick}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${countClick+1}" style="padding: 7px 14px;"><span>${countClick+1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+2}" style="padding: 7px 14px;"><span>${countClick+2}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageCount}" style="padding: 7px 14px;"><span>${totalPageCount}</span></div>`)
+                            }
+                            if(countClick+1 === totalPageCount - 3){
+                                $('.pagination-bar-container').empty()
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div>...</div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${countClick+1}" style="padding: 7px 14px;"><span>${countClick+1}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+2}" style="padding: 7px 14px;"><span>${countClick+2}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${countClick+3}" style="padding: 7px 14px;"><span>${countClick+3}</span></div>`)
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageCount}" style="padding: 7px 14px;"><span>${totalPageCount}</span></div>`)
+                            }
+                        }
+                    }
+                }
 
                 $('.total').hide()
                 //$('.pq-pager-input').hide()
@@ -931,11 +1010,11 @@ $(document).ready(function(){
                 $('.pq-pager-input').hide()
             })
             
+
             $('.filterValue').on('keyup', function(){
                 $('.pagination-bar-container').empty(); 
                 var totalPageSection = parseInt($('.total').text())
                 var totalPageRecord = parseInt($('.page-selects').val())
-
 
 
                 if($('.pq-grid-cont-inner').text() === "No rows to display."){
@@ -973,16 +1052,30 @@ $(document).ready(function(){
                             }
                         }
                     }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
-                        for(var i=1; i <= 5; i++){
-                            if(i === 1){
-                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                        if(Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]) >= 10)
+                        {
+                            for(var i=1; i <= 5; i++){
+                                if(i === 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
                             }
-                            else if(i > 1){
-                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
-                            }
+                            $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                        }else{
+                                for(var i=1; i <= 3; i++){
+                                    if(i === 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                    }
+                                    else if(i > 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                    }
+                                }
+                                $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
                         }
-                        $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
-                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
                     }
                 }else if(isNaN(totalPageSection) && totalPageRecord === toolbar.rPPOptions[0]){
                     $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}"><span>${1}</span></div>`)
@@ -999,16 +1092,30 @@ $(document).ready(function(){
                         }
                     }
                 }else if(totalPageSection > 5){
-                    for(var i=1; i <= 3; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                    if(totalPageSection >= 6 && totalPageSection <= 9)
+                    {
+                        for(var i=1; i <= 3; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                    }else{
+                        for(var i=1; i <= 5; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                     }
-                    $('.pagination-bar-container').append(`<div>...</div>`)
-                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                 }
 
                 $('.pq-pager-input').val(1).trigger('change');
@@ -1068,16 +1175,30 @@ $(document).ready(function(){
                             }
                         }
                     }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
-                        for(var i=1; i <= 3; i++){
-                            if(i === 1){
-                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                        if(Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]) >= 10)
+                        {
+                            for(var i=1; i <= 5; i++){
+                                if(i === 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
                             }
-                            else if(i > 1){
-                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
-                            }
+                            $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                        }else{
+                                for(var i=1; i <= 3; i++){
+                                    if(i === 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                    }
+                                    else if(i > 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                    }
+                                }
+                                $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
                         }
-                        $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
-                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
                     }
                 }else if(isNaN(totalPageSection) && totalPageRecord === toolbar.rPPOptions[0]){
                     $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}"><span>${1}</span></div>`)
@@ -1094,16 +1215,30 @@ $(document).ready(function(){
                         }
                     }
                 }else if(totalPageSection > 5){
-                    for(var i=1; i <= 3; i++){
-                        if(i === 1){
-                            $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                    if(totalPageSection >= 6 && totalPageSection <= 9)
+                    {
+                        for(var i=1; i <= 3; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
-                        else if(i > 1){
-                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                    }else{
+                        for(var i=1; i <= 5; i++){
+                            if(i === 1){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}"><span>${i}</span></div>`)
+                            }
                         }
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                     }
-                    $('.pagination-bar-container').append(`<div>...</div>`)
-                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                 }
 
                 $('.pq-pager-input').val(1).trigger('change');
@@ -1116,6 +1251,7 @@ $(document).ready(function(){
             $('.pagination-bar-container').on('click', '.num-page', function() {
                 var clickedValue = $(this).text();
                 var currentActive = $('.num-page.active');
+                var totalPageCount = parseInt($('.total').text())
 
             
                 // If the clicked element is already active, do nothing
@@ -1133,6 +1269,77 @@ $(document).ready(function(){
             
                     $('.pq-pager-input').val(clickedValue).trigger('change');
                 }
+
+                if(parseInt(clickedValue) === 1){
+                    $('.pagination-bar-container').empty()
+                    if(data.length - header.n_row <= toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                        if(data.length - header.n_row < 20)
+                        {   
+                            if(data.length - header.n_row <= 10){
+                                $('.pagination-bar-container').append(`<div class="num-page active" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                            }
+                            else if(data.length - header.n_row > 10 && data.length - header.n_row < 20)
+                            {
+                                for(var i=1; i <= Math.ceil(20/(data.length - header.n_row)); i++){
+                                    if(i === 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                    }
+                                    else if(i > 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span>}</div>`)
+                                    }
+                                }
+                            }
+                        }else{
+                            for(var i=1; i <= Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]); i++){
+                                if(i === 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
+                            }
+                        }
+                    }else if(data.length - header.n_row > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                        if(Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0]) >= 10)
+                        {
+                            for(var i=1; i <= 5; i++){
+                                if(i === 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                }
+                            }
+                            $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                            $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                        }else{
+                                for(var i=1; i <= 3; i++){
+                                    if(i === 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${i}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                                    }
+                                    else if(i > 1){
+                                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${i}" style="padding: 7px 14px;"><span>${i}</span></div>`)
+                                    }
+                                }
+                                $('.pagination-bar-container').append('<div style="margin-left:6px; margin-right:6px;">...</div>')
+                                $('.pagination-bar-container').append(`<div class="num-page" id="page-${Math.ceil((data.length - header.n_row)/toolbar.rPPOptions[0])}" style="padding: 7px 14px;"><span>${Math.ceil((data.length - header.n_row)/10)}</span></div>`)
+                        }
+                    }
+                }
+
+                if(parseInt(clickedValue) > 5){
+                    if(totalPageCount - parseInt(clickedValue) === 3){
+                        $('.pagination-bar-container').empty()
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
+                        $('.pagination-bar-container').append(`<div>...</div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page active" id="page-${parseInt(clickedValue)}" style="padding: 7px 14px;"><span>${parseInt(clickedValue)}</span></div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${parseInt(clickedValue)+1}" style="padding: 7px 14px;"><span>${parseInt(clickedValue)+1}</span></div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${parseInt(clickedValue)+2}" style="padding: 7px 14px;"><span>${parseInt(clickedValue)+2}</span></div>`)
+                        $('.pagination-bar-container').append(`<div class="num-page" id="page-${totalPageCount}" style="padding: 7px 14px;"><span>${totalPageCount}</span></div>`)
+                    }
+                }
+
+
 
                 $('.total').hide()
                 //$('.pq-pager-input').hide()
