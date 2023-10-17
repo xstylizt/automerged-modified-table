@@ -338,10 +338,37 @@ div.pq-grid select{
   border: 2px solid transparent !important;
 }
 
+
 .active{
   padding: 7px 14px;
   background: linear-gradient(white 40%,#dbe4ed);
   border: 2px solid rgb(175, 211, 242);
+}
+
+#page-insert-box{
+  width: 40px;
+  height: 35px;
+  background: linear-gradient(white 40%,#9cbee2);
+  border: 2px solid rgb(175, 211, 242);
+  text-align: center;
+}
+
+#page-insert-box:focus{
+  outline: none;
+}
+
+input.disabled-input-box{
+  width: 40px;
+  height: 35px;
+  background: white !important;
+  border: 2px solid white !important;
+  text-align: center;
+}
+
+
+input.disabled-input-box:hover{
+  background: linear-gradient(white 40%,#9cbee2) !important;
+  border: 2px solid #afd3f2 !important;
 }
 
 
