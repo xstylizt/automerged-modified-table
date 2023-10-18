@@ -9,6 +9,12 @@ var overall_table = {
 
 // # Style about header table
 var header = {
+    n_row: 3,
+    mergedCells: {
+        type: 'auto' ,    
+        configs: []  
+    },
+    height: 'auto',
     component:{
         container: {
             class_name: 'header-container',
@@ -34,18 +40,18 @@ var header = {
             }
         },
     },
-    n_row: 3,
-    mergedCells: {
-        type: 'auto' ,    
-        configs: []  
-    },
-    height: 'auto',
-    style: {}
 }
 
 
 // # Style about content table
 var content = {
+    numberFreezeRows: 0,
+    numberFreezeCols: 0,
+    mergedCells: {
+        type: 'auto_specific_col',
+        configs: [{c1:3, }]
+    },
+    height: '500px',
     component: {
         parentCell: {
             oddRow: {
@@ -74,21 +80,52 @@ var content = {
                 }
         }
     },
-    numberFreezeRows: 0,
-    numberFreezeCols: 0,
-    mergedCells: {
-        type: 'auto_specific_col',
-        configs: [{c1:3, }]
-    },
-    height: '500px'
 }
 
 
 // # Paging bar (footer)
 var footer = {
-    class_name: 'footer-container',
-    style: {},
+    component: {
+        container: {
+            class_name: 'footer-container',
+            style: {},
+        },
+
+        paginationContainer:{
+            parent: {
+                class_name: 'pagination-container',
+                style: {},
+            },
+            child: {
+                previousButton:{
+                    class_name: 'previous-btn-container',
+                    style: {}
+                },
+    
+                paginationPageBar:{
+                    class_name: 'page-number-container',
+                    style: {},
+                    child: {
+                        numberPage: {
+                            class_name: 'num-page'
+                        },
+                        insertnumberPage:{
+                            class_name: 'page-insert-box',
+                            style: {}
+                        }
+                    }
+                },
+    
+                nextButton:{
+                    class_name: 'next-btn-container',
+                    style: {}
+                }
+            }
+        }
+    }
 }
+
+
 
 var scrollbar = {
     verticalScrollBar: {
@@ -131,6 +168,19 @@ var scrollbar = {
 }
 
 var toolbar = {
+    export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
+    rPPOptions: [10,20,30,40,50],
+    filter_condition: [
+        { "begin": "Begins With" },
+        { "contain": "Contains" },
+        { "end": "Ends With" },
+        { "notcontain": "Does not contain" },
+        { "equal": "Equal To" },
+        { "notequal": "Not Equal To" },
+        { "empty": "Empty" },
+        { "notempty": "Not Empty" },
+    ],
+
     component: {
         container: {
             class_name: 'toolbar-search-component',
@@ -216,18 +266,6 @@ var toolbar = {
             }
         }
     },
-    export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
-    rPPOptions: [10,20,30,40,50],
-    filter_condition: [
-        { "begin": "Begins With" },
-        { "contain": "Contains" },
-        { "end": "Ends With" },
-        { "notcontain": "Does not contain" },
-        { "equal": "Equal To" },
-        { "notequal": "Not Equal To" },
-        { "empty": "Empty" },
-        { "notempty": "Not Empty" },
-    ]
 }
 
 

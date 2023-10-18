@@ -102,11 +102,13 @@ var data = [
     [98, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
     [99, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
     [100, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    
 ]
 
 var dataForCreateLink = {
     source: [
-      /*
+    
+    /*
         [
           ["Sakura", "https://sakura.com"],
           ["Ravi", "https://ravi.com"],
@@ -159,62 +161,13 @@ var dataForCreateLink = {
           ["Ananya", "https://ananya.com"],
           ["Raj", "https://raj.com"],
         ],
+
         [
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
+            ["Tanaka","https://www.tanaka"]
         ]
-        */
+    */
       
-        
-        
+    /*
        
        [
          [
@@ -250,15 +203,12 @@ var dataForCreateLink = {
             "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
           ]
        ]
-       
-                
+    */
     ],
-    column_name: ['First name','Last name']/*'First name'*/,
-    class_name: 'all-cel-link'/*'all-cell-link'*/,
+    columnNameArray: [],
+    class_name: '',
     style: {}
 }
-
-
 
 
 

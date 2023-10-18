@@ -48,7 +48,7 @@ body {
 
 
 .header-table-cell{
-  padding: 5px 0px 5px 0px !important;
+  padding: 10px 0px 10px 0px !important;
   font-size: 18px !important;
   font-weight: bold ;
   color: black;
@@ -68,7 +68,7 @@ body {
 
 .content-table-cell{
   border: 1.5px solid #afd3f2 !important;
-  padding: 3px 0px 3px 0px;
+  padding: 5px 0px 5px 0px;
   font-size: 18px !important;
   font-weight: 400;
   color: black;
@@ -259,26 +259,38 @@ div.pq-grid select{
 }
 
 
-/* ------------------- */
+/* ---- Link ------ */
 
-/* Link */
 
 .all-cell-link{
-  text-decoration-color: blue;
+  text-decoration-color: transparent;
+}
+
+.all-cell-link:hover{
+  text-decoration-color: red;
 }
 
 
 
+/* ----- footer -----*/
+.footer-container{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: space-between;
+}
 
-/* pagination */
 
 
+/* --- pagination container ---*/
 .pagination-container {
   display: flex;
   margin-right: -5px;
 }
 
 
+/* --- previous button -----*/
 .previous-btn-container {
   border: 2px solid transparent;
 }
@@ -295,12 +307,20 @@ div.pq-grid select{
   border: 2px solid #afd3f2;
 }
 
+/* --- number page -------- */
 
-
-.number-page-container{
-  display: flex;
-  align-items: center;
+.num-page{
+  border: 2px solid transparent;
+  padding: 7px 14px;  
 }
+
+.num-page:hover{
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid #afd3f2;
+}
+
+/* --- next button -------- */
+
 
 .next-btn-container {
   border: 2px solid transparent;
@@ -318,42 +338,24 @@ div.pq-grid select{
   border: 2px solid #afd3f2;
 }
 
-.num-page {
-  border: 2px solid transparent;
+/* ---- three dot --------- */
+
+.three-dot{
+  margin-left: 6px; 
+  margin-right: 6px;
 }
 
-.num-page{
-  padding: 7px 14px;  
-}
+/* ---- middle insert box --- */
 
-
-.num-page:hover{
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid #afd3f2;
-}
-
-
-.disabled:hover{
-  background: none !important;
-  border: 2px solid transparent !important;
-}
-
-
-.active{
-  padding: 7px 14px;
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid rgb(175, 211, 242);
-}
-
-#page-insert-box{
+.page-insert-box{
   width: 40px;
   height: 35px;
   background: linear-gradient(white 40%,#9cbee2);
-  border: 2px solid rgb(175, 211, 242);
+  border: 2px solid rgb(175, 211, 242) !important;
   text-align: center;
 }
 
-#page-insert-box:focus{
+.page-insert-box:focus{
   outline: none;
 }
 
@@ -366,10 +368,20 @@ input.disabled-input-box{
 }
 
 
-input.disabled-input-box:hover{
-  background: linear-gradient(white 40%,#9cbee2) !important;
-  border: 2px solid #afd3f2 !important;
+/* ---- disabled class for previous, next, number page*/
+.disabled:hover{
+  background: none !important;
+  border: 2px solid transparent !important;
 }
+
+
+/* ---- active class for previous, next, number page*/
+.active{
+  padding: 7px 14px;
+  background: linear-gradient(white 40%,#dbe4ed);
+  border: 2px solid rgb(175, 211, 242);
+}
+
 
 
 
