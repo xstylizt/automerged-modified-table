@@ -321,6 +321,14 @@ div.pq-grid select:focus{
   border: 2px solid #afd3f2;
 }
 
+/* ---- page number container --- */
+.page-number-container{
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+}
+
+
 /* --- number page -------- */
 
 .num-page{
@@ -362,7 +370,7 @@ div.pq-grid select:focus{
 /* ---- middle insert box --- */
 
 .page-insert-box{
-  width: 40px;
+  width: 40px ;
   height: 35px;
   background: linear-gradient(white 40%,#9cbee2);
   border: 2px solid rgb(175, 211, 242) !important;

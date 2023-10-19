@@ -101,8 +101,7 @@ var data = [
     [97, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
     [98, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
     [99, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [100, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    
+    [100, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"]
 ]
 
 var dataForCreateLink = {

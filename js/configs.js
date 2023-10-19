@@ -88,7 +88,9 @@ var footer = {
     component: {
         container: {
             class_name: 'footer-container',
-            style: {},
+            style: {
+                    
+            },
         },
 
         paginationContainer:{
@@ -107,18 +109,20 @@ var footer = {
                     style: {},
                     child: {
                         numberPage: {
-                            class_name: 'num-page'
+                            class_name: 'num-page',
+                            style: {}
                         },
                         insertnumberPage:{
                             class_name: 'page-insert-box',
-                            style: {}
                         }
                     }
                 },
     
                 nextButton:{
                     class_name: 'next-btn-container',
-                    style: {}
+                    style: {
+                        
+                    }
                 }
             }
         }

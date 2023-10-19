@@ -535,64 +535,6 @@ $(document).ready(function(){
        
     }
 
-    // --------------------------- Define function for creating toolbar above the table ----------------------------------------------------
-    var setInitialCountRender = 0
-    function createToolBox(){
-        setInitialCountRender++;
-        if(setInitialCountRender == 1){
-            $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
-            $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
-            $('.export-files-component').find('label').addClass('format-label')
-            $('.format-label, .ui-button').wrapAll('<div class="format-component"></div>')
-            $('.pq-grid-top').find('span').appendTo($('.export-files-component'))
-            $('<span class="show-text">Show</span>').insertAfter('.format-component')
-            $('<span class="entries-text">entries</span>').insertAfter('.page-options')
-            $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
-            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
-            $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
-            $('.ui-button').text('')
-            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
-            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
-            
-
-            var pqGridToolBarSearchComponent = $('.pq-toolbar-search'),
-                pqGridExportFilesComponent = $('.export-files-component'),
-                pqGridFormatComponent = $('.format-component'),
-                pqGridFormatLabel = $('.format-label'),
-                pqGridExportFormatContainer = $('#export_format'),
-                pqGridExportFormatButton = $('.ui-button'),
-                pqGridExportFormatButtonIcon = $('.export-icon'),
-                pqGridPageOptionsComponent = $('.page-options-component'),
-                pqGridShowText = $('.show-text'),
-                pqGridPageOptions = $('.page-select'),
-                pqGridFilterComponent = $('.filter-component'),
-                pqGridSearchBox = $('.search-box'),
-                pqGridSearchIcon = $('.search-icon'),
-                pqGridFilterValue = $('.filterValue'),
-                pqGridFilterColumn = $('.filterColumn'),
-                pqGridFilterCondition = $('.filterCondition')
-            
-
-            pqGridToolBarSearchComponent.addClass(grid_style.toolbar.component.container.class_name)
-            pqGridExportFilesComponent.addClass(grid_style.toolbar.component.exportFilesBar.parent.class_name)
-            pqGridFormatComponent.addClass(grid_style.toolbar.component.exportFilesBar.child.format.class_name)
-            pqGridFormatLabel.addClass(grid_style.toolbar.component.exportFilesBar.child.formatLabel.class_name)
-            pqGridExportFormatContainer.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.class_name)
-            pqGridExportFormatButton.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButton.class_name)
-            pqGridExportFormatButtonIcon.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButtonIcon.class_name)
-            pqGridPageOptionsComponent.addClass(grid_style.toolbar.component.pageSelectOption.parent.class_name)
-            pqGridPageOptions.addClass(grid_style.toolbar.component.pageSelectOption.child.pageSelect.class_name)
-            pqGridShowText.addClass(grid_style.toolbar.component.pageSelectOption.child.showSingleText.class_name)
-            pqGridFilterComponent.addClass(grid_style.toolbar.component.filterSearch.parent.class_name)
-            pqGridSearchBox.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.class_name)
-            pqGridFilterValue.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.inputSearchBar.class_name)
-            pqGridSearchIcon.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.class_name)
-            pqGridFilterColumn.addClass(grid_style.toolbar.component.filterSearch.child.filterColumn.class_name)
-            pqGridFilterCondition.addClass(grid_style.toolbar.component.filterSearch.child.filterCondition.class_name)
-
-        }
-    }
-
 
     // ##------------------------------ Define function for styling table --------------------------------##
     const stylingTable = (grid_style) =>{
@@ -704,6 +646,81 @@ $(document).ready(function(){
 
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
+        }
+    }
+
+        // --------------------------- Define function for creating toolbar above the table ----------------------------------------------------
+    var setInitialCountRender = 0
+    function createToolBox(){
+        setInitialCountRender++;
+        if(setInitialCountRender == 1){
+            $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
+            $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
+            $('.export-files-component').find('label').addClass('format-label')
+            $('.format-label, .ui-button').wrapAll('<div class="format-component"></div>')
+            $('.pq-grid-top').find('span').appendTo($('.export-files-component'))
+            $('<span class="show-text">Show</span>').insertAfter('.format-component')
+            $('<span class="entries-text">entries</span>').insertAfter('.page-options')
+            $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
+            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
+            $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
+            $('.ui-button').text('')
+            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
+            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
+            
+
+            var pqGridToolBarSearchComponent = $('.pq-toolbar-search'),
+                pqGridExportFilesComponent = $('.export-files-component'),
+                pqGridFormatComponent = $('.format-component'),
+                pqGridFormatLabel = $('.format-label'),
+                pqGridExportFormatContainer = $('#export_format'),
+                pqGridExportFormatButton = $('.ui-button'),
+                pqGridExportFormatButtonIcon = $('.export-icon'),
+                pqGridPageOptionsComponent = $('.page-options-component'),
+                pqGridShowText = $('.show-text'),
+                pqGridPageOptions = $('.page-select'),
+                pqGridFilterComponent = $('.filter-component'),
+                pqGridSearchBox = $('.search-box'),
+                pqGridSearchIcon = $('.search-icon'),
+                pqGridFilterValue = $('.filterValue'),
+                pqGridFilterColumn = $('.filterColumn'),
+                pqGridFilterCondition = $('.filterCondition')
+            
+
+            pqGridToolBarSearchComponent.addClass(grid_style.toolbar.component.container.class_name)
+            pqGridExportFilesComponent.addClass(grid_style.toolbar.component.exportFilesBar.parent.class_name)
+            pqGridFormatComponent.addClass(grid_style.toolbar.component.exportFilesBar.child.format.class_name)
+            pqGridFormatLabel.addClass(grid_style.toolbar.component.exportFilesBar.child.formatLabel.class_name)
+            pqGridExportFormatContainer.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.class_name)
+            pqGridExportFormatButton.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButton.class_name)
+            pqGridExportFormatButtonIcon.addClass(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButtonIcon.class_name)
+            pqGridPageOptionsComponent.addClass(grid_style.toolbar.component.pageSelectOption.parent.class_name)
+            pqGridPageOptions.addClass(grid_style.toolbar.component.pageSelectOption.child.pageSelect.class_name)
+            pqGridShowText.addClass(grid_style.toolbar.component.pageSelectOption.child.showSingleText.class_name)
+            pqGridFilterComponent.addClass(grid_style.toolbar.component.filterSearch.parent.class_name)
+            pqGridSearchBox.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.class_name)
+            pqGridFilterValue.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.inputSearchBar.class_name)
+            pqGridSearchIcon.addClass(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.class_name)
+            pqGridFilterColumn.addClass(grid_style.toolbar.component.filterSearch.child.filterColumn.class_name)
+            pqGridFilterCondition.addClass(grid_style.toolbar.component.filterSearch.child.filterCondition.class_name)
+
+            pqGridToolBarSearchComponent.css(grid_style.toolbar.component.container.style)
+            pqGridExportFilesComponent.css(grid_style.toolbar.component.exportFilesBar.parent.style)
+            pqGridFormatComponent.css(grid_style.toolbar.component.exportFilesBar.child.format.style)
+            pqGridFormatLabel.css(grid_style.toolbar.component.exportFilesBar.child.formatLabel.style)
+            pqGridExportFormatContainer.css(grid_style.toolbar.component.exportFilesBar.child.exportFormat.style)
+            pqGridExportFormatButton.css(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButton.style)
+            pqGridExportFormatButtonIcon.css(grid_style.toolbar.component.exportFilesBar.child.exportFormat.child.exportFormatButtonIcon.style)
+            pqGridPageOptionsComponent.css(grid_style.toolbar.component.pageSelectOption.parent.style)
+            pqGridPageOptions.css(grid_style.toolbar.component.pageSelectOption.child.pageSelect.style)
+            pqGridShowText.css(grid_style.toolbar.component.pageSelectOption.child.showSingleText.style)
+            pqGridFilterComponent.css(grid_style.toolbar.component.filterSearch.parent.style)
+            pqGridSearchBox.css(grid_style.toolbar.component.filterSearch.child.searchBar.style)
+            pqGridFilterValue.css(grid_style.toolbar.component.filterSearch.child.searchBar.child.inputSearchBar.style)
+            pqGridSearchIcon.css(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.style)
+            pqGridFilterColumn.css(grid_style.toolbar.component.filterSearch.child.filterColumn.style)
+            pqGridFilterCondition.css(grid_style.toolbar.component.filterSearch.child.filterCondition.style)
+            
         }
     }
 
@@ -831,6 +848,10 @@ $(document).ready(function(){
                         paginationPageBar.append(`<div class="${numberPage}" id="page-${tolPageTable}"><span>${tolPageTable}</span></div>`)
                     }
                 }
+            }
+
+            if(!previousButton.hasClass('disabled')){
+                previousButton.addClass('disabled')
             }
 
 
@@ -1606,11 +1627,12 @@ $(document).ready(function(){
             $('.pq-pager-input').hide()    
             $('.total').remove()
 
-            paginationPageBar.css({
-                'display': 'flex',
-                'column-gap': '0.5rem',
-                'align-items': 'center'
-            })
+            $(`.${footer.component.container.class_name}`).css(footer.component.container.style)
+            $(`.${footer.component.paginationContainer.parent.class_name}`).css(footer.component.paginationContainer.parent.style)
+            previousButton.css(footer.component.paginationContainer.child.previousButton.style)
+            paginationPageBar.css(footer.component.paginationContainer.child.paginationPageBar.style)
+            $(`.${footer.component.paginationContainer.child.paginationPageBar.child.numberPage.class_name}`).css(footer.component.paginationContainer.child.paginationPageBar.child.numberPage.style)
+            nextButton.css(footer.component.paginationContainer.child.nextButton.style)
         }
     }
 
