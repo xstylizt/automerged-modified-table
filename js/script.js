@@ -319,6 +319,7 @@ $(document).ready(function(){
                         if(tdElementText === dataForCreateLink.source[j][i][0] && dataForCreateLink.source[j][i][0] !==''){
                             tdElement.empty()
                             tdElement.append(`<span><a href="${dataForCreateLink.source[j][i][1]}" target="_blank">${dataForCreateLink.source[j][i][0]}</a></span>`)
+                            tdElement.find('a').addClass(`${dataForCreateLink.class_name}`)
                         }
                     }
                     
@@ -897,16 +898,18 @@ $(document).ready(function(){
 
                 /* ------------------------------------------------------------------------------------- */
 
+                if(!previousButton.hasClass('disabled')){
+                    previousButton.addClass('disabled')
+                }
+
+                if(nextButton.hasClass('disabled')){
+                    nextButton.removeClass('disabled')
+                }
 
                 $('.pq-pager-input').val(1).trigger('change')
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
-
-
-            if($('.previous-btn').hasClass('disabled')){
-                previousButton.addClass('disabled')
-            }
 
 
             // ------------------ Handling event for previous button click -----------------------------------------
@@ -1055,11 +1058,7 @@ $(document).ready(function(){
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
                                 paginationPageBar.append(threeDotTextDiv)
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${countClick}"><span>${countClick}</span></div>`)
-                                
-                                // *******************************************
                                 paginationPageBar.append(`<input type="text" class="${pageInsertBox}" value="${countClick + 1}">`)
-                                // *******************************************
-                                
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${countClick+2}"><span>${countClick+2}</span></div>`)
                                 paginationPageBar.append(threeDotTextDiv)
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`)
@@ -1068,9 +1067,13 @@ $(document).ready(function(){
                                 paginationPageBar.empty()
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${1}" style="padding: 7px 14px;"><span>${1}</span></div>`)
                                 paginationPageBar.append(threeDotTextDiv)
-                                paginationPageBar.append(`<div class="${numberPage} active" id="page-${countClick+1}"><span>${countClick+1}</span></div>`)
-                                paginationPageBar.append(`<div class="${numberPage}" id="page-${countClick+2}"><span>${countClick+2}</span></div>`)
-                                paginationPageBar.append(`<div class="${numberPage}" id="page-${countClick+3}"><span>${countClick+3}</span></div>`)
+                                for (let i = countClick + 1; i <= countClick + 3; i++) {
+                                    if (i === countClick + 1) {
+                                        paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${i}</span></div>`);
+                                    } else {
+                                        paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`);
+                                    }
+                                }
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`)
                             }
                         }
@@ -1211,8 +1214,6 @@ $(document).ready(function(){
             filterAndConditionOptions.on('change', function(ev){
                 paginationPageBar.empty(); 
                 var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null;
-                var totalPageRecord = parseInt(pageSelectBoxOptions.val())
-                console.log(ev.which)
                 
                 if($('.pq-grid-cont-inner').text() === "No rows to display." || totalPageSection === 0){
                     $('.pq-pager-msg').empty()
@@ -1220,6 +1221,16 @@ $(document).ready(function(){
                     $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')
                     previousButton.addClass('disabled')
                     nextButton.addClass('disabled')
+                }
+
+                if(previousButton.hasClass('disabled')){
+                    nextButton.removeClass('disabled')
+                }else if(!previousButton.hasClass('disabled')){
+                    previousButton.addClass('disabled')
+                }
+
+                if(nextButton.hasClass('disabled')){
+                    nextButton.removeClass('disabled')
                 }
 
 
@@ -1323,9 +1334,9 @@ $(document).ready(function(){
                     previousButton.addClass('disabled')
                 }
 
-                if(parseInt(clickedValue) !== tolPageTable){
+                if(parseInt(clickedValue) !== totalPageCount){
                     nextButton.removeClass('disabled')
-                }else if(parseInt(clickedValue) === tolPageTable){
+                }else if(parseInt(clickedValue) === totalPageCount){
                     nextButton.addClass('disabled')
                 }
 
@@ -1416,9 +1427,9 @@ $(document).ready(function(){
                     }else if(totalPageCount >= 10){
                         paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
                         paginationPageBar.append(threeDotTextDiv)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${parseInt(clickedValue) - 3}"><span>${parseInt(clickedValue) -  3}</span></div>`)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${parseInt(clickedValue)  - 2}"><span>${parseInt(clickedValue) - 2}</span></div>`)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${parseInt(clickedValue)  - 1}"><span>${parseInt(clickedValue) - 1}</span></div>`)
+                        for (let i = parseInt(clickedValue) - 3; i <= parseInt(clickedValue) - 1; i++) {
+                            paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`);
+                        }
                         paginationPageBar.append(`<div class="${numberPage} active" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`)
                     }
                 }
@@ -1464,10 +1475,9 @@ $(document).ready(function(){
                         paginationPageBar.empty()
                         paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
                         paginationPageBar.append(threeDotTextDiv)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount - 3}"><span>${totalPageCount -3}</span></div>`)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount - 2}"><span>${totalPageCount - 2}</span></div>`)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount - 1}"><span>${totalPageCount - 1}</span></div>`)
-                        paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`)
+                        for (let i = totalPageCount - 3; i <= totalPageCount; i++) {
+                            paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`);
+                        }
                         $(`#page-${numberPageInsertBox}`).addClass('active')
 
                     }

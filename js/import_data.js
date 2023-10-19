@@ -165,10 +165,9 @@ var dataForCreateLink = {
         [
             ["Tanaka","https://www.tanaka"]
         ]
-    */
       
-    /*
-       
+
+      /*
        [
          [
            "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
@@ -203,7 +202,7 @@ var dataForCreateLink = {
             "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
           ]
        ]
-    */
+       */
     ],
     columnNameArray: [],
     class_name: '',

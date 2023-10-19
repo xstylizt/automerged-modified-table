@@ -158,6 +158,10 @@ body {
   height: 40px !important;
 }
 
+.export-format-main-component:focus{
+  outline: none
+}
+
 /* Export format button */
 
 .export-format-button{
@@ -174,6 +178,10 @@ body {
  background-color: #f8f8f8;
  border: 1px solid #c5c5c5;
  color: black;
+}
+
+.export-format-button:focus{
+  outline: none;
 }
 
 /* Export format button icon */
@@ -196,6 +204,10 @@ div.pq-grid select{
   height: 40px;
 }
 
+div.pq-grid select:focus{
+  outline: none;
+}
+
 
 /* 'Show' text */
 .show-single-text{
@@ -205,6 +217,8 @@ div.pq-grid select{
 .page-selects{
   margin-right: 10px;
 }
+
+
 
 
 /* filter and search bar component*/
