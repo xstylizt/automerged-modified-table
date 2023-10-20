@@ -31,6 +31,7 @@ body {
 /* ---- Overall table style ----- */
 
 .overall-table-container{
+  width: 100%;
   border: 1.5px solid #afd3f2
 }
 
@@ -404,7 +405,9 @@ input.disabled-input-box{
   border: 2px solid rgb(175, 211, 242);
 }
 
-
+.pq-vscroll{
+  height: 100% !important;
+}
 
 
 

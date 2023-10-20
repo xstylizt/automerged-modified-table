@@ -579,38 +579,6 @@ $(document).ready(function(){
         pqContentTableCell.css(grid_style.content.component.childCell.style);
 
 
-        // --------------- ## Handling with scrollbar -----------------------------------------------
-        var pqGridHeaderTable = $('.pq-grid-header-table')
-        if(overall_table.isScrollBar === false){
-            pqGridHeaderTable.css('height',  String(parseFloat(grid_style.header.height.replace('px',''))+ 3) + 'px')
-        }
-
-
-        var pqGridHeaderOuter = $('.pq-header-outer')
-        if($(window).width() < 850){
-            if(overall_table.isScrollBar === true)
-            {
-                    var mainTable = $('#automerged-modified-table')
-                    pqGridHeaderOuter.removeAttr('style')
-                    mainTable.css('height','auto')
-                    pqGridHeaderOuter.css('height', String(parseFloat(grid_style.header.height.replace('px',''))+ 3) + 'px')
-            }else if(overall_table.isScrollBar === false){
-                    pqGridHeaderOuter.css('height', grid_style.header.height)
-            }
-        }
-
-    
-
-        if($(window).width() >= 850){
-            if(overall_table.isScrollBar === false){
-                var mainTable = $('#automerged-modified-table')
-                pqGridHeaderOuter.css('height', 'auto')
-            }
-            else if(overall_table.isScrollBar === true){
-                var mainTable = $('#automerged-modified-table')
-            }
-        }
-
 
         // ----------------------------## Styling scrollbar ---------------------------------------
         var pqGridVerticalScrollBarContainer = $('.pq-sb-vert-t'),
@@ -643,6 +611,7 @@ $(document).ready(function(){
         pqGridrefreshButton.remove()
         pqGridExportFilesComponent.find('.pq-separator, .ui-button-icon').remove()
 
+        
 
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
@@ -720,6 +689,7 @@ $(document).ready(function(){
             pqGridSearchIcon.css(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.style)
             pqGridFilterColumn.css(grid_style.toolbar.component.filterSearch.child.filterColumn.style)
             pqGridFilterCondition.css(grid_style.toolbar.component.filterSearch.child.filterCondition.style)
+
             
         }
     }
@@ -857,7 +827,7 @@ $(document).ready(function(){
 
             // ---------------------------- Handling event for page select option per page --------------------------------------------------
 
-            pageSelectBoxOptions.on('change', () => {
+            pageSelectBoxOptions.on('change', (event) => {
                 paginationPageBar.empty(); 
                 var totalPageSection = parseInt($('.total').text())
                 if($('.pq-grid-cont-inner').text() === "No rows to display."){
@@ -927,10 +897,24 @@ $(document).ready(function(){
                     nextButton.removeClass('disabled')
                 }
 
+    
+                if(grid_style.overall_table.isScrollBar === true){
+                    $('div.pq-grid').css({
+                        'overflow': 'visible'
+                    })
+                }
+
+                if(grid_style.overall_table.isScrollBar === true && grid_style.overall_table.isPaging === false){
+                    $('.pq-grid-bottom').hide()
+                }
+
+
                 $('.pq-pager-input').val(1).trigger('change')
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
+
+
 
 
             // ------------------ Handling event for previous button click -----------------------------------------
@@ -1627,12 +1611,17 @@ $(document).ready(function(){
             $('.pq-pager-input').hide()    
             $('.total').remove()
 
+
+
+
+
             $(`.${footer.component.container.class_name}`).css(footer.component.container.style)
             $(`.${footer.component.paginationContainer.parent.class_name}`).css(footer.component.paginationContainer.parent.style)
             previousButton.css(footer.component.paginationContainer.child.previousButton.style)
             paginationPageBar.css(footer.component.paginationContainer.child.paginationPageBar.style)
             $(`.${footer.component.paginationContainer.child.paginationPageBar.child.numberPage.class_name}`).css(footer.component.paginationContainer.child.paginationPageBar.child.numberPage.style)
             nextButton.css(footer.component.paginationContainer.child.nextButton.style)
+        
         }
     }
 
@@ -1681,8 +1670,8 @@ $(document).ready(function(){
                     resizable: false,
                     draggable: false,
                     dragColumns: false,
-                    width: grid_style.overall_table.width.search('px') === -1 ? grid_style.overall_table.width: parseFloat( grid_style.overall_table.width.replace('px', '')),
-                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseFloat(grid_style.content.height.replace('px','')),
+                    width: '100%',
+                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseInt(grid_style.content.height.replace('px','')),
                     editable: false,
                     sortModel: false,   
                     freezeRows: grid_style.content.numberFreezeRows,    
@@ -1767,6 +1756,7 @@ $(document).ready(function(){
                         stylingTable(grid_style)
                         createPagination()  
                         createLinkToColumn()
+                        
                 }   
     }
     
@@ -1777,6 +1767,7 @@ $(document).ready(function(){
         pqGridrefreshButton.click()
     })
     */
+
 
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''

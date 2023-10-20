@@ -2,7 +2,6 @@
 var overall_table = {
     class_name: 'overall-table-container',
     style: {},
-    width: '100%', 
     isScrollBar: false,
     isPaging: true
 }
@@ -51,7 +50,7 @@ var content = {
         type: 'auto_specific_col',
         configs: [{c1:3, }]
     },
-    height: '500px',
+    height: '500px', // use when isScrollBar = true     
     component: {
         parentCell: {
             oddRow: {
