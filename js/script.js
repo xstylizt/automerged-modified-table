@@ -612,7 +612,6 @@ $(document).ready(function(){
         pqGridExportFilesComponent.find('.pq-separator, .ui-button-icon').remove()
 
         
-
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
         }
@@ -893,8 +892,9 @@ $(document).ready(function(){
                     previousButton.addClass('disabled')
                 }
 
-                if(nextButton.hasClass('disabled')){
-                    nextButton.removeClass('disabled')
+                if(!nextButton.hasClass('disabled')){
+                    nextButton.addClass('disabled')
+
                 }
 
     
@@ -1147,6 +1147,8 @@ $(document).ready(function(){
 
                 if(nextButton.hasClass('disabled')){
                     nextButton.removeClass('disabled')
+                }else if(!nextButton.hasClass('disabled')){
+                    nextButton.addClass('disabled')
                 }
 
                 if(totalPageSection === 1){
@@ -1278,10 +1280,6 @@ $(document).ready(function(){
                     nextButton.addClass('disabled')
                 }
 
-                if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
-                    nextButton.addClass('disabled')
-                }
-
                 if(previousButton.hasClass('disabled')){
                     nextButton.removeClass('disabled')
                 }else if(!previousButton.hasClass('disabled')){
@@ -1290,6 +1288,8 @@ $(document).ready(function(){
 
                 if(nextButton.hasClass('disabled')){
                     nextButton.removeClass('disabled')
+                }else if(!nextButton.hasClass('disabled')){
+                    nextButton.addClass('disabled')
                 }
 
                 if(totalPageSection === 1){
@@ -1401,6 +1401,7 @@ $(document).ready(function(){
                         paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                     }
                 }
+
 
 
                 $('.pq-pager-input').val(1).trigger('change');

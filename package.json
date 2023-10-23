@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "file-saver": "^2.0.5",
-        "jszip": "^3.10.1"
+        "jszip": "^3.10.1",
+        "live-server": "^1.2.2"
     }
 }
