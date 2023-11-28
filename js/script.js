@@ -1,16 +1,492 @@
-import {data,dataForCreateLink} from './import_data.js'
-import {
-    overall_table,
-    header,
-    content,
-    footer,
-    scrollbar,
-    toolbar
-} from './configs.js'
+// ------------------------------------ Data requirement part -----------------------------------------------
+
+var data = [
+    ['Employee information','Employee information','Employee information','Section','Role','Skill','Skill','Skill','Skill','Skill','Skill','Skill','Skill'],
+    ['Employee information','Employee information','Employee information', 'Section', 'Role','Frontend framework','Frontend framework','Frontend framework','Frontend framework','Backend framework','Backend framework','Backend framework','Backend framework'],
+    ['Id','First name', 'Last name', 'Section', 'Role', 'React', 'Angular', 'Vue', 'Svelte', 'Express.js', 'Laravel', 'Springboot', 'Django'],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [11, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [12, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [13, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [14, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [15, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [16, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [17, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [18, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [19, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [20, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [21, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [22, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [23, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [24, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [25, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [26, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [27, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [28, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [29, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [30, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [31, "Sakuraa", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [32, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [33, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [34, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [35, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [36, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [37, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [38, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [39, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [40, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [41, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [42, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [43, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [44, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [45, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [46, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [47, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [48, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [49, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [50, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [51, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [52, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [53, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [54, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [55, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [56, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [57, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [58, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [59, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [60, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [61, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [62, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [63, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [64, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [65, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [66, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [67, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [68, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [69, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [70, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [71, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [72, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [73, "Ji-eun",   "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [74, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [75, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [76, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [77, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [78, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [79, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [80, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [81, "Sakuraa", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [82, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [83, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [84, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [85, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [86, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [87, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [88, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [89, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [90, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [91, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [92, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [93, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [94, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [95, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [96, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [97, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [98, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [99, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [100, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"]
+]
+
+var dataForCreateLink = {
+    source: [
+    
+    /*
+        [
+          ["Sakura", "https://sakura.com"],
+          ["Ravi", "https://ravi.com"],
+          ["Ji-eun", "https://jieun.com"],
+          ["Chen", "https://chen.com"],
+          ["Nisha","https://nisha.com"],
+          ["Yusuf", "https://yusuf.com"],
+          ["Mei", "https://mei.com"],
+          ["Hiroshi", "https://hiroshi.com"],
+          ["Ananya", "https://ananya.com"],
+          ["Raj", "https://raj.com"],
+          ["Sakura", "https://sakura.com"],
+          ["Ravi", "https://ravi.com"],
+          ["Ji-eun", "https://jieun.com"],
+          ["Chen", "https://chen.com"],
+          ["Nisha","https://nisha.com"],
+          ["Yusuf", "https://yusuf.com"],
+          ["Mei", "https://mei.com"],
+          ["Hiroshi", "https://hiroshi.com"],
+          ["Ananya", "https://ananya.com"],
+          ["Raj", "https://raj.com"],
+          ["Sakura", "https://sakura.com"],
+          ["Ravi", "https://ravi.com"],
+          ["Ji-eun", "https://jieun.com"],
+          ["Chen", "https://chen.com"],
+          ["Nisha","https://nisha.com"],
+          ["Yusuf", "https://yusuf.com"],
+          ["Mei", "https://mei.com"],
+          ["Hiroshi", "https://hiroshi.com"],
+          ["Ananya", "https://ananya.com"],
+          ["Raj", "https://raj.com"],
+          ["Sakura", "https://sakura.com"],
+          ["Ravi", "https://ravi.com"],
+          ["Ji-eun", "https://jieun.com"],
+          ["Chen", "https://chen.com"],
+          ["Nisha","https://nisha.com"],
+          ["Yusuf", "https://yusuf.com"],
+          ["Mei", "https://mei.com"],
+          ["Hiroshi", "https://hiroshi.com"],
+          ["Ananya", "https://ananya.com"],
+          ["Raj", "https://raj.com"],
+          ["Sakura", "https://sakura.com"],
+          ["Ravi", "https://ravi.com"],
+          ["Ji-eun", "https://jieun.com"],
+          ["Chen", "https://chen.com"],
+          ["Nisha","https://nisha.com"],
+          ["Yusuf", "https://yusuf.com"],
+          ["Mei", "https://mei.com"],
+          ["Hiroshi", "https://hiroshi.com"],
+          ["Ananya", "https://ananya.com"],
+          ["Raj", "https://raj.com"],
+        ],
+
+        [
+            ["Tanaka","https://www.tanaka"]
+        ]
+      
+
+      /*
+       [
+         [
+           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
+           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
+           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
+           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
+           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj"
+         ],
+         [
+           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
+           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
+           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
+           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
+           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
+         ]
+    
+       ],
+
+       [
+          [
+            "https://sakura.com","https://ravi.com","","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
+            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
+            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
+            "https://sakura.com","https://ravi.com","","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
+            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com"
+          ],
+          [
+            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
+            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
+            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
+            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
+            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
+          ]
+       ]
+       */
+    ],
+    columnNameArray: [],
+    class_name: '',
+    style: {}
+}
+
+
+// ------------------------------- Configuration part ----------------------------------------------------
+// ## Style about overall table
+var overall_table = {
+    class_name: 'overall-table-container',
+    style: {},
+    isScrollBar: false,
+    isPaging: true
+}
+
+// # Style about header table
+var header = {
+    n_row: 3,
+    mergedCells: {
+        type: 'auto' ,    
+        configs: []  
+    },
+    height: 'auto',
+    component:{
+        container: {
+            class_name: 'header-container',
+            style: {
+                //'background': 'linear-gradient(#fefefe, #dae6f0)'
+            }
+        },
+        parentCell: {
+            class_name: 'header-table-col',
+            style: {
+                //'border': '1.5px solid #afd3f2'
+            }
+        },
+        childCell: {
+            class_name: 'header-table-cell',
+            style: {
+                /*
+                'padding': '5px 0px 5px 0px',
+                'font-size': '18px',
+                'font-weight': 'bold' ,
+                'color': 'black'
+                */
+            }
+        },
+    },
+}
+
+
+// # Style about content table
+var content = {
+    numberFreezeRows: 0,
+    numberFreezeCols: 0,
+    mergedCells: {
+        type: 'auto_specific_col',
+        configs: [{c1:3, }]
+    },
+    height: '500px', // use when isScrollBar = true     
+    component: {
+        parentCell: {
+            oddRow: {
+                class_name: 'content-table-odd-row',
+                style: {
+                    //'background': '#e6f4ff'
+                }
+            },
+            evenRow: {
+                class_name: 'content-table-even-row',
+                style: {
+                    //'background': '#ffffff'
+                }
+            }
+        },
+        childCell: {
+                class_name: 'content-table-cell',
+                style: {
+                    /*
+                    'border': '1.5px solid #afd3f2',
+                    'padding': '9px 0px 9px 0px',
+                    'font-size': '18px',
+                    'font-weight': '400',
+                    'color': 'black'
+                    */
+                }
+        }
+    },
+}
+
+
+// # Paging bar (footer)
+var footer = {
+    component: {
+        container: {
+            class_name: 'footer-container',
+            style: {
+                    
+            },
+        },
+
+        paginationContainer:{
+            parent: {
+                class_name: 'pagination-container',
+                style: {},
+            },
+            child: {
+                previousButton:{
+                    class_name: 'previous-btn-container',
+                    style: {}
+                },
+    
+                paginationPageBar:{
+                    class_name: 'page-number-container',
+                    style: {},
+                    child: {
+                        numberPage: {
+                            class_name: 'num-page',
+                            style: {}
+                        },
+                        insertnumberPage:{
+                            class_name: 'page-insert-box',
+                        }
+                    }
+                },
+    
+                nextButton:{
+                    class_name: 'next-btn-container',
+                    style: {
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+var scrollbar = {
+    verticalScrollBar: {
+        parent: {
+            class_name: 'vertical-scrollbar-container',
+            style: {
+                //'background': '#efefef'
+            }
+        },
+        child: {
+            class_name: 'vertical-scrollbar',
+            style: {
+                //'background': '#dae6f0',
+                //'border-color': '#83abcd'
+            }
+        },
+    },
+    horizontalScrollBar: {
+        parent: {
+            class_name: 'horizontal-scrollbar-container',
+            style: {
+                //'background': '#efefef'
+            }
+        },
+        child: {
+            class_name: 'horizontal-scrollbar',
+            style: {
+                //'background': '#dae6f0',
+                //'border-color': '#83abcd'
+            }
+        },
+    },
+
+    uiTriangleButton: {
+        class_name: 'ui-triangle-button',
+        style: {
+            //'background': '#dae6f0'
+        }
+    },
+}
+
+var toolbar = {
+    export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
+    rPPOptions: [10,20,30,40,50],
+    filter_condition: [
+        { "begin": "Begins With" },
+        { "contain": "Contains" },
+        { "end": "Ends With" },
+        { "notcontain": "Does not contain" },
+        { "equal": "Equal To" },
+        { "notequal": "Not Equal To" },
+        { "empty": "Empty" },
+        { "notempty": "Not Empty" },
+    ],
+
+    component: {
+        container: {
+            class_name: 'toolbar-search-component',
+            style: {}
+        },
+        
+        exportFilesBar: {
+            parent: {
+                class_name: 'export-files-main-component',
+                style: {}
+            },
+            child: {
+                format: {
+                    class_name: 'format-main-component',
+                    style: {}
+                },
+                formatLabel: {
+                    class_name: 'format-label-component',
+                    style: {}
+                },
+                exportFormat: {
+                    class_name: 'export-format-main-component',
+                    style: {},
+                    child: {
+                        exportFormatButton: {
+                            class_name: 'export-format-button',
+                            style: {}
+                        },
+                        exportFormatButtonIcon: {
+                            class_name: 'export-format-button-icon',
+                            style: {}
+                        }
+                    }
+                },
+            }
+        },
+
+        pageSelectOption: {
+            parent: {
+                class_name: 'page-options-main-component',
+                style: {}
+            },
+            child: {
+                pageSelect: {
+                    class_name: 'page-options',
+                    style: {}
+                },
+                showSingleText: {
+                    class_name: 'show-single-text',
+                    style: {}
+                }
+            }
+        },
+
+        filterSearch: {
+            parent: {
+                class_name: 'filter-main-component',
+                style: {}
+            },
+            child: {
+                searchBar: {
+                    class_name: 'input-search-box',
+                    style: {},
+                    child: {
+                        inputSearchBar: {
+                            class_name: 'filter-value',
+                            style: {}
+                        },
+                        searchBarIcon: {
+                            class_name: 'search-box-icon',
+                            style: {}
+                        }
+                    }
+                },
+                filterColumn: {
+                    class_name: 'filter-column',
+                    style: {}
+                },
+                filterCondition: {
+                    class_name: 'filter-condition',
+                    style: {}
+                }
+            }
+        }
+    },
+}
+// --------------------------------------------------------------------------------------------------------------
 
 $(document).ready(function(){ 
-
-    
     function createColModelStructure(input) {
         return input.map(row => {
             return {
@@ -22,7 +498,7 @@ $(document).ready(function(){
     }
 
     // ##------------------ Create main title --------------------------------------------------------##
-    const createColModel = () => {
+    function createColModel(){
         // ------------------------- Create Main Title -------------------------------------
         var raw_data = data
         var headingArrayObject = mergeCellsAutoTable('header');
@@ -331,7 +807,7 @@ $(document).ready(function(){
 
 
     // ##----------------- Define function for merging header of table -------------------------------##
-    const mergeCellsAutoTable = (conditions) => {
+    function mergeCellsAutoTable(conditions){
         var raw_data = data
         var mc = []
         var notMergedArray = []
@@ -461,9 +937,8 @@ $(document).ready(function(){
     }
 
 
-
     // ##----------------- Define function for merging content of table -------------------------------##
-    const mergeCellsContentTable = (grid_style) => {
+    function mergeCellsContentTable(grid_style){
         var real_mergedContentArray = [];
         var mergedContentArray = [];
         var contentData = data.slice(header.n_row, );
@@ -537,7 +1012,7 @@ $(document).ready(function(){
 
 
     // ##------------------------------ Define function for styling table --------------------------------##
-    const stylingTable = (grid_style) =>{
+    function stylingTable(grid_style){
         // ---------------- ## Style overall of table --------------------------------------------
         var pqGridTable = $('.pq-grid-center')
         pqGridTable.addClass(grid_style.overall_table.class_name)
@@ -608,10 +1083,10 @@ $(document).ready(function(){
         pqGridFooter.find('.pq-page-placeholder').addClass('number-page')
         pqGridUiWidgetContent.css('border-color', 'transparent')
         pqGridTitle.remove()
-        pqGridrefreshButton.remove()
+        pqGridrefreshButton.hide()
         pqGridExportFilesComponent.find('.pq-separator, .ui-button-icon').remove()
 
-        
+
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
         }
@@ -1548,6 +2023,7 @@ $(document).ready(function(){
                 $('.pq-pager-input').hide()
             });
 
+
             // ------------------------------------- Handling event for click and insert pagination page bar insert box ---------------------------
 
             paginationPageBar.on('keypress', `.${pageInsertBox}`, function(ev){
@@ -1608,14 +2084,8 @@ $(document).ready(function(){
                 previousButton.addClass('disabled')
             }
 
-
             $('.pq-pager-input').hide()    
             $('.total').remove()
-
-
-
-
-
             $(`.${footer.component.container.class_name}`).css(footer.component.container.style)
             $(`.${footer.component.paginationContainer.parent.class_name}`).css(footer.component.paginationContainer.parent.style)
             previousButton.css(footer.component.paginationContainer.child.previousButton.style)
@@ -1625,6 +2095,7 @@ $(document).ready(function(){
         
         }
     }
+
 
 
     // ------------------- Define function for creating exported files and filtered column with name and condition ----------------------------
@@ -1656,6 +2127,16 @@ $(document).ready(function(){
 
     }
 
+
+    /*
+    $('.hidden-button').on('click', function(){
+        var pqRefreshButton = $('.ui-icon-refresh')
+        $('.hidden').toggle();
+        pqRefreshButton.click()
+    })
+    */
+    
+    
 // --------------------------------------------- Recall all function ------------------------------------------------------------
 
     var grid_style = {
@@ -1671,7 +2152,7 @@ $(document).ready(function(){
                     resizable: false,
                     draggable: false,
                     dragColumns: false,
-                    width: '100%',
+                    width: 'auto',
                     height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseInt(grid_style.content.height.replace('px','')),
                     editable: false,
                     sortModel: false,   
@@ -1755,25 +2236,19 @@ $(document).ready(function(){
                     refresh: function(event,ui){
                         createToolBox()
                         stylingTable(grid_style)
-                        createPagination()  
+                        createPagination() 
                         createLinkToColumn()
-                        
-                }   
+                    }
     }
     
-    /*
-    $('.hidden-button').on('click', function(){
-        var pqGridrefreshButton = $('.ui-icon-refresh')
-        $('.hidden').toggle()
-        pqGridrefreshButton.click()
-    })
-    */
+
 
 
     if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
+
     if((data.length - grid_style.header.n_row) <= toolbar.rPPOptions[0]){
         grid_object.width = '100%';
         grid_style.overall_table.isScrollBar = false
@@ -1782,4 +2257,3 @@ $(document).ready(function(){
     var $grid = $("#automerged-modified-table").pqGrid(grid_object);
 
 });    
-
