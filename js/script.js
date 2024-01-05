@@ -14,102 +14,85 @@ var data = [
     [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
     [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
     [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [11, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [12, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [13, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [14, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [15, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [16, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [17, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [18, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [19, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [20, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [21, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [22, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [23, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [24, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [25, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [26, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [27, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [28, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [29, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [30, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [31, "Sakuraa", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [32, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [33, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [34, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [35, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [36, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [37, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [38, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [39, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [40, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [41, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [42, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [43, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [44, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [45, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [46, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [47, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [48, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [49, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [50, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [51, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [52, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [53, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [54, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [55, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [56, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [57, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [58, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [59, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [60, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [61, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [62, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [63, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [64, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [65, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [66, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [67, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [68, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [69, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [70, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [71, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [72, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [73, "Ji-eun",   "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [74, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [75, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [76, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [77, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [78, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [79, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [80, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [81, "Sakuraa", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [82, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [83, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [84, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [85, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [86, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [87, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [88, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [89, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [90, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [91, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [92, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [93, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [94, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [95, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [96, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [97, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [98, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [99, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [100, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"]
-]
+    [1, "Sakuras", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+    
+];
+
+/*
+var number = 50;
+var temp = data.slice(3,);
+for(let i=1 ; i <= (number/10); i++)
+{
+    for(let object of temp){
+        data.push(object)
+    }
+}
+*/
+
+
 
 var dataForCreateLink = {
     source: [
     
-    /*
         [
           ["Sakura", "https://sakura.com"],
           ["Ravi", "https://ravi.com"],
@@ -129,42 +112,12 @@ var dataForCreateLink = {
           ["Yusuf", "https://yusuf.com"],
           ["Mei", "https://mei.com"],
           ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
-          ["Raj", "https://raj.com"],
-          ["Sakura", "https://sakura.com"],
-          ["Ravi", "https://ravi.com"],
-          ["Ji-eun", "https://jieun.com"],
-          ["Chen", "https://chen.com"],
-          ["Nisha","https://nisha.com"],
-          ["Yusuf", "https://yusuf.com"],
-          ["Mei", "https://mei.com"],
-          ["Hiroshi", "https://hiroshi.com"],
-          ["Ananya", "https://ananya.com"],
+          ["Ananya", "https://ana   nya.com"],
           ["Raj", "https://raj.com"],
         ],
 
         [
-            ["Tanaka","https://www.tanaka"]
+            ["Tanaka","https://www.tanaka.com"]
         ]
       
 
@@ -205,8 +158,8 @@ var dataForCreateLink = {
        ]
        */
     ],
-    columnNameArray: [],
-    class_name: '',
+    columnNameArray: ['First name','Last name'],
+    class_name: 'link-text',
     style: {}
 }
 
@@ -216,7 +169,6 @@ var dataForCreateLink = {
 var overall_table = {
     class_name: 'overall-table-container',
     style: {},
-    isScrollBar: false,
     isPaging: true
 }
 
@@ -227,7 +179,6 @@ var header = {
         type: 'auto' ,    
         configs: []  
     },
-    height: 'auto',
     component:{
         container: {
             class_name: 'header-container',
@@ -264,7 +215,6 @@ var content = {
         type: 'auto_specific_col',
         configs: [{c1:3, }]
     },
-    height: '500px', // use when isScrollBar = true     
     component: {
         parentCell: {
             oddRow: {
@@ -343,7 +293,7 @@ var footer = {
 }
 
 
-
+/*
 var scrollbar = {
     verticalScrollBar: {
         parent: {
@@ -383,9 +333,13 @@ var scrollbar = {
         }
     },
 }
+*/
+
 
 var toolbar = {
     export_format: [{ xlsx: 'Excel', csv: 'CSV', htm: 'HTML', json: 'JSON'}],
+    export_icon_path: 'assets/svg/export-icon.svg',
+    search_icon_path: 'assets/svg/search-magnificant-icon.svg',
     rPPOptions: [10,20,30,40,50],
     filter_condition: [
         { "begin": "Begins With" },
@@ -435,6 +389,8 @@ var toolbar = {
             }
         },
 
+
+
         pageSelectOption: {
             parent: {
                 class_name: 'page-options-main-component',
@@ -483,10 +439,13 @@ var toolbar = {
             }
         }
     },
+
 }
+
 // --------------------------------------------------------------------------------------------------------------
 
 $(document).ready(function(){ 
+
     function createColModelStructure(input) {
         return input.map(row => {
             return {
@@ -731,6 +690,7 @@ $(document).ready(function(){
                                     {
                                         if(arr[k].cc === 1){
                                             template.colModel[b].colModel.push({title: arr[k].cellvalue, colModel: [], align: 'center'})
+                                            console.log(arr[k])
                                         }else if(arr[k].cc > 1){
                                             /* -------------------------- Case of nested more than 3 subcol */
                                         }
@@ -749,62 +709,13 @@ $(document).ready(function(){
                 }
         }else if(header.mergedCells.type === 'specific' && header.mergedCells.configs.length > 0){
             const specificHeaderMergeConfigs = header.mergedCells.configs.sort((a,b) => {if(a.r1 !== b.r1){return a.r1 - b.r1} else{return a.c1 - b.c1} })
-
-             
+          
         }
 
          return colModel_result
     }
 
-
-
-    // -------------------- ## Define function for creating link to column -------------------------------------------------------------------
-    function createLinkToColumn(){
-        var columnNameArrForCreateLink = dataForCreateLink.columnNameArray,
-            indexTitleHeaderArr = [],
-            dataArrayForCompareAndSort
-
-        columnNameArrForCreateLink.forEach((element, index) => {
-            let titleHeaderArr = data[header.n_row - 1]
-            indexTitleHeaderArr.push(titleHeaderArr.indexOf(element));
-        });
-
-        dataArrayForCompareAndSort = indexTitleHeaderArr.map(index => data.slice(header.n_row, ).map(row => row[index]))
-        
-        if(dataForCreateLink.source.length !== 0 && dataForCreateLink.columnNameArray.length !== 0)
-        {
-            if(dataForCreateLink.source[0][0].length !== 2)
-            {
-                for(let j = 0 ; j <  indexTitleHeaderArr.length; j++){ //col
-                    for(let i = 0; i < dataArrayForCompareAndSort[0].length ; i++)
-                    {
-                        var tdElement = $(`tr[pq-row-indx="${i}"]`).find(`td[pq-col-indx="${indexTitleHeaderArr[j]}"]`);
-                        var tdElementText = tdElement.text();
-                        if(tdElementText === dataArrayForCompareAndSort[j][i] && dataForCreateLink.source[1][j][i] !==''){
-                            tdElement.empty()
-                            tdElement.append(`<span><a href="${dataForCreateLink.source[1][j][i]}"  target="_blank" >${dataForCreateLink.source[0][j][i]}</a></span>`)
-                            tdElement.find('a').addClass(`${dataForCreateLink.class_name}`)
-                        }   
-                    }
-                }
-            }else if(dataForCreateLink.source[0][0].length === 2){
-                for(let j = 0; j < dataForCreateLink.source.length; j++){
-                    for(let i=0; i < dataForCreateLink.source[j].length ; i++){
-                        var tdElement = $(`tr[pq-row-indx="${i}"]`).find(`td[pq-col-indx="${indexTitleHeaderArr[j]}"]`);
-                        var tdElementText = tdElement.text();
-                        if(tdElementText === dataForCreateLink.source[j][i][0] && dataForCreateLink.source[j][i][0] !==''){
-                            tdElement.empty()
-                            tdElement.append(`<span><a href="${dataForCreateLink.source[j][i][1]}" target="_blank">${dataForCreateLink.source[j][i][0]}</a></span>`)
-                            tdElement.find('a').addClass(`${dataForCreateLink.class_name}`)
-                        }
-                    }
-                    
-                }
-            }
-        }
-    }
-
-
+    var setInitialCountRender = 0;
 
     // ##----------------- Define function for merging header of table -------------------------------##
     function mergeCellsAutoTable(conditions){
@@ -1012,7 +923,7 @@ $(document).ready(function(){
 
 
     // ##------------------------------ Define function for styling table --------------------------------##
-    function stylingTable(grid_style){
+    function stylingTableAndAdditional(grid_style){
         // ---------------- ## Style overall of table --------------------------------------------
         var pqGridTable = $('.pq-grid-center')
         pqGridTable.addClass(grid_style.overall_table.class_name)
@@ -1054,25 +965,6 @@ $(document).ready(function(){
         pqContentTableCell.css(grid_style.content.component.childCell.style);
 
 
-
-        // ----------------------------## Styling scrollbar ---------------------------------------
-        var pqGridVerticalScrollBarContainer = $('.pq-sb-vert-t'),
-            pqGridHorizontalScrollBarContainer = $('.pq-sb-horiz'),
-            pqGridVerticalScrollbar = $('.pq-sb-vert-t .pq-sb-slider'),
-            pqGridHorizontalScrollbar = $('.pq-sb-horiz-t .pq-sb-slider'),
-            pqGridUiTriangleButton = $('.pq-sb-btn')
-
-        pqGridVerticalScrollBarContainer.addClass(scrollbar.verticalScrollBar.parent.class_name)
-        pqGridVerticalScrollbar.addClass(scrollbar.verticalScrollBar.child.class_name)
-        pqGridHorizontalScrollBarContainer.addClass(scrollbar.horizontalScrollBar.parent.class_name)
-        pqGridHorizontalScrollbar.addClass(scrollbar.horizontalScrollBar.child.class_name)
-        pqGridUiTriangleButton.addClass(scrollbar.uiTriangleButton.class_name)
-
-        pqGridVerticalScrollBarContainer.css(scrollbar.verticalScrollBar.parent.style)
-        pqGridVerticalScrollbar.css(scrollbar.verticalScrollBar.child.style)
-        pqGridHorizontalScrollBarContainer.css(scrollbar.horizontalScrollBar.parent.style)
-        pqGridHorizontalScrollbar.css(scrollbar.horizontalScrollBar.child.style)
-        pqGridUiTriangleButton.css(scrollbar.uiTriangleButton.style)
         
         // ----------------------------## Additional style ----------------------------------------
         var pqGridrefreshButton = $('.ui-icon-refresh')
@@ -1090,13 +982,34 @@ $(document).ready(function(){
         if(grid_style.overall_table.isPaging === false){
             pqGridFooter.empty()
         }
+
+
+
+        $('.filterValue').on('click', function(event){
+            var inputsearchBox = $(`.${grid_style.toolbar.component.filterSearch.child.searchBar.class_name}`)
+            inputsearchBox.addClass('active-toolbar')
+        })
+
+        $(document).on('click', function(event) {
+            var inputsearchBox = $(`.${grid_style.toolbar.component.filterSearch.child.searchBar.class_name}`)
+            if (inputsearchBox.hasClass('active-toolbar') && !inputsearchBox.has(event.target).length) {
+                inputsearchBox.removeClass('active-toolbar')
+                $('.cross-symbol').hide()
+            }
+        });
     }
 
-        // --------------------------- Define function for creating toolbar above the table ----------------------------------------------------
-    var setInitialCountRender = 0
-    function createToolBox(){
+
+
+    // -------------------------------------- Define function for creating toolbox and pagination bar ------------------------------------------------
+
+    function createToolBoxAndPagination(grid_style){
         setInitialCountRender++;
-        if(setInitialCountRender == 1){
+        //  -------------- ## Style footer of table ----------------------------------------------
+        if(setInitialCountRender === 1)
+        {
+            // ---------------- Toolbar --------------------------------------------------
+
             $('label, .ui-button').wrapAll('<div class="export-files-component"></div>')
             $('.filterValue, .filterColumn, .filterCondition').wrapAll('<div class="filter-component"></div>')
             $('.export-files-component').find('label').addClass('format-label')
@@ -1105,11 +1018,11 @@ $(document).ready(function(){
             $('<span class="show-text">Show</span>').insertAfter('.format-component')
             $('<span class="entries-text">entries</span>').insertAfter('.page-options')
             $('.show-text, .page-options, .entries-text').wrapAll('<div class="page-options-component"></div>')
-            $('<img class="search-icon" src="img/search-magnificant-icon.svg"/>').insertBefore($('.filterValue'));
+            $(`<img class="search-icon" src=${grid_style.toolbar.search_icon_path}>`).insertBefore($('.filterValue'));
             $('.search-icon, .filterValue').wrapAll('<div class="search-box"></div>')
             $('.ui-button').text('')
-            $('.ui-button').append('<span class="export-button-component"></span>' + '<span class="export-text">Export</span>')
-            $('.export-button-component').append('<img class="export-icon" src="img/export-icon.svg"/>')
+            $('.ui-button').append('<span class="export-text">Export</span>')
+            $(`<img class="export-icon  " src=${grid_style.toolbar.export_icon_path}>`).insertBefore($('.export-text'));
             
 
             var pqGridToolBarSearchComponent = $('.pq-toolbar-search'),
@@ -1163,18 +1076,9 @@ $(document).ready(function(){
             pqGridSearchIcon.css(grid_style.toolbar.component.filterSearch.child.searchBar.child.searchBarIcon.style)
             pqGridFilterColumn.css(grid_style.toolbar.component.filterSearch.child.filterColumn.style)
             pqGridFilterCondition.css(grid_style.toolbar.component.filterSearch.child.filterCondition.style)
+        
+            // ----------------------------- Pagination -------------------------------------------------
 
-            
-        }
-    }
-
-
-    // -------------------------------------- Define function for creating pagination bar ------------------------------------------------
-
-    function createPagination(){
-        //  -------------- ## Style footer of table ----------------------------------------------
-        if(setInitialCountRender === 1)
-        {
             var pqGridFooter = $('.pq-grid-bottom'),
                 pqGridPaging = $('.pq-grid-footer'),
                 pqGridUiIconSeekFirst = $('.ui-icon-seek-first'),
@@ -1187,6 +1091,8 @@ $(document).ready(function(){
                 pqGridNextPageButton = pqGridUiIconSeekNext.removeClass('ui-icon').text('Next'),
                 pqGridLastPageButton = pqGridUiIconSeekLast.removeClass('ui-icon').text('Last'),
                 searchInsertBox = $('.filterValue'),
+                filterColumn = $('.filterColumn'),
+                filterCondition = $('.filterCondition'),
                 filterAndConditionOptions = $('.filterColumn, .filterCondition'),
                 pageSelectBoxOptions = $('.page-selects') 
 
@@ -1373,13 +1279,8 @@ $(document).ready(function(){
                 }
 
     
-                if(grid_style.overall_table.isScrollBar === true){
-                    $('div.pq-grid').css({
-                        'overflow': 'visible'
-                    })
-                }
 
-                if(grid_style.overall_table.isScrollBar === true && grid_style.overall_table.isPaging === false){
+                if(grid_style.overall_table.isPaging === false){
                     $('.pq-grid-bottom').hide()
                 }
 
@@ -1595,11 +1496,21 @@ $(document).ready(function(){
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
+
             
 
             searchInsertBox.on('keyup', function(ev){
                 paginationPageBar.empty();
-                var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null;
+                var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null
+                var crossSymbol = '<span class="cross-symbol">X</span>'
+
+                if($(this).val().length >= 1){
+                    $('.cross-symbol').hide()
+                    $(crossSymbol).insertAfter($('.filterValue'))
+                }else if($(this).val().length === 0){
+                    $('.cross-symbol').hide()
+                }
+
 
 
                 if($('.pq-grid-cont-inner').text() === "No rows to display." || totalPageSection === 0){
@@ -1608,6 +1519,15 @@ $(document).ready(function(){
                     $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')
                     previousButton.addClass('disabled')
                     nextButton.addClass('disabled')
+                    
+                }
+
+                if($(this).val().length === 0){
+                    $('.pq-pager-msg span').empty()
+                    $('<span></span>').appendTo('.pq-pager-msg')
+                }else if($(this).val().length !== 0 ||  $('.pq-grid-cont-inner').text() == "No rows to display."){
+                    $('.pq-pager-msg span').empty()
+                    $(`<span> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
                 }
 
                 if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
@@ -1741,6 +1661,86 @@ $(document).ready(function(){
                 $('.pq-pager-input').hide()        
             })  
 
+
+            $(`.${grid_style.toolbar.component.filterSearch.child.searchBar.class_name}`).on('click', '.cross-symbol' ,function(){
+                paginationPageBar.empty();
+                searchInsertBox.val('')
+                $('.cross-symbol').hide()
+                filterhandler()
+
+                if(rawData <= toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                    if(rawData < 20)
+                    {   
+                        if(rawData <= 10){
+                            paginationPageBar.append(`<div class="${numberPage} active" id="page-${1}"><span>${1}</span></div>`)
+                        }
+                        else if(rawData > 10 && rawData < 20)
+                        {
+                            for(var i=1; i <= Math.ceil(20/(rawData)); i++){
+                                if(i === 1){
+                                    paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${i}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span>}</div>`)
+                                }
+                            }
+                        }
+                    }else{
+                        for(var i=1; i <= tolPageTable; i++){
+                            if(i === 1){
+                                paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                            else if(i > 1){
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                        }
+                    }
+                }else if(rawData > toolbar.rPPOptions[toolbar.rPPOptions.length - 1]){
+                    if(tolPageTable >= 10)
+                    {
+                        for(var i=1; i <= 4; i++){
+                            if(i === 1){
+                                paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
+                            }
+                            else if(i > 1){
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
+                            }
+                        }
+                        paginationPageBar.append(threeDotTextDiv)
+                        paginationPageBar.append(`<div class="${numberPage}" id="page-${tolPageTable}"><span>${tolPageTable}</span></div>`)
+                    }else{
+                        if(tolPageTable ===  6 || tolPageTable ===  7)
+                        {
+                            for(var i=1; i <= 3; i++){
+                                if(i === 1){
+                                    paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
+                                }
+                            }
+                            paginationPageBar.append(threeDotTextDiv)
+                            paginationPageBar.append(`<div class="${numberPage}" id="page-${tolPageTable}"><span>${tolPageTable}</span></div>`)
+                        }else if(tolPageTable ===  8 || tolPageTable ===  9){
+                            for(var i=1; i <= 4; i++){
+                                if(i === 1){
+                                    paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
+                                }
+                                else if(i > 1){
+                                    paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
+                                }
+                            }
+                            paginationPageBar.append(threeDotTextDiv)
+                            paginationPageBar.append(`<div class="${numberPage}" id="page-${tolPageTable}"><span>${tolPageTable}</span></div>`)
+                        }
+                    }
+                }
+
+
+                $('.total').hide()
+                $('.pq-pager-input').hide() 
+            })
+
             // -------------------------------------- Handling event for filtered column and condition when it has been changed -------------------------------------------------------
 
             filterAndConditionOptions.on('change', function(ev){
@@ -1754,6 +1754,7 @@ $(document).ready(function(){
                     previousButton.addClass('disabled')
                     nextButton.addClass('disabled')
                 }
+
 
                 if(previousButton.hasClass('disabled')){
                     nextButton.removeClass('disabled')
@@ -1880,6 +1881,33 @@ $(document).ready(function(){
 
 
                 $('.pq-pager-input').val(1).trigger('change');
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })
+
+
+            filterColumn.on('change', function(){
+                if($(this).val().length === 0){
+                    $('.pq-pager-msg span').empty()
+                    $('<span></span>').appendTo('.pq-pager-msg')
+                }else if($(this).val().length !== 0 ||  $('.pq-grid-cont-inner').text() == "No rows to display."){
+                    $('.pq-pager-msg span').empty()
+                    $(`<span> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
+                }
+
+                $('.total').hide()
+                $('.pq-pager-input').hide()
+            })
+
+            filterCondition.on('change', function(){
+                if($(this).val().length === 0){
+                    $('.pq-pager-msg span').empty()
+                    $('<span></span>').appendTo('.pq-pager-msg')
+                }else if($(this).val().length !== 0 ||  $('.pq-grid-cont-inner').text() == "No rows to display."){
+                    $('.pq-pager-msg span').empty()
+                    $(`<span> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
+                }
+
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
@@ -2084,6 +2112,11 @@ $(document).ready(function(){
                 previousButton.addClass('disabled')
             }
 
+            if(grid_style.overall_table.isPaging === false){
+                pageSelectBoxOptions.hide()
+                $('.show-text').hide()
+            }
+
             $('.pq-pager-input').hide()    
             $('.total').remove()
             $(`.${footer.component.container.class_name}`).css(footer.component.container.style)
@@ -2144,7 +2177,6 @@ $(document).ready(function(){
         header: header,
         content: content,
         footer: footer,
-        scrollbar: scrollbar,
         toolbar: toolbar
     }
     var pageModel = { type: "local", rPP: grid_style.toolbar.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.toolbar.rPPOptions}
@@ -2152,13 +2184,13 @@ $(document).ready(function(){
                     resizable: false,
                     draggable: false,
                     dragColumns: false,
-                    width: 'auto',
-                    height:  (grid_style.overall_table.isScrollBar === false)  ||  (data.length - grid_style.header.n_row) <=10 ? 'flex': parseInt(grid_style.content.height.replace('px','')),
+                    width: '100%',
+                    height:  'flex',
                     editable: false,
                     sortModel: false,   
                     freezeRows: grid_style.content.numberFreezeRows,    
                     freezeCols: grid_style.content.numberFreezeCols,
-                    scrollModel: {horizontal: true, autoFit: true},
+                    scrollModel: {autoFit: true},
                     numberCell: {show: false},
                     flex: {one: true},
                     colModel:  createColModel(),
@@ -2234,26 +2266,36 @@ $(document).ready(function(){
                         ]
                     },
                     refresh: function(event,ui){
-                        createToolBox()
-                        stylingTable(grid_style)
-                        createPagination() 
-                        createLinkToColumn()
+                        createToolBoxAndPagination(grid_style) 
+                        stylingTableAndAdditional(grid_style)
+
+                        if(ui.source != 'flex'){
+                            this.flex()
+                        }
+
+                        if($('.filterValue').val() == '' && ui.source != 'flex'){
+                            this.flex()
+                        }
+
+                        else if($('.filterValue').val().length >=1 && ui.source != 'flex'){
+                            this.flex()
+                        }
                     }
     }
-    
 
 
-
-    if(grid_style.overall_table.isScrollBar === false && grid_style.overall_table.isPaging === false) {
+    if(grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
     
 
     if((data.length - grid_style.header.n_row) <= toolbar.rPPOptions[0]){
         grid_object.width = '100%';
-        grid_style.overall_table.isScrollBar = false
     }
 
-    var $grid = $("#automerged-modified-table").pqGrid(grid_object);
+
+
+    var grid = $("#automerged-modified-table");
+    var $grid =  grid.pqGrid(grid_object)
 
 });    

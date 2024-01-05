@@ -1,7 +1,85 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root{
+
+  /* All related color*/
+
+  --pure-white-color: #ffffff;
+  --pure-black-color: #000000;
+  --smoke-white-color: #fefefe;
+  --light-grey-color: #ccc;
+  --powder-blue-color: #dae6f0;
+  --light-sky-blue-color: #e6f4ff;
+  --light-blue-grey-color: #dbe4ed;
+  --alice-blue-color: #afd3f2;
+  --pastel-blue-color: #9cbee2;
+  --pastel-blue-color2: #9ecaed;
+  --navy-blue-color: #214382;
+
+
+  /* Width */
+  --width-40px: 40px;
+
+  /* Height */
+
+  --height-25px: 25px;
+  --height-30px: 30px;
+  --height-35px: 35px;
+  --height-40px: 40px;
+
+
+  /* Font size*/
+  --min-font-size: 16px;
+  --max-font-size: 18px;
+
+  /* Font weight */
+  --normal-font-weight: normal;
+  --bold-font-weight: bold;
+
+
+
+  /* Background */
+  --header-bg-color: linear-gradient(var(--pure-white-color),var(--powder-blue-color));
+  --odd-row-content-bg-color: var(--light-sky-blue-color);
+  --even-row-content-bg-color: var(--pure-white-color);
+  --btn-inside-pagination-container-bg-color-hover: linear-gradient(var(--pure-white-color) 40%, var(--powder-blue-color));
+  --page-insert-box-bg-color: linear-gradient(var(--pure-white-color) 40%, var(--pastel-blue-color)) ;
+  --active-btn-inside-pagination-container-background: linear-gradient(white 40%, var(--light-blue-grey-color));
+
+
+  
+  /* Border */
+  --outside-table-border: 2px solid var(--alice-blue-color);
+  --header-table-border: 1.5px solid var(--alice-blue-color);
+  --content-table-border: 1.5px solid var(--alice-blue-color);
+  --input-searchbox-container-border: 1px solid var(--light-grey-color);
+  --btn-inside-pagination-container-border: 2px solid transparent;
+  --btn-inside-pagination-container-border-hover: 2px solid var(--alice-blue-color);
+  --page-insert-box-border: 2px solid var(--pastel-blue-color);
+  --active-btn-inside-pagination-container-border: 2px solid var(--alice-blue-color);
+  --disabled-btn-inside-pagination-container-border: 2px solid transparent;
+
+
+  /* Padding */
+  --toolbar-container-padding: 12px 0 20px 0;
+  --header-cell-padding: 10px 0;
+  --content-cell-padding: 4px 0;
+  --footer-container-padding: 18px 0px 7px 0px;
+  --pagination-container-padding: 0px -5px 0px 0px;
+  --btn-inside-pagination-container-padding: 7px 14px;
+  --active-btn-inside-pagination-container-padding: 7px 14px; 
+
+  /* Margin */
+  --spacing-inside-toolbar-container-margin: 10px;
+  --input-search-box-margin: 5px 5px 5px 0;
+  --input-search-box-icon-margin: 5px 2px 5px 5px;
+  --three-dot-text-margin: 0 7px;
+
+
 }
 
 body {
@@ -25,6 +103,7 @@ body {
   padding-left: 45px;
 }
 
+
 /* ------------------------------------------------ */
 
 
@@ -32,27 +111,28 @@ body {
 
 .overall-table-container{
   width: 100%;
-  border: 1.5px solid #afd3f2
+  border: var(--outside-table-border);
 }
 
 /* --- Header of table style ---- */
 
 
 .header-container{
-  background: linear-gradient(#fefefe, #dae6f0) !important
+  background: var(--header-bg-color) !important;
 }
 
+
 .header-table-col{
-  border: 1.5px solid #afd3f2 !important
+  border: var(--header-table-border) !important;
 }
 
 
 
 .header-table-cell{
-  padding: 10px 0px 10px 0px !important;
-  font-size: 18px !important;
-  font-weight: bold ;
-  color: black;
+  padding: var(--header-cell-padding) !important;
+  color: var(--pure-black-color);
+  font-size: var(--max-font-size) !important;
+  font-weight: var(--bold-font-weight);
 }
 
 
@@ -60,80 +140,46 @@ body {
 
 
 .content-table-odd-row{
-  background: #e6f4ff
+  background: var(--odd-row-content-bg-color);
 }
 
 .content-table-even-row{
-  background: #ffffff
+  background: var(--even-row-content-bg-color);
 }
 
 .content-table-cell{
-  border: 1.5px solid #afd3f2 !important;
-  padding: 5px 0px 5px 0px;
-  font-size: 18px !important;
-  font-weight: 400;
-  color: black;
+  border: var(--content-table-border) !important;
+  padding: var(--content-cell-padding);
+  color: var(--pure-black-color);
+  font-size: var(--max-font-size) !important;
+  font-weight: var(--normal-font-weight);
 }
 
 /* -- Footer of table style --------- */
 
 .footer-container{
    display: flex;
-   padding: 18px 0px 7px 0px;
-   font-size: 18px;
-   font-weight: normal;
-   color: black;
-   background: white;
+   padding: var(--footer-container-padding);
+   font-weight: var(--normal-font-weight);
 }
 
-/* --- Scrollbar of table style ------ */
-
-
-.vertical-scrollbar-container{
-  background: #efefef !important;
-}
-
-.vertical-scrollbar{
-  background: #dae6f0 !important;
-  border-color: #83abcd !important;
-}
-
-.horizontal-scrollbar-container{
-  background: #efefef !important;
-}
-
-.horizontal-scrollbar{
-  background: #dae6f0 !important;
-  border-color: #83abcd !important;
-}
-
-.ui-triangle-button{
-  background: #dae6f0 !important
-}
 
 /* ---------- Toolbar of table style --------------- */
 
 
 /* Main Component */
 .toolbar-search-component{
-  height: auto;
-  padding: 12px 0px 20px 0px;
+  padding: var(--toolbar-container-padding);
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-items: center;
   justify-content: space-between;
-  background: white;
 }
 
 /* Export Files Component */
 .export-files-main-component{
-    width: auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    margin-left: 0px;
-    margin-right: 0px;
 }
 
 /* Format component */
@@ -148,61 +194,64 @@ body {
 .format-label-component{
    display: flex;
    flex-wrap: wrap;
-   align-items: center;
-   margin-right: 10px;
+   margin-right: var(--spacing-inside-toolbar-container-margin);
 }
 
 /* Export format component */
 
-.export-format-main-component{
-  margin-left: 10px;
-  height: 40px !important;
+.export-format-main-component{  
+  height: var(--height-40px) !important;
+  margin-left: var(--spacing-inside-toolbar-container-margin);
 }
 
 .export-format-main-component:focus{
-  outline: none
+  outline: none;
 }
+
 
 /* Export format button */
 
 .export-format-button{
   display: flex;
   align-items: center;
-  height: 40px;
-  margin-right: 10px;
-  background-color: #f2f2f2;
+  height: var(--height-40px);
+  margin-right: var(--spacing-inside-toolbar-container-margin);
+  background-color: var(--light-sky-blue-color) !important;
   outline: none;
 }
 
 
-.export-format-button:hover{
- background-color: #f8f8f8;
- border: 1px solid #c5c5c5;
- color: black;
-}
+
 
 .export-format-button:focus{
+  outline: none;
+}
+
+.export-format-button:hover{
+  background-color: var(--powder-blue-color) !important;
+  border-color: var(--light-grey-color);
+  color: black;
   outline: none;
 }
 
 /* Export format button icon */
 
 .export-format-button-icon{
-  height: 25px;
-  margin-top: 2px;
-  margin-left: -5px;
-  margin-right: 2px;
+  position: relative;
+  top: -0.5px;
+  right: 5px;
+  height: 20px;
 }
 
 /* Page selection component */
 .page-options-main-component{
-  margin-left: 10px;
+  margin-left: var(--spacing-inside-toolbar-container-margin);
 }
 
 /* Page option */
 
 div.pq-grid select{
-  height: 40px;
+  height: var(--height-40px);
 }
 
 div.pq-grid select:focus{
@@ -212,13 +261,12 @@ div.pq-grid select:focus{
 
 /* 'Show' text */
 .show-single-text{
-  margin-right: 10px;
+  margin-right: var(--spacing-inside-toolbar-container-margin);
 }
 
 .page-selects{
-  margin-right: 10px;
+  margin-right: var(--spacing-inside-toolbar-container-margin);
 }
-
 
 
 
@@ -227,73 +275,85 @@ div.pq-grid select:focus{
 .filter-main-component{
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  margin-left: 0px;
-  margin-right: 0px;
 }
 
 /* Search bar */
 
 .input-search-box{
   display: flex;
-  border: 1px solid #ccc;
+  position: relative;
+  border: var(--input-searchbox-container-border);
+  background-color: var(--pure-white-color);
   border-radius: 4px;
-  margin-right: 10px;
+  margin-right: var(--spacing-inside-toolbar-container-margin);
 }
+
 
 /* Input search bar */
 
 .filter-value{
-  height: 30px;
-  margin: 5px 5px 5px 0px;
+  height: var(--height-30px);
+  margin: var(--input-search-box-margin);
   outline: none !important;
   border: none !important;
 }
 
 
+.cross-symbol{
+  position: absolute;
+  filter: opacity(50%);
+  font-size: 18px !important;
+  top: 10px;
+  right: 10px;
+}
+
 /* Search bar icon */
 
 .search-box-icon{
-  filter: opacity(50%);
-  height: 30px;
-  margin: 5px 2px 5px 5px;
+  filter: opacity(30%);
+  height: var(--height-30px);
+  margin: var(--input-search-box-icon-margin)
 }
 
 
 /* Option for filter column */
 
 .filter-column{
-  margin-right: 10px;
-  height: 40px !important;
+  margin-right: var(--spacing-inside-toolbar-container-margin);
+  height: var(--height-40px) !important;
 }
 
 /* Option for filter column with condition */
 
 .filter-condition{
-  height: 40px !important;
+  height: var(--height-40px) !important;
 }
 
 
 /* ---- Link ------ */
 
 
-.all-cell-link{
+
+
+.link-text{
   text-decoration-color: transparent;
+  font-weight: var(--bold-font-weight);
+  color: var(--navy-blue-color) !important;
 }
 
-.all-cell-link:hover{
-  text-decoration-color: red;
+.link-text:hover{
+  text-decoration-color: red !important;
 }
 
 
 
 /* ----- footer -----*/
 .footer-container{
-    display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap-reverse;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
@@ -301,25 +361,25 @@ div.pq-grid select:focus{
 /* --- pagination container ---*/
 .pagination-container {
   display: flex;
-  margin-right: -5px;
+  margin: var(--pagination-container-padding);
 }
 
 
 /* --- previous button -----*/
 .previous-btn-container {
-  border: 2px solid transparent;
+  border: var(--btn-inside-pagination-container-border);
 }
 
 .previous-btn span {
   display: flex;
   align-items: center;
-  height: 30px;
-  padding: 7px 14px;
+  height: var(--height-30px);
+  padding: var(--btn-inside-pagination-container-padding);
 }
 
 .previous-btn-container:hover {
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid #afd3f2;
+  background: var(--btn-inside-pagination-container-bg-color-hover);
+  border: var(--btn-inside-pagination-container-border-hover);
 }
 
 /* ---- page number container --- */
@@ -333,81 +393,86 @@ div.pq-grid select:focus{
 /* --- number page -------- */
 
 .num-page{
-  border: 2px solid transparent;
-  padding: 7px 14px;  
+  border: var(--btn-inside-pagination-container-border);
+  padding: var(--btn-inside-pagination-container-padding); 
 }
 
 .num-page:hover{
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid #afd3f2;
+  background: var(--btn-inside-pagination-container-bg-color-hover);
+  border: var(--btn-inside-pagination-container-border-hover);
 }
 
 /* --- next button -------- */
 
 
 .next-btn-container {
-  border: 2px solid transparent;
+  border: var(--btn-inside-pagination-container-border);
 }
 
 .next-btn span {
   display: flex;
   align-items: center;
-  height: 30px;
-  padding: 7px 14px;
+  height: var(--height-30px);
+  padding: var(--btn-inside-pagination-container-padding);
 }
 
 .next-btn-container:hover {
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid #afd3f2;
+  background: var(--btn-inside-pagination-container-bg-color-hover);
+  border: var(--btn-inside-pagination-container-border-hover);
 }
 
 /* ---- three dot --------- */
 
 .three-dot{
-  margin-left: 6px; 
-  margin-right: 6px;
+  margin: var(--three-dot-text-margin);
 }
 
 /* ---- middle insert box --- */
 
 .page-insert-box{
-  width: 40px ;
-  height: 35px;
-  background: linear-gradient(white 40%,#9cbee2);
-  border: 2px solid rgb(175, 211, 242) !important;
+  width: var(--width-40px);
+  height: var(--height-35px);
+  background: var(--page-insert-box-bg-color);
+  border: var(--page-insert-box-border) !important;
   text-align: center;
 }
+
 
 .page-insert-box:focus{
   outline: none;
 }
 
-input.disabled-input-box{
-  width: 40px;
-  height: 35px;
-  background: white !important;
-  border: 2px solid white !important;
-  text-align: center;
-}
 
-
-/* ---- disabled class for previous, next, number page*/
-.disabled:hover{
-  background: none !important;
-  border: 2px solid transparent !important;
+/* active class for Input search bar focus*/
+.active-toolbar{
+  outline: none;
+  border-color: var(--pastel-blue-color2);
+  box-shadow: 0 0 10px var(--pastel-blue-color2);
 }
 
 
 /* ---- active class for previous, next, number page*/
 .active{
-  padding: 7px 14px;
-  background: linear-gradient(white 40%,#dbe4ed);
-  border: 2px solid rgb(175, 211, 242);
+  padding: var(--active-btn-inside-pagination-container-padding);
+  background: var(--active-btn-inside-pagination-container-background);
+  border: var(--active-btn-inside-pagination-container-border);
 }
 
-.pq-vscroll{
-  height: 100% !important;
+
+/* --- active class for export, page options, search, filter/condition */
+
+.disabled:hover{
+  background: none;
+  border: var(--disabled-btn-inside-pagination-container-border);
 }
+
+
+
+
+
+
+
+
 
 
 
