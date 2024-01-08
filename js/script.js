@@ -14,7 +14,7 @@ var data = [
     [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
     [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
     [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakuras", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
     [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
     [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
     [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
@@ -88,11 +88,8 @@ for(let i=1 ; i <= (number/10); i++)
 }
 */
 
-
-
 var dataForCreateLink = {
     source: [
-    
         [
           ["Sakura", "https://sakura.com"],
           ["Ravi", "https://ravi.com"],
@@ -119,46 +116,8 @@ var dataForCreateLink = {
         [
             ["Tanaka","https://www.tanaka.com"]
         ]
-      
-
-      /*
-       [
-         [
-           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
-           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
-           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
-           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj",
-           "Sakura","Ravi","Ji-eun","Chen","Nisha","Yusuf","Mei","Hiroshi","Ananya","Raj"
-         ],
-         [
-           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
-           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
-           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
-           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
-           "Tanaka","Patel","Kim","Liu","Sharma","Rahman","Chen","Suzuki","Gupta","Singph",
-         ]
-    
-       ],
-
-       [
-          [
-            "https://sakura.com","https://ravi.com","","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
-            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
-            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
-            "https://sakura.com","https://ravi.com","","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com",
-            "https://sakura.com","https://ravi.com","https://jieun.com","https://chen.com","https://nisha.com","https://yusuf.com","https://mei.com","https://hiroshi.com","https://ananya.com","https://raj.com"
-          ],
-          [
-            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
-            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
-            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
-            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
-            "https://tanaka.com","https://patel.com","https://kim.com","https://liu.com","https://sharma.com","https://rahman.com","https://chen.com","https://suzuki.com","https://gupta.com","https://singph.com",
-          ]
-       ]
-       */
     ],
-    columnNameArray: ['First name','Last name'],
+    columnIndexArray: [0,1],
     class_name: 'link-text',
     style: {}
 }
@@ -446,6 +405,34 @@ var toolbar = {
 
 $(document).ready(function(){ 
 
+    /* */
+
+    function getObjectDepth(obj) {
+        if (!obj || !obj.colModel || obj.colModel.length === 0) {
+          return 1;
+        }
+      
+        const depths = obj.colModel.map(getObjectDepth);
+        return 1 + Math.max(...depths);
+      }
+      
+
+      function getObjectsAtDepth(obj, maxDepth, currentDepth = 1) {
+        if (currentDepth === maxDepth) {
+          return [obj];
+        }
+      
+        if (obj.colModel && Array.isArray(obj.colModel) && obj.colModel.length > 0) {
+          return obj.colModel.flatMap((child) =>
+            getObjectsAtDepth(child, maxDepth, currentDepth + 1)
+          );
+        } else {
+          return [];
+        }
+      }
+
+    /* */
+
     function createColModelStructure(input) {
         return input.map(row => {
             return {
@@ -690,7 +677,6 @@ $(document).ready(function(){
                                     {
                                         if(arr[k].cc === 1){
                                             template.colModel[b].colModel.push({title: arr[k].cellvalue, colModel: [], align: 'center'})
-                                            console.log(arr[k])
                                         }else if(arr[k].cc > 1){
                                             /* -------------------------- Case of nested more than 3 subcol */
                                         }
@@ -2161,13 +2147,12 @@ $(document).ready(function(){
     }
 
 
-    /*
+    
     $('.hidden-button').on('click', function(){
         var pqRefreshButton = $('.ui-icon-refresh')
         $('.hidden').toggle();
         pqRefreshButton.click()
     })
-    */
     
     
 // --------------------------------------------- Recall all function ------------------------------------------------------------
@@ -2283,6 +2268,26 @@ $(document).ready(function(){
                     }
     }
 
+   if(dataForCreateLink.length != 0){
+      var allColumnObjArray = [];
+      var columnIndexForCreatingLinkArray = dataForCreateLink.columnIndexArray; 
+
+      for(let i=0 ; i < grid_object.colModel.length ; i++)
+      {
+        var maxDepthObject = getObjectDepth(grid_object.colModel[i])
+        var deepestChildEachParentColumnArray = getObjectsAtDepth(grid_object.colModel[i], maxDepthObject)
+        
+        for(const colModelObj of deepestChildEachParentColumnArray)
+        {
+            allColumnObjArray.push(colModelObj)
+        }
+      }
+
+      for(let k=0 ; k < columnIndexForCreatingLinkArray.length ; k++)
+      {
+         
+      }
+   }
 
     if(grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
@@ -2292,7 +2297,6 @@ $(document).ready(function(){
     if((data.length - grid_style.header.n_row) <= toolbar.rPPOptions[0]){
         grid_object.width = '100%';
     }
-
 
 
     var grid = $("#automerged-modified-table");
