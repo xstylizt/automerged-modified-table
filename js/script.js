@@ -114,10 +114,11 @@ var dataForCreateLink = {
         ],
 
         [
-            ["Tanaka","https://www.tanaka.com"]
+            ["Tanaka","https://www.tanaka.com"],
+            ["Patel ", "https://www.patel.com"]
         ]
     ],
-    columnIndexArray: [0,1],
+    columnIndexArray: [1,2],
     class_name: 'link-text',
     style: {}
 }
@@ -2171,8 +2172,8 @@ $(document).ready(function(){
                     dragColumns: false,
                     width: '100%',
                     height:  'flex',
-                    editable: false,
-                    sortModel: false,   
+                    editable: false,    
+                    sortModel: false,
                     freezeRows: grid_style.content.numberFreezeRows,    
                     freezeCols: grid_style.content.numberFreezeCols,
                     scrollModel: {autoFit: true},
@@ -2180,7 +2181,9 @@ $(document).ready(function(){
                     flex: {one: true},
                     colModel:  createColModel(),
                     mergeCells: mergeCellsContentTable(grid_style),
-                    dataModel: { data: data.slice(grid_style.header.n_row, ) },
+                    dataModel: { 
+                        data: data.slice(grid_style.header.n_row, ),
+                    },
                     columnTemplate: { align: 'center', valign: 'center' },
                     filterModel: { mode: 'OR'},
                     pageModel: pageModel,
@@ -2269,8 +2272,11 @@ $(document).ready(function(){
     }
 
    if(dataForCreateLink.length != 0){
-      var allColumnObjArray = [];
+      //** Get all the deepest child of each parent colModel */
+    
+      var sourceDataForCreatingLinkArray = dataForCreateLink.source;
       var columnIndexForCreatingLinkArray = dataForCreateLink.columnIndexArray; 
+      var allColumnObjArray = [];
 
       for(let i=0 ; i < grid_object.colModel.length ; i++)
       {
@@ -2283,9 +2289,19 @@ $(document).ready(function(){
         }
       }
 
-      for(let k=0 ; k < columnIndexForCreatingLinkArray.length ; k++)
+      // **  Generating link to column  **//
+      for(const colIndx of columnIndexForCreatingLinkArray)
       {
-         
+        allColumnObjArray[colIndx].render = function(ui, evt){
+            if(ui.colIndx === colIndx){
+                var colIndexInArray = columnIndexForCreatingLinkArray.indexOf(colIndx);
+                if(ui.rowIndx >=0 && ui.rowIndx < sourceDataForCreatingLinkArray[colIndexInArray].length - 1){
+                    console.log(ui.cellData)
+                    console.log(ui.rowIndx)
+                    console.log(ui.colIndx)
+                }   
+            }
+        } 
       }
    }
 
