@@ -1,92 +1,143 @@
 // ------------------------------------ Data requirement part -----------------------------------------------
 
 var data = [
+    // heading with n_row = 3
+
     ['Employee information','Employee information','Employee information','Section','Role','Skill','Skill','Skill','Skill','Skill','Skill','Skill','Skill'],
     ['Employee information','Employee information','Employee information', 'Section', 'Role','Frontend framework','Frontend framework','Frontend framework','Frontend framework','Backend framework','Backend framework','Backend framework','Backend framework'],
     ['Id','First name', 'Last name', 'Section', 'Role', 'React', 'Angular', 'Vue', 'Svelte', 'Express.js', 'Laravel', 'Springboot', 'Django'],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
-    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
-    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
-    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
-    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
-    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
-    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
-    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
-    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
-    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
     
-];
+    // n = 10
+    
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
 
-/*
-var number = 50;
-var temp = data.slice(3,);
-for(let i=1 ; i <= (number/10); i++)
-{
-    for(let object of temp){
-        data.push(object)
-    }
-}
-*/
+    
+    // n = 20
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    
+    // n = 30
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 40
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 50
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 60
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 70
+    /*
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 80
+
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 90
+
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
+
+    // n = 100
+
+    [1, "Sakura", "Tanaka", "Software developer", "Frontend developer", "✔", "✔", "", "", "", "", "", ""],
+    [2, "Ravi", "Patel", "Software developer", "Backend developer", "", "", "", "✔", "", "", "✔", ""],
+    [3, "Ji-eun", "Kim", "Software developer", "Backend developer", "", "", "", "", "✔", "", "", ""],
+    [4, "Chen", "Liu", "Software developer", "Full Stack developer", "✔", "", "", "", "", "✔", "", ""],
+    [5, "Nisha", "Sharma", "Software developer", "Frontend developer", "", "", "✔", "", "", "", "", ""],
+    [6, "Yusuf", "Rahman", "Software developer", "Full Stack developer", "", "✔", "", "", "✔", "", "", ""],
+    [7, "Mei", "Chen", "Software developer", "Backend developer", "", "", "", "", "", "", "✔", ""],
+    [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
+    [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
+    [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"]
+    */
+]
+
+
+
 
 var dataForCreateLink = {
     source: [
@@ -114,8 +165,9 @@ var dataForCreateLink = {
         ],
 
         [
-            ["Tanaka","https://www.tanaka.com"],
-            ["Patel ", "https://www.patel.com"]
+            ["Tanakaa","https://www.tanaka.com"],
+            ["Patel", "https://www.patel.com"],
+            ["Kim","https://www.kim.com"]
         ]
     ],
     columnIndexArray: [1,2],
@@ -1011,6 +1063,7 @@ $(document).ready(function(){
             $('.ui-button').append('<span class="export-text">Export</span>')
             $(`<img class="export-icon  " src=${grid_style.toolbar.export_icon_path}>`).insertBefore($('.export-text'));
             
+            
 
             var pqGridToolBarSearchComponent = $('.pq-toolbar-search'),
                 pqGridExportFilesComponent = $('.export-files-component'),
@@ -1162,7 +1215,7 @@ $(document).ready(function(){
                 }else{
                     if(tolPageTable ===  6 || tolPageTable ===  7)
                     {
-                        for(var i=1; i <= 3; i++){
+                        for(var i=1; i <= 4; i++){
                             if(i === 1){
                                 paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                             }
@@ -1218,7 +1271,7 @@ $(document).ready(function(){
                     {
                         if(totalPageSection === 6|| totalPageSection ===  7)
                         {
-                            for(var i=1; i <= 3; i++){
+                            for(var i=1; i <= 4; i++){
                                 if(i === 1){
                                     paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                 }
@@ -1348,7 +1401,7 @@ $(document).ready(function(){
                         if(totalPageCount === 6 || totalPageCount === 7){
                             if(countClick - 1 > 0 && countClick - 1 <= 3){
                                 paginationPageBar.empty()
-                                for(let i = 1; i <= 3; i++){
+                                for(let i = 1; i <= 4; i++){
                                     paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
                                 }
                                 paginationPageBar.append(threeDotTextDiv)
@@ -1485,7 +1538,6 @@ $(document).ready(function(){
             })
 
             
-
             searchInsertBox.on('keyup', function(ev){
                 paginationPageBar.empty();
                 var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null
@@ -1497,8 +1549,6 @@ $(document).ready(function(){
                 }else if($(this).val().length === 0){
                     $('.cross-symbol').hide()
                 }
-
-
 
                 if($('.pq-grid-cont-inner').text() === "No rows to display." || totalPageSection === 0){
                     $('.pq-pager-msg').empty()
@@ -1554,7 +1604,7 @@ $(document).ready(function(){
                         {
                             if(tolPageTable === 6|| tolPageTable ===  7)
                             {
-                                for(var i=1; i <= 3; i++){
+                                for(var i=1; i <= 4; i++){
                                     if(i === 1){
                                         paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                     }
@@ -1606,7 +1656,7 @@ $(document).ready(function(){
                     {
                         if(totalPageSection === 6|| totalPageSection ===  7)
                         {
-                            for(var i=1; i <= 3; i++){
+                            for(var i=1; i <= 4; i++){
                                 if(i === 1){
                                     paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                 }
@@ -1698,7 +1748,7 @@ $(document).ready(function(){
                     }else{
                         if(tolPageTable ===  6 || tolPageTable ===  7)
                         {
-                            for(var i=1; i <= 3; i++){
+                            for(var i=1; i <= 4; i++){
                                 if(i === 1){
                                     paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                 }
@@ -1777,7 +1827,7 @@ $(document).ready(function(){
                         {
                             if(tolPageTable === 6|| tolPageTable ===  7)
                             {
-                                for(var i=1; i <= 3; i++){
+                                for(var i=1; i <= 4; i++){
                                     if(i === 1){
                                         paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                     }
@@ -1829,7 +1879,7 @@ $(document).ready(function(){
                     {
                         if(totalPageSection === 6|| totalPageSection ===  7)
                         {
-                            for(var i=1; i <= 3; i++){
+                            for(var i=1; i <= 4; i++){
                                 if(i === 1){
                                     paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                 }
@@ -1871,7 +1921,6 @@ $(document).ready(function(){
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
-
 
             filterColumn.on('change', function(){
                 if($(this).val().length === 0){
@@ -1951,7 +2000,7 @@ $(document).ready(function(){
                     }else if(totalPageCount >= 6 && totalPageCount <= 9){
                         if(totalPageCount ===  6 || totalPageCount ===  7)
                         {
-                            for(var i=1; i <= 3; i++){
+                            for(var i=1; i <= 4; i++){
                                 if(i === 1){
                                     paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${1}</span></div>`)
                                 }
@@ -2006,7 +2055,7 @@ $(document).ready(function(){
                                     }
                                     $(`#page-${parseInt(clickedValue)}`).addClass('active')
                                 }
-                            }
+                        }
                         else if(totalPageCount === 8 || totalPageCount === 9){
                             if(parseInt(clickedValue) > 4){
                                 paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
@@ -2025,7 +2074,51 @@ $(document).ready(function(){
                         }
                         paginationPageBar.append(`<div class="${numberPage} active" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`)
                     }
+                }else{
+                    if(totalPageCount >= 6 && totalPageCount <= 9){
+                        if(totalPageCount === 6 || totalPageCount === 7){
+                            paginationPageBar.empty()
+                            if(parseInt(clickedValue) < 4){
+                                for (let i = 1; i <= 4; i++) {
+                                    if(i === parseInt(clickedValue))
+                                    {
+                                        paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${i}</span></div>`);
+                                    }else {
+                                        paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`);
+                                    }
+                                }
+                                paginationPageBar.append(threeDotTextDiv)
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageCount}"><span>${totalPageCount}</span></div>`);
+
+                            }else if(parseInt(clickedValue) === 4){
+
+                                
+
+                                    paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
+                                    paginationPageBar.append(threeDotTextDiv)
+                                    for (let i = parseInt(clickedValue); i <= totalPageCount; i++) {
+                                        if(i === parseInt(clickedValue))
+                                        {
+                                            paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}"><span>${i}</span></div>`);
+                                        }else {
+                                            paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`);
+                                        }
+                                    }
+                                
+
+                            }else if(parseInt(clickedValue) > 4){
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${1}"><span>${1}</span></div>`)
+                                paginationPageBar.append(threeDotTextDiv)
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${parseInt(clickedValue) - 1}"><span>${parseInt(clickedValue) - 1}</span></div>`);
+                                paginationPageBar.append(`<div class="${numberPage} active" id="page-${parseInt(clickedValue)}"><span>${parseInt(clickedValue)}</span></div>`);
+                                paginationPageBar.append(`<div class="${numberPage}" id="page-${parseInt(clickedValue)+1}"><span>${parseInt(clickedValue)+1}</span></div>`);
+
+
+                            }
+                        }
+                    }
                 }
+
 
                 if(totalPageCount >= 10){
                     if(parseInt(clickedValue) >= 4 && parseInt(clickedValue) <= totalPageCount - 3){
@@ -2037,6 +2130,7 @@ $(document).ready(function(){
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             });
+
 
 
             // ------------------------------------- Handling event for click and insert pagination page bar insert box ---------------------------
@@ -2116,6 +2210,50 @@ $(document).ready(function(){
         }
     }
 
+    // ------------------- Define function for creating link each column -------------------------------------------
+    function createLinkEachColumn(sourceLink){
+        var sourceLink = dataForCreateLink
+        if(sourceLink.length != 0){
+            //** Get all the deepest child of each parent colModel */
+          
+            let sourceDataForCreatingLinkArray = sourceLink.source
+            let columnIndexForCreatingLinkArray = sourceLink.columnIndexArray
+            let classNameForLinktag = sourceLink.class_name
+            let allColumnObjArray = []
+      
+            for(let i=0 ; i < grid_object.colModel.length ; i++)
+            {
+              var maxDepthObject = getObjectDepth(grid_object.colModel[i])
+              var deepestChildEachParentColumnArray = getObjectsAtDepth(grid_object.colModel[i], maxDepthObject)
+              
+              for(const colModelObj of deepestChildEachParentColumnArray)
+              {
+                  allColumnObjArray.push(colModelObj)
+              }
+            }
+      
+            
+            // **  Generating link to column  **
+            for(const colIndx of columnIndexForCreatingLinkArray)
+            {
+              allColumnObjArray[colIndx].render = function(ui, evt){
+                  if (
+                      ui.colIndx - 1 >= 0 &&
+                      ui.colIndx - 1 < sourceDataForCreatingLinkArray.length &&
+                      ui.rowIndx >= 0 &&
+                      ui.rowIndx < sourceDataForCreatingLinkArray[ui.colIndx - 1].length
+                  ) {
+                      let dataFromsourceData =
+                          sourceDataForCreatingLinkArray[ui.colIndx - 1][ui.rowIndx][0];
+                      let linkFromsourceData =
+                          sourceDataForCreatingLinkArray[ui.colIndx - 1][ui.rowIndx][1]; 
+
+                      return `<a href="${linkFromsourceData}" class="${classNameForLinktag}" target="_blank">${ui.cellData}</a>`
+                  }
+              }
+            }
+         }
+    }
 
 
     // ------------------- Define function for creating exported files and filtered column with name and condition ----------------------------
@@ -2144,7 +2282,6 @@ $(document).ready(function(){
             oper: 'replace',
             data: filterObject
         });
-
     }
 
 
@@ -2165,6 +2302,8 @@ $(document).ready(function(){
         footer: footer,
         toolbar: toolbar
     }
+
+    var controlRefreshForSelectOption = 0;
     var pageModel = { type: "local", rPP: grid_style.toolbar.rPPOptions[0] ,strRpp: "{0}", strDisplay: `Showing {0} to {1} of {2} entries`, rPPOptions: grid_style.toolbar.rPPOptions}
     var grid_object = {
                     resizable: false,
@@ -2234,9 +2373,9 @@ $(document).ready(function(){
                                 type: 'select', cls: "filterColumn",
                                 listener: filterhandler,
                                 options: function (ui) {
-                                    var CM = ui.colModel;
-                                    var opts = [{ '': 'All'}];
-                                    for (var i = 0; i < CM.length; i++) {
+                                    var CM = ui.colModel;   
+                                    var opts = [{'': 'All'}];
+                                    for (var i = 0 ; i < CM.length; i++) {
                                         var column = CM[i];
                                         var obj = {};
                                         obj[column.dataIndx] = column.title;
@@ -2253,9 +2392,17 @@ $(document).ready(function(){
                             }
                         ]
                     },
-                    refresh: function(event,ui){
+                    refresh: function(evt, ui){
+                        controlRefreshForSelectOption++;
                         createToolBoxAndPagination(grid_style) 
                         stylingTableAndAdditional(grid_style)
+
+                        if(controlRefreshForSelectOption == 1)
+                        {
+                            // filterColumn config
+                            $('.filterColumn option[value="head"]').prop('disabled', true)
+
+                        }
 
                         if(ui.source != 'flex'){
                             this.flex()
@@ -2268,43 +2415,13 @@ $(document).ready(function(){
                         else if($('.filterValue').val().length >=1 && ui.source != 'flex'){
                             this.flex()
                         }
-                    }
+                    },
+                    
     }
 
-   if(dataForCreateLink.length != 0){
-      //** Get all the deepest child of each parent colModel */
-    
-      var sourceDataForCreatingLinkArray = dataForCreateLink.source;
-      var columnIndexForCreatingLinkArray = dataForCreateLink.columnIndexArray; 
-      var allColumnObjArray = [];
-
-      for(let i=0 ; i < grid_object.colModel.length ; i++)
-      {
-        var maxDepthObject = getObjectDepth(grid_object.colModel[i])
-        var deepestChildEachParentColumnArray = getObjectsAtDepth(grid_object.colModel[i], maxDepthObject)
-        
-        for(const colModelObj of deepestChildEachParentColumnArray)
-        {
-            allColumnObjArray.push(colModelObj)
-        }
-      }
-
-      // **  Generating link to column  **//
-      for(const colIndx of columnIndexForCreatingLinkArray)
-      {
-        allColumnObjArray[colIndx].render = function(ui, evt){
-            if(ui.colIndx === colIndx){
-                var colIndexInArray = columnIndexForCreatingLinkArray.indexOf(colIndx);
-                if(ui.rowIndx >=0 && ui.rowIndx < sourceDataForCreatingLinkArray[colIndexInArray].length - 1){
-                    console.log(ui.cellData)
-                    console.log(ui.rowIndx)
-                    console.log(ui.colIndx)
-                }   
-            }
-        } 
-      }
-   }
-
+    // Call function for creating link 
+    createLinkEachColumn(dataForCreateLink)
+   
     if(grid_style.overall_table.isPaging === false) {
         grid_object.pageModel = ''
     }
