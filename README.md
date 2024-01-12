@@ -12,11 +12,11 @@
 
 
 
-## Setting up for project
+## Setting up for project 🛠
 
 
-
-## Configuration
+ 
+## Configuration ⚙️
 
 
 
