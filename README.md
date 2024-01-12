@@ -73,12 +73,15 @@
     [8, "Hiroshi", "Suzuki", "Software developer", "Frontend developer", "✔", "✔", "", "✔", "", "", "", "✔"],
     [9, "Ananya", "Gupta", "Software developer", "Backend developer", "", "", "", "✔", "✔", "", "✔", ""],
     [10, "Raj", "Singh", "Software developer", "Full Stack developer", "✔", "", "✔", "", "", "✔", "", "✔"],
-   ```
-   - Config
-       - 
-       - 
-       -  
 
+   ]
+   ```
+<h4>Properties of config</h4>
+
+- 
+- 
+- 
+<hr>
 
 ### 2. Input ที่นำเข้ามาสำหรับการฝังลิงค์ใน column (Link embed)
    
@@ -100,11 +103,12 @@
       style: {}
    }
    ```
-   - Config
-      - 
-      - 
-      -  
+<h4>Properties of config</h4>
 
+- 
+- 
+-  
+<hr>
 
 ### 3.แถบบนของหัวข้อตาราง (ตัวส่งออกข้อมูล/ตัวเลือกแสดงแถวต่อตาราง/แถบค้นหา)
    
@@ -209,11 +213,12 @@
         },
     }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
 
+- 
+- 
+- 
+<hr>
 
 ### 4. ภาพรวมของตาราง (Overall table)
    
@@ -224,13 +229,14 @@
         isPaging: true
     }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
+
+- 
+- 
+- 
+<hr>
 
 
-   
 ### 5. หัวข้อตาราง (Heading of table)
    
    ```JS
@@ -256,13 +262,13 @@
           },
       }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
 
+- 
+- 
+- 
+<hr>
 
-   
 ### 6. เนื้อหาของตาราง (Content)
    
    ```JS
@@ -290,12 +296,12 @@
         },
     }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
 
-
+- 
+- 
+- 
+<hr>
 
 ### 7. ส่วนท้ายของตาราง (Footer) / แถบเลื่อนหน้า (Pagination bar)
    
@@ -338,11 +344,12 @@
       }
    }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
 
+- 
+- 
+- 
+<hr>
 
 ### 8. แถบเลื่อนตาราง (scroll bar)
    
@@ -365,11 +372,11 @@
       },
    }
    ```
-   - Config
-       - 
-       - 
-       -  
+<h4>Properties of config</h4>
 
-
+- 
+- 
+- 
 <hr>
+
 <h3 align="left"><a href="https://xstylizt.github.io/automerged-modified-table/" target="_blank">Visit the live table</a> | <a href="https://github.com/xstylizt/automerged-modified-table/blob/main/js/script.js" target="_blank">Visit main script file</a> </div></h3>
