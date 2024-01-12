@@ -62,8 +62,7 @@
             <div id="automerged-modified-table"></div>
        </body>
        ```
-- สำหรับไฟล์ `style.css` เป็นไฟลที่ใช้กำหนด style ให้กับ class ที่ถูกกำหนดขึ้นมาจาก config ซึ่งมาจากไฟล์ `script.js` โดยสามามารถดูตัวอย่างแต่ละส่วนได้จาก <a href="#configuration-%EF%B8%8F">Configuration</a>
- 
+- สำหรับไฟล์ `style.css` เป็นไฟลที่ใช้กำหนด style ให้กับ class ที่ถูกกำหนดขึ้นมาจาก config ซึ่งมาจากไฟล์ `script.js`
 ## Configuration ⚙️
 
 สำหรับ configuration ของตารางสามารถแบ่งออกเป็น **8 ส่วนหลัก ๆ** ดังต่อไปนี้ที่สามารถทำได้
