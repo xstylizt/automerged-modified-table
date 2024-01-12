@@ -62,7 +62,7 @@
             <div id="automerged-modified-table"></div>
        </body>
        ```
-
+- สำหรับไฟล์ `style.css` เป็นไฟลที่ใช้กำหนด style ให้กับ class ที่ถูกกำหนดขึ้นมาจาก config ซึ่งมาจากไฟล์ `script.js` โดยสามามารถดูตัวอย่างแต่ละส่วนได้จาก <a href="#configuration-%EF%B8%8F">Configuration</a>
  
 ## Configuration ⚙️
 
@@ -92,9 +92,8 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- สำหรับ input ที่นำเข้ามาสำหรับการแสดงผลบนตาราง ในที่นี้รองรับเฉพาะ**ข้อมูลที่มีโครงสร้างแบบอาร์เรย์ 2 มิติ (Array of Array)**
+
 <hr>
 
 ### 2. Input ที่นำเข้ามาสำหรับการฝังลิงค์ใน column (Link embed)
@@ -119,9 +118,10 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
--  
+- `source:` เป็นอาร์เรย์ 2 มิติที่เก็บข้อมูลที่เก็บข้อมูลในแต่ละคอลัมน์ (ในแต่ละอาเรย์จะเก็บข้อมูลเคอลัมน์ที่ต้องการจะสร้าง link คู่กับ link)
+- `columnIndexArray:` เป็นอาร์เรย์ที่เก็บเลขจำนวนเต็ม ซึ่งหมายถึงต้องการทำบนคอลัมน์ไหน (ใส่เป็น index จำนวนเต็ม) อาทิเช่น ในกรณี้ `[1,2]` หมายความว่าให้มีการทำบนคอลัมน์ 2 และ 3
+-  `class_name:` กำหนดชื่อให้กับ class ของ link สำหรับการทำ style
+-  `style:` กำหนดรูปแบบ style ให้กับ `class_name` ที่กำหนด (ในรูปแบบของ object)
 <hr>
 
 ### 3. แถบบนของหัวข้อตาราง (ตัวส่งออกข้อมูล/ตัวเลือกแสดงแถวต่อตาราง/แถบค้นหา)
@@ -229,25 +229,29 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- `export_format:` เป็นอาเรย์ที่เก็บ object สำหรับเพื่อสร้างตัวเลือกของรูปแบบประเภทในการ export ข้อมูลออก (CSV, XLSX, JSON และ HTML)
+- `export_icon_path:` เป็น path file สำหรับเก็บรูปภาพไอคอน export 
+- `search_icon_path:` เป็น path file สำหรับเก็บรูปภาพแว่นขยาย (Magnificent)
+- `rPPOptions:` เป็นอาเรย์ที่เก็บจำนวนเต็มเพื่อสร้างตัวเลือกในการสร้างรูปแบบของจำนวนแถวที่แสดงต่อหน้า (row per page)
+- `filter_condition:` เป็นอาเรย์ที่เก็บ object สำหรับเพื่อสร้างตัวเลือกเงื่อนไขในการคัดกรองข้อมูลของตาราง (Filter column)
+- `component:` เป็น object ที่ไว้สำหรับกำหนดชื่อ class และรูปแบบ (style) ของข้อมูลแต่ละจุดในแถบบนของตาราง
 <hr>
 
 ### 4. ภาพรวมของตาราง (Overall table)
    
    ```JS
    var overall_table = {
+        isPaging: true
         class_name: 'overall-table-container',
         style: {},
-        isPaging: true
     }
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- `isPaging:` เป็นค่า boolearn สำหรับการ flag เพื่อเลือกว่าต้องการแสดงตารางรูปแบบใด (แบบมี pagination/ไม่มี pagiantion (static table))
+-  `class_name:` กำหนดชื่อให้กับ class ของ link สำหรับการทำ style
+-  `style:` กำหนดรูปแบบ style ให้กับ `class_name` ที่กำหนด (ในรูปแบบของ object)
+    ( style ในที่นี้หมายถึงเป็น container ที่รวมหัวข้อตาราง (heading of table) และ ส่วนเนื้อหา (content) เข้าด้วยกัน )
 <hr>
 
 
@@ -278,9 +282,13 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- `n_row:`  เป็นตัวเลขที่ใช้เก็บว่าต้องการใช้กี่แถวในการสร้างหัวข้อตาราง (ในที่นี้ใช้ 3 แถวแรกเลยมี `n_row = 3`)
+- `mergedCelss:` เป็น object เก็บรูปแบบการผสานเซลล์ของหัวข้อตาราง
+   - `type:` มี 2 รูปแบบคือ
+     - `type: 'default'` เลือกไม่ให้มีการผสานเซลล์ของหัวตาราง
+     - `type: 'auto'`    เลือกให้มีการผสานเซลล์ของหัวตารางแบบอัติโนมัติ
+   - `configs:` เป้น config สำหรับการ merged (สำหรับ `default` และ `auto` เป็น empty arary `[]`)
+-  `component:` เป็น object ที่ไว้สำหรับกำหนดชื่อ class และรูปแบบ (style) ของข้อมูลแต่ละจุดสำหรับหัวข้อตาราง (Heading of Table)
 <hr>
 
 ### 6. เนื้อหาของตาราง (Content)
@@ -312,9 +320,25 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- `numberFreezeRow:`
+- `numberFreezeCols:`
+- `mergedCelss:` เป็น object เก็บรูปแบบการผสานเซลล์ของเนื้อหา (content)
+   - `type:` มี 5 รูปแบบคือ
+     - `type: 'default'` คือ เลือกไม่ให้มีการผสานเซลล์ของเนื้อหา
+     - `type: 'auto'` คือ เลือกให้มีการผสานเซลล์ของเนื้อหาแบบอัติโนมัติ (ไม่สนว่ามีการผสานข้าม column ไหม)
+     - `type: 'auto_col'` คือ เลือกให้มีการผสานเซลล์ของเนื้อหาเฉพาะคอลัมน์แบบอัติโนมัติ (ในแต่ละ column ที่มี cell ค่าเหมือนกันถูกผสานกัน)
+     - `type: 'auto_specific_col'` คือ เลือกให้มีการผสานเซลล์ของเนื้อหาเฉพาะคอลัมน์ (config ด้วยตัวเอง)
+     - `type: 'specific'` คือ เลือกให้มีการผสานเซลล์ของเนื้อหาแบบเฉพาะจุด (config ด้วยตัวเอง)
+   - `configs:` เป็น config สำหรับการ merged 
+     - `type: 'default'` กำหนดเป็น empty array `[]`
+     - `type: 'auto'` กำหนดเป็น empty array `[]`
+     - `type: 'auto_col'` กำหนดเป็น empty array `[]`
+     - `type: 'auto_specific_col'` สามารถกำหนดได้ดังต่อไปนี้
+        - ตัวอย่างเช่น ถ้าต้องการให้มีการผสานเซลล์เนื้อหาแบบอัติโนมัติบนคอลัมน์ 4 และ 5 กำหนดเป็น `[{c1: 3}, {c1: 4}]`  (สามารถกำหนดได้หลายแถว)
+     - `type: 'specific'` สามารถกำหนดได้ดังต่อไปนี้
+        - ตัวอย่างเช่น ถ้าต้องการให้มีการผสานเซลล์เนื้อหาโดย เริ่มจากคอลัมน์ที่ 1 (c1: 0) ไปถึงคอลัมน์ที่ 3 [cc:3] ซึ่งเริ่มต้นจากแถว 2 (r1: 1) ไปยังแถว 4 [rc: 3] กำหนดเป็น `[{r1:1, c1:0, rc: 3, cc:3}]
+          (rc: rowspan และ cc: colspan)
+- `component:` เป็น object ที่ไว้สำหรับกำหนดชื่อ class และรูปแบบ (style) ของข้อมูลแต่ละจุดสำหรับบนเนื้อหา (Content)
 <hr>
 
 ### 7. ส่วนท้ายของตาราง (Footer) / แถบเลื่อนหน้า (Pagination bar)
@@ -324,7 +348,7 @@
       component: {
           container: {
               class_name: 'footer-container',
-              style: {     },
+              style: {},
           },
           paginationContainer:{
               parent: {
@@ -360,9 +384,7 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+-  `component:` เป็น object ที่ไว้สำหรับกำหนดชื่อ class และรูปแบบ (style) ของข้อมูลแต่ละจุดสำหรับส่วนท้ายของตาราง (Footer) / แถบเลื่อนหน้า (Pagination bar)
 <hr>
 
 ### 8. แถบเลื่อนตาราง (scroll bar)
@@ -388,9 +410,8 @@
    ```
 <h4>Properties of config</h4>
 
-- 
-- 
-- 
+- `horizontalScrollbar:` คือ กำหนดรูปแบบ class และ style ตัวแถบเลื่อนในแนวแกน y
+- `uiTriangleButton:` คือ กำหนดรูปแบบ class และ style ปุ่มสำหรับกดแถบเลื่อนในแนวแกน y (ปุ่มสามเหลี่ยมติดกับแถบเลื่อน)
 <hr>
 
 <h3 align="left"><a href="https://xstylizt.github.io/automerged-modified-table/" target="_blank">Visit the live table</a> | <a href="https://github.com/xstylizt/automerged-modified-table/blob/main/js/script.js" target="_blank">Visit main script file</a> </div></h3>
