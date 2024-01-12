@@ -10,8 +10,8 @@
 
 ## Table of contents
 - <a href="#feature">Feature</a>
-- <a href="#setting-up-for-project"></a>
-- <a href="#configuration"></a>
+- <a href="#setting-up-for-project">Setting up for project</a>
+- <a href="#configuration">Configuration</a>
   - <a href="#1-input-ที่นำเข้ามาสำหรับการแสดงผลบนตาราง">Input ที่นำเข้ามาสำหรับการแสดงผลบนตาราง</a>
   - <a href="#2-input-ที่นำเข้ามาสำหรับการฝังลิงค์ใน-column-link-embed">Input ที่นำเข้ามาสำหรับการแสดงผลบนตาราง</a>
   - <a href="#3-แถบบนของหัวข้อตาราง-ตัวส่งออกข้อมูลตัวเลือกแสดงแถวต่อตารางแถบค้นหา">แถบบนของหัวข้อตาราง (ตัวส่งออกข้อมูล/ตัวเลือกแสดงแถวต่อตาราง/แถบค้นหา)</a>
