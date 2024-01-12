@@ -413,4 +413,4 @@
 - `uiTriangleButton:` คือ กำหนดรูปแบบ class และ style ปุ่มสำหรับกดแถบเลื่อนในแนวแกน y (ปุ่มสามเหลี่ยมติดกับแถบเลื่อน)
 <hr>
 
-<h3 align="left"><a href="https://xstylizt.github.io/automerged-modified-table/" target="_blank">Visit the live table</a> | <a href="https://github.com/xstylizt/automerged-modified-table/blob/main/js/script.js" target="_blank">Visit main script file</a> </div></h3>
+<h3 align="center"><a href="https://xstylizt.github.io/automerged-modified-table/" target="_blank">Visit the live table</a> | <a href="https://github.com/xstylizt/automerged-modified-table/blob/main/css/style.css" target="_blank">Visit the style file</a> | <a href="https://github.com/xstylizt/automerged-modified-table/blob/main/js/script.js" target="_blank">Visit main script file</a>  </div></h3>
