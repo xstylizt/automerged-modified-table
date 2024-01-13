@@ -1253,13 +1253,6 @@ $(document).ready(function(){
 
                 /* ------------------------------------------------------------------------------------*/
                 if(totalPageSection <= 5){
-
-                    if(parseInt($('.pq-pager-input').val()) >= 1 && searchInsertBox.val().length > 0){
-                        $('.pq-pager-msg').html(function (index, oldHTML) {
-                            return oldHTML + `<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`;
-                        })
-                    }
-
                     for(var i=1; i <= totalPageSection; i++){
                         if(i === 1){
                             paginationPageBar.append(`<div class="${numberPage} active" id="page-${i}" ><span>${i}</span></div>`)
@@ -1268,16 +1261,7 @@ $(document).ready(function(){
                             paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
                         }
                     }
-
-                    
                 }else if(totalPageSection > 5){
-
-                    if(parseInt($('.pq-pager-input').val()) >= 1 && searchInsertBox.val().length > 0){
-                        $('.pq-pager-msg').html(function (index, oldHTML) {
-                            return oldHTML + `<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`;
-                        })
-                    }
-
                     if(totalPageSection >= 6 && totalPageSection <= 9)
                     {
                         if(totalPageSection === 6|| totalPageSection ===  7)
@@ -1291,7 +1275,7 @@ $(document).ready(function(){
                                 }
                             }
                             paginationPageBar.append(threeDotTextDiv)
-                            paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
+                            paginationPageBar.append(`< div class="${numberPage}" id="page-${totalPageSection}"><span>${totalPageSection}</span></>`)
                         }else if(totalPageSection ===  8 || totalPageSection ===  9){
                             for(var i=1; i <= 5; i++){
                                 if(i === 1){
@@ -1304,7 +1288,9 @@ $(document).ready(function(){
                             paginationPageBar.append(threeDotTextDiv)
                             paginationPageBar.append(`<div class="${numberPage}" id="page-${totalPageSection}"><span>${totalPageSection}</span></div>`)
                         }
+
                     }else{
+                        
 
                         for(var i=1; i <= 4; i++){
                             if(i === 1){
@@ -1320,17 +1306,22 @@ $(document).ready(function(){
                     }
                 }
 
-                /* ------------------------------------------------------------------------------------- */
+                /* ------------------------ ------------------------------------------------------------ */
 
                 if(!previousButton.hasClass('disabled')){
                     previousButton.addClass('disabled')
                 }
 
 
-                console.log($('.page-number-container .num-page.active'))
-
-
+        
                 $('.pq-pager-input').val(1).trigger('change')
+
+                if(parseInt($('.pq-pager-input').val()) >= 1 && searchInsertBox.val().length > 0){
+                    $('.pq-pager-msg').html(function (index, oldHTML) { 
+                        console.log(oldHTML + `<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`)
+                        return oldHTML + `<span class   ="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`;
+                    })
+                }
                 $('.total').hide()
                 $('.pq-pager-input').hide()
             })
@@ -2012,8 +2003,13 @@ $(document).ready(function(){
                 var totalPageCount = parseInt($(`.${numberPage}`).last().text())
                 var currentPage = parseInt($('.pq-pager-input').val())
 
+                previousButton.css({
+                    'pointer-events': ''
+                })
 
-
+                nextButton.css({
+                    'pointer-events': ''
+                })
             
                 if (!$(this).hasClass('active')) {
                     currentActive.removeClass('active');
@@ -2047,7 +2043,6 @@ $(document).ready(function(){
                 }else if(parseInt(clickedValue) === totalPageCount){
                     nextButton.addClass('disabled')
                 }
-
 
 
                 if(parseInt(clickedValue) === 1){   
@@ -2236,6 +2231,8 @@ $(document).ready(function(){
                                     }
                                 }
                             }else{
+
+                                
                                 
                                 for(let i=1 ; i<= 5 ; i++)
                                 {
@@ -2348,7 +2345,6 @@ $(document).ready(function(){
           
 
 
-
                 $('.total').hide()
                 $('.pq-pager-input').hide()
         
@@ -2414,6 +2410,9 @@ $(document).ready(function(){
                         }else if(numberPageInsertBox === totalPageCount){
                             nextButton.css({
                                 'pointer-events': 'none'
+                            })
+                            previousButton.css({
+                                'pointer-events': ''
                             })
                         }
                     }
