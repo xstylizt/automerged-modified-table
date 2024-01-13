@@ -1248,9 +1248,6 @@ $(document).ready(function(){
                     $('.pq-pager-msg').append('Showing 0 to 0 of 0 entries')    
                 }
 
-
-
-
                 /* ------------------------------------------------------------------------------------*/
                 if(totalPageSection <= 5){
                     for(var i=1; i <= totalPageSection; i++){
@@ -1552,15 +1549,12 @@ $(document).ready(function(){
                 $('.pq-pager-input').hide()
             });
 
-
             // -------------------------------------- Handling event for insert filtered keyword -------------------------------------------------------
-
             searchInsertBox.on('keyup', function(ev){
                 paginationPageBar.empty();
                 var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null
                 var crossSymbol = '<span class="cross-symbol">X</span>'
                 
-            
                 if($(this).val().length >= 1){
                     $('.cross-symbol').remove()
                     $(crossSymbol).insertAfter($('.filterValue'))
@@ -1714,12 +1708,21 @@ $(document).ready(function(){
                     }
                 }
 
-
                 $('.pq-pager-input').val(1).trigger('change');
                 $('.total').hide()
                 $('.pq-pager-input').hide() 
                        
             })  
+
+            searchInsertBox.on('click', function(){
+                var crossSymbol = '<span class="cross-symbol">X</span>'
+                if($(this).val().length >= 1){
+                    $('.cross-symbol').remove()
+                    $(crossSymbol).insertAfter($('.filterValue'))
+                }else if($(this).val().length === 0){
+                    $('.cross-symbol').hide()
+                }
+            })
 
 
             $(`.${grid_style.toolbar.component.filterSearch.child.searchBar.class_name}`).on('click', '.cross-symbol' ,function(){
@@ -1800,11 +1803,10 @@ $(document).ready(function(){
                 $('.total').hide()
                 $('.pq-pager-input').hide() 
             })
-
+            
 
 
             // -------------------------------------- Handling event for filtered column and condition when it has been changed -------------------------------------------------------
-
             filterAndConditionOptions.on('change', function(evt){
                 paginationPageBar.empty(); 
                 var totalPageSection = !isNaN(parseInt($('.total').text())) ? parseInt($('.total').text()) : null;
@@ -1954,7 +1956,6 @@ $(document).ready(function(){
                     $(`<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
                 }
 
-
                 if(nextButton.hasClass('disabled')){
                     nextButton.removeClass('disabled')
                 }else if(!nextButton.hasClass('disabled')){
@@ -1996,6 +1997,7 @@ $(document).ready(function(){
                 $('.pq-pager-input').hide()
             })
 
+
             // ------------------------------------- Handling event for clicking on page of number ----------------------------------------------------
             paginationPageBar.on('click', `.${numberPage}`, function(evt) {
                 var clickedValue = $(this).text();
@@ -2010,7 +2012,7 @@ $(document).ready(function(){
                 nextButton.css({
                     'pointer-events': ''
                 })
-            
+
                 if (!$(this).hasClass('active')) {
                     currentActive.removeClass('active');
                     $(this).addClass('active'); 
@@ -2139,7 +2141,6 @@ $(document).ready(function(){
                 }else{
                     if(totalPageCount >= 6 && totalPageCount <= 9){
                         if(totalPageCount === 6 || totalPageCount === 7){
-                            
                             var isRightHasThreedot = $(`#page-${4}`).next().hasClass('three-dot')
                             paginationPageBar.empty()
                             if(parseInt(clickedValue) < 4){
@@ -2253,7 +2254,6 @@ $(document).ready(function(){
 
 
                 if(totalPageCount >= 10){
-
                     var isRightHasThreedot = $(`#page-${4}`).next().hasClass('three-dot')
                     if(parseInt(clickedValue) === 3){
                         paginationPageBar.empty()
@@ -2344,10 +2344,8 @@ $(document).ready(function(){
                 }
           
 
-
                 $('.total').hide()
                 $('.pq-pager-input').hide()
-        
             });
 
            // ------------------------------------- Handling event for click and insert pagination page bar insert box ---------------------------
@@ -2358,21 +2356,18 @@ $(document).ready(function(){
                 $('.pq-pager-msg').html(function (index, oldHTML) {
                     return oldHTML + `<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`;
                 })
-            }
-           })
+              }
+            })
 
             paginationPageBar.on('keypress', `.${pageInsertBox}`, function(ev){
                 var totalPageCount = parseInt($('.total').text())
 
                 $('.filter-text').remove()
-
                 if(ev.which === 13){
                     var numberPageInsertBox = parseInt($(`.${pageInsertBox}`).val())
 
                     if(numberPageInsertBox >= 1 && numberPageInsertBox < 4){
                         paginationPageBar.empty()
-
-                        
 
                         for(let i = 1 ; i<= 4 ; i++){
                             paginationPageBar.append(`<div class="${numberPage}" id="page-${i}"><span>${i}</span></div>`)
@@ -2439,6 +2434,8 @@ $(document).ready(function(){
                     $(`.${pageInsertBox}`).removeClass('disabled-input-box')
                 }
             })
+
+
 
 
             // ----------------------------------------------------------------------------------------------------------------------------
@@ -2512,7 +2509,6 @@ $(document).ready(function(){
 
 
     // ------------------- Define function for creating exported files and filtered column with name and condition ----------------------------
-
 
     function filterHandler(evt, ui) {
         var $toolbar = $grid.find('.pq-toolbar-search'),
