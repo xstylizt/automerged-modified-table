@@ -1563,15 +1563,6 @@ $(document).ready(function(){
                 }
 
 
-                if($(this).val().length === 0){
-                    $('.pq-pager-msg span').empty()
-                    $('<span></span>').appendTo('.pq-pager-msg')
-                }else if($(this).val().length !== 0 ||  $('.pq-grid-cont-inner').text() == "No rows to display."){
-                    $('.pq-pager-msg span').empty()
-                    $(`<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
-                }
-
-
                 if($('.pq-grid-cont-inner').text() === 'No rows to display.'){
                     nextButton.addClass('disabled')
                 }
@@ -1709,6 +1700,16 @@ $(document).ready(function(){
                 }
 
                 $('.pq-pager-input').val(1).trigger('change');
+
+                if($(this).val().length === 0){
+                    $('.pq-pager-msg span').empty()
+                    $('<span></span>').appendTo('.pq-pager-msg')
+                }else if($(this).val().length !== 0 ||  $('.pq-grid-cont-inner').text() == "No rows to display."){
+                    $('.pq-pager-msg span').empty()
+                    $(`<span class="filter-text"> (filtered from ${data.length - header.n_row} total entries) </span>`).appendTo('.pq-pager-msg')
+                }
+
+                
                 $('.total').hide()
                 $('.pq-pager-input').hide() 
                        
